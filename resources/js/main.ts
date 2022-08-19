@@ -1,8 +1,10 @@
-import App from "./App.svelte";
 import "./assets/app.css";
 
-const app = new App({
-    target: document.getElementById("app"),
-});
+import { createInertiaApp } from '@inertiajs/inertia-svelte'
 
-export default app;
+createInertiaApp({
+  resolve: name => import(`./Pages/${name}.svelte`),
+  setup({ el, App, props }) {
+    new App({ target: el, props })
+  },
+})
