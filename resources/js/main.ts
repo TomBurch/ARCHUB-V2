@@ -1,5 +1,5 @@
 import '../css/app.css'; 
-
+import { Inertia } from "@inertiajs/inertia";
 import { createInertiaApp } from '@inertiajs/inertia-svelte'
 
 createInertiaApp({
