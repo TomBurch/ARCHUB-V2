@@ -1,4 +1,4 @@
-import "./assets/app.css";
+import '../css/app.css'; 
 
 import { createInertiaApp } from '@inertiajs/inertia-svelte'
 
