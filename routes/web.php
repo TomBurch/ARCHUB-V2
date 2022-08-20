@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\DiscordController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,5 +18,13 @@ use Illuminate\Support\Facades\Route;
 //     return view('app');
 // })->where('any', '.*');
 
+Route::controller(DiscordController::class)->group(function () {
+    Route::get('/auth/redirect', 'redirect')->name('login');
+    Route::get('/auth/callback', 'callback');
+});
+
 Route::inertia('/', 'App');
-Route::inertia('/hub', 'Hub');
+
+Route::middleware(['can:access-hub'])->group(function () {
+    Route::inertia('/hub', 'Hub');
+});

@@ -30,4 +30,17 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'discord' => [    
+        'client_id' => env('DISCORD_CLIENT_ID'),  
+        'client_secret' => env('DISCORD_CLIENT_SECRET'),  
+        'redirect' => env('DISCORD_REDIRECT_URI'),
+        // optional
+        'allow_gif_avatars' => (bool)env('DISCORD_AVATAR_GIF', false),
+        'avatar_default_extension' => env('DISCORD_EXTENSION_DEFAULT', 'jpg'), // only pick from jpg, png, webp
+
+        'token' => env('DISCORD_TOKEN'),
+        'server_id' => env('DISCORD_SERVER_ID'),
+        'arma_recruit_role' => env('DISCORD_ARMA_RECRUIT_ROLE'),
+        'arma_member_role' => env('DISCORD_ARMA_MEMBER_ROLE'),
+      ],      
 ];

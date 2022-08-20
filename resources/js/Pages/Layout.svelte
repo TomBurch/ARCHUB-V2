@@ -4,12 +4,8 @@
 
 <main>
     <header>
-        {#if $page.props.user}
-            <Link href="/hub">Hub</Link>
-        {:else}
-            <Link href="/login">Login</Link>
-        {/if}
         <Link href="/">Home</Link>
+        <Link href="/hub">Hub</Link>
         <Link href="/contact">Contact</Link>
     </header>
     <article>
