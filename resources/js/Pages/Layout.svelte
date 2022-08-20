@@ -1,12 +1,16 @@
 <script lang="ts">
-    import { inertia } from '@inertiajs/inertia-svelte'
+    import { Link, page } from '@inertiajs/inertia-svelte'
 </script>
 
 <main>
     <header>
-        <a use:inertia href="/">Home</a>
-        <a use:inertia href="/about">About</a>
-        <a use:inertia href="/contact">Contact</a>
+        {#if $page.props.user}
+            <Link href="/hub">Hub</Link>
+        {:else}
+            <Link href="/login">Login</Link>
+        {/if}
+        <Link href="/">Home</Link>
+        <Link href="/contact">Contact</Link>
     </header>
     <article>
         <slot />

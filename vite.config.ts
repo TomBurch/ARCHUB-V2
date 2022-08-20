@@ -11,6 +11,11 @@ export default defineConfig(({ command }) => {
                 input: ["resources/js/main.ts"],
             },
         },
-        plugins: [svelte()],
+        plugins: [svelte({
+            experimental: {
+              prebundleSvelteLibraries: true,
+            },
+          })
+        ],
     };
 });

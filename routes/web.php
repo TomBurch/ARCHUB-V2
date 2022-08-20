@@ -18,3 +18,4 @@ use Illuminate\Support\Facades\Route;
 // })->where('any', '.*');
 
 Route::inertia('/', 'App');
+Route::inertia('/hub', 'Hub');
