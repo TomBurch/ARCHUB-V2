@@ -5,7 +5,11 @@
 <main>
     <header>
         <Link href="/">Home</Link>
-        <Link href="/hub">Hub</Link>
+        {#if $page.props.user }
+            <Link href="/hub">Hub</Link>
+        {:else}
+            <a href="/auth/redirect">Login</a>
+        {/if}
         <Link href="/contact">Contact</Link>
     </header>
     <article>
