@@ -1,45 +1,44 @@
 {
   "resources/js/main.ts": {
-    "file": "assets/main.6c888b97.js",
+    "file": "assets/main.d4bf3f4a.js",
     "src": "resources/js/main.ts",
     "isEntry": true,
     "dynamicImports": [
       "resources/js/Pages/App.svelte",
       "resources/js/Pages/Hub.svelte",
-      "resources/js/Pages/Layout.svelte"
+      "_Layout.8fe0ba6a.js"
     ],
     "css": [
-      "assets/main.b34b0ad7.css"
+      "assets/main.7e1c0e18.css"
     ]
   },
   "resources/js/Pages/App.svelte": {
-    "file": "assets/App.66e52db3.js",
+    "file": "assets/App.efc9fd5a.js",
     "src": "resources/js/Pages/App.svelte",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/main.ts",
-      "resources/js/Pages/Layout.svelte"
+      "_Layout.8fe0ba6a.js"
     ]
   },
-  "resources/js/Pages/Layout.svelte": {
-    "file": "assets/Layout.429f2eba.js",
-    "src": "resources/js/Pages/Layout.svelte",
+  "_Layout.8fe0ba6a.js": {
+    "file": "assets/Layout.8fe0ba6a.js",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/main.ts"
     ]
   },
   "resources/js/Pages/Hub.svelte": {
-    "file": "assets/Hub.dd9209e2.js",
+    "file": "assets/Hub.51100054.js",
     "src": "resources/js/Pages/Hub.svelte",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/main.ts",
-      "resources/js/Pages/Layout.svelte"
+      "_Layout.8fe0ba6a.js"
     ]
   },
   "resources/js/main.css": {
-    "file": "assets/main.b34b0ad7.css",
+    "file": "assets/main.7e1c0e18.css",
     "src": "resources/js/main.css"
   }
 }

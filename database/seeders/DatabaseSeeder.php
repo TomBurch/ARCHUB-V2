@@ -18,11 +18,6 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         \App\Models\User::factory(10)->create();
-        DB::table('missions')->insert([
-            'user_id' => 1,
-            'display_name' => 'Test mission',
-            'mode' => 'coop',
-            'summary' => 'this is a summary',
-        ]);
+        \App\Models\Mission::factory(100)->create();
     }
 }
