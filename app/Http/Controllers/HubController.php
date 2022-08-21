@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Mission;
+
 use Inertia\Inertia;
 use Illuminate\Http\Request;
 
@@ -15,7 +17,8 @@ class HubController extends Controller
         );
 
         return inertia('Hub', [
-            'missions' => auth()->user()->missions()->get()->toArray(), 
+            'missions' => Mission::all()->toArray(),
+            //'missions' => auth()->user()->missions()->get()->toArray(), 
         ]);
     }
 }
