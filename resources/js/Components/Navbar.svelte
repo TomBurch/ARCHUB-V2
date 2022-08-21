@@ -5,7 +5,7 @@
         { name: 'Home', href: '/'},
         { name: 'Hub', href: '/hub'},
         { name: 'Contact', href: '/contact'},
-        { name: 'Login', href: '/auth/redirect'},
+        //{ name: 'Login', href: '/auth/redirect'},
     ]
 
     let open = false;
@@ -31,6 +31,10 @@
                         {#each navigation as item}
                             <Link href={item.href} class="{$page.url == item.href ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'} px-3 py-2 rounded-md text-sm font-medium">{item.name}</Link>
                         {/each}
+                        
+                        {#if !$page.props.user }
+                            <a href='auth/redirect' class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Login</a>
+                        {/if}
                     </div>
                 </div>
             </div>

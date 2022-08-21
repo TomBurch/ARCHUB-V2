@@ -5,7 +5,6 @@
   
 <Layout>
     <h1>Hub</h1>
-    <p>This is the hub page</p>
 
     {#each missions as mission}
         <li>{mission.display_name}</li>
