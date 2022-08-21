@@ -16,9 +16,9 @@ class HubController extends Controller
             : null
         );
 
+        $missions = Mission::with('user:id,username')->select('user_id', 'display_name', 'mode', 'summary')->get()->toArray();
         return inertia('Hub', [
-            'missions' => Mission::all()->toArray(),
-            //'missions' => auth()->user()->missions()->get()->toArray(), 
+            'missions' => $missions
         ]);
     }
 }

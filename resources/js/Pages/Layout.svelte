@@ -5,7 +5,7 @@
 
 <main>
     <Navbar/>
-    <article>
+    <article class="m-10">
         <slot />
     </article>
 </main>
