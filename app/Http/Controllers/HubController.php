@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
 
-class AppController extends Controller
+class HubController extends Controller
 {
     public function index()
     {
@@ -13,6 +13,9 @@ class AppController extends Controller
             ? $request->user()->only('username')
             : null
         );
-        return inertia('App');
+
+        return inertia('Hub', [
+            'missions' => auth()->user()->missions()->get()->toArray(), 
+        ]);
     }
 }

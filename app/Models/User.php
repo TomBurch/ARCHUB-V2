@@ -39,6 +39,11 @@ class User extends Authenticatable
      */
     protected $casts = [];
 
+    public function missions()
+    {
+        return $this->hasMany(Mission::class);
+    }
+
     public function hasARole(RoleEnum ...$roles)
     {
         return Discord::hasARole($this->discord_id, ...$roles);

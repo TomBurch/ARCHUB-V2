@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AppController;
+use App\Http\Controllers\HubController;
 use App\Http\Controllers\Auth\DiscordController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,5 +28,5 @@ Route::controller(DiscordController::class)->group(function () {
 Route::get('/', [AppController::class, 'index']);
 
 Route::middleware(['can:access-hub'])->group(function () {
-    Route::inertia('/hub', 'Hub');
+    Route::get('/hub', [HubController::class, 'index']);
 });
