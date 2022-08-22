@@ -1,8 +1,9 @@
 <?php
 
+use App\Http\Controllers\Auth\DiscordController;
 use App\Http\Controllers\AppController;
 use App\Http\Controllers\HubController;
-use App\Http\Controllers\Auth\DiscordController;
+use App\Http\Controllers\MissionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,4 +30,5 @@ Route::get('/', [AppController::class, 'index']);
 
 Route::middleware(['can:access-hub'])->group(function () {
     Route::get('/hub', [HubController::class, 'index']);
+    Route::get('/missions/{mission}', [MissionController::class, 'index']);
 });
