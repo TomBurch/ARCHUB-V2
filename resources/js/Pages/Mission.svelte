@@ -1,6 +1,5 @@
 <script lang="ts">
     import Layout from './Layout.svelte'
-    import Card from '../Components/Missions/Card.svelte'
     export let mission;
 </script>
   
