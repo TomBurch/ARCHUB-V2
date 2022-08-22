@@ -13,7 +13,7 @@
 
 <!-- Adapted from https://tailwindui.com/components/application-ui/navigation/navbars#component-70a9bdf83ef2c8568c5cddf6c39c2331 -->
 <nav class="bg-gray-800">
-    <div class="max-w-7xl px-2 sm:px-6 lg:px-8">
+    <div class="px-2 sm:px-6 lg:px-8">
         <div class="relative flex items-center justify-between h-16">
             <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 <button type="button" on:click="{() => open = !open}"class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
@@ -24,19 +24,24 @@
             </div>
             <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
                 <div class="flex-shrink-0 flex items-center">
-                    <img class="block h-8 w-auto" src="/images/logo.png" alt="Logo">
+                    <img class="hidden sm:block h-8 w-auto" src="/images/logo.png" alt="Logo">
                 </div>
                 <div class="hidden sm:block sm:ml-6">
                     <div class="flex space-x-4">
                         {#each navigation as item}
-                            <Link href={item.href} class="{$page.url == item.href ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'} px-3 py-2 rounded-md text-sm font-medium">{item.name}</Link>
+                            <Link href={item.href} class="{$page.url == item.href ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'} px-3 py-2 rounded-md text-md font-">{item.name}</Link>
                         {/each}
                         
                         {#if !$page.props.user }
-                            <a href='auth/redirect' class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Login</a>
+                            <a href='auth/redirect' class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-md font-medium">Login</a>
                         {/if}
                     </div>
                 </div>
+            </div>
+            <div class="block ml-6 justify-end">
+                <Link href="/profile">
+                    <img class="h-10 w-10 rounded-full" src="/images/arcomm-placeholder.jpg" alt="">
+                </Link>
             </div>
         </div>
     </div>
@@ -44,7 +49,7 @@
     <div class='sm:hidden' id="mobile-menu">
         <div class="{open ? 'hidden' : ''} px-2 pt-2 pb-3 space-y-1">
             {#each navigation as item}
-                <Link href={item.href} class="{$page.url == item.href ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'} block px-3 py-2 rounded-md text-base font-medium">{item.name}</Link>
+                <Link href={item.href} class="{$page.url == item.href ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'} block px-3 py-2 rounded-md text-md font-medium">{item.name}</Link>
             {/each}
         </div>
     </div>
