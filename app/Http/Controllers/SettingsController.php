@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Mission;
-
 use Inertia\Inertia;
 use Illuminate\Http\Request;
 
-class HubController extends Controller
+class SettingsController extends Controller
 {
     public function index()
     {
@@ -16,9 +14,8 @@ class HubController extends Controller
             : null
         );
 
-        $missions = Mission::with('user:id,username')->select('id', 'user_id', 'display_name', 'mode', 'summary')->get()->toArray();
-        return inertia('Hub', [
-            'missions' => $missions
+        return inertia('Settings', [
+            'user' => auth()->user(),
         ]);
     }
 }

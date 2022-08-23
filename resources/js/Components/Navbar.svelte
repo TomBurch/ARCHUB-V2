@@ -3,7 +3,7 @@
 
     const navigation = [
         { name: 'Home', href: '/'},
-        { name: 'Hub', href: '/hub'},
+        { name: 'Missions', href: '/hub/missions'},
         { name: 'Contact', href: '/contact'},
         //{ name: 'Login', href: '/auth/redirect'},
     ]
@@ -39,7 +39,7 @@
                 </div>
             </div>
             <div class="block ml-6 justify-end">
-                <Link href="/profile">
+                <Link href="/hub/settings">
                     <img class="h-10 w-10 rounded-full" src="/images/arcomm-placeholder.jpg" alt="">
                 </Link>
             </div>

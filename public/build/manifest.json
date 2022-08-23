@@ -1,54 +1,64 @@
 {
   "resources/js/main.ts": {
-    "file": "assets/main.26c63eec.js",
+    "file": "assets/main.665d0fa4.js",
     "src": "resources/js/main.ts",
     "isEntry": true,
     "dynamicImports": [
       "resources/js/Pages/App.svelte",
-      "resources/js/Pages/Hub.svelte",
-      "_Layout.29b2b2a4.js",
-      "resources/js/Pages/Mission.svelte"
+      "_Layout.27e6193c.js",
+      "resources/js/Pages/Mission.svelte",
+      "resources/js/Pages/Missions.svelte",
+      "resources/js/Pages/Settings.svelte"
     ],
     "css": [
-      "assets/main.e223e520.css"
+      "assets/main.c7faa3d7.css"
     ]
   },
   "resources/js/Pages/App.svelte": {
-    "file": "assets/App.d71aeff7.js",
+    "file": "assets/App.21279a21.js",
     "src": "resources/js/Pages/App.svelte",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/main.ts",
-      "_Layout.29b2b2a4.js"
+      "_Layout.27e6193c.js"
     ]
   },
-  "_Layout.29b2b2a4.js": {
-    "file": "assets/Layout.29b2b2a4.js",
+  "_Layout.27e6193c.js": {
+    "file": "assets/Layout.27e6193c.js",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/main.ts"
     ]
   },
-  "resources/js/Pages/Hub.svelte": {
-    "file": "assets/Hub.1a536db4.js",
-    "src": "resources/js/Pages/Hub.svelte",
-    "isDynamicEntry": true,
-    "imports": [
-      "resources/js/main.ts",
-      "_Layout.29b2b2a4.js"
-    ]
-  },
   "resources/js/Pages/Mission.svelte": {
-    "file": "assets/Mission.6660f321.js",
+    "file": "assets/Mission.55d0ccb7.js",
     "src": "resources/js/Pages/Mission.svelte",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/main.ts",
-      "_Layout.29b2b2a4.js"
+      "_Layout.27e6193c.js"
+    ]
+  },
+  "resources/js/Pages/Missions.svelte": {
+    "file": "assets/Missions.19c7a4d8.js",
+    "src": "resources/js/Pages/Missions.svelte",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/main.ts",
+      "_Layout.27e6193c.js"
+    ]
+  },
+  "resources/js/Pages/Settings.svelte": {
+    "file": "assets/Settings.eb5bd4d9.js",
+    "src": "resources/js/Pages/Settings.svelte",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/main.ts",
+      "_Layout.27e6193c.js"
     ]
   },
   "resources/js/main.css": {
-    "file": "assets/main.e223e520.css",
+    "file": "assets/main.c7faa3d7.css",
     "src": "resources/js/main.css"
   }
 }
