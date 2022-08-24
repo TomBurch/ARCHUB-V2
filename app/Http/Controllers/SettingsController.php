@@ -14,7 +14,7 @@ class SettingsController extends Controller
             : null
         );
 
-        return inertia('Settings', [
+        return inertia('User/Settings', [
             'user' => auth()->user(),
         ]);
     }

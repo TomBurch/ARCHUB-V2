@@ -17,7 +17,7 @@ class MissionsController extends Controller
         );
 
         $missions = Mission::with('user:id,username')->select('id', 'user_id', 'display_name', 'mode', 'summary')->get()->toArray();
-        return inertia('Missions', [
+        return inertia('Missions/Missions', [
             'missions' => $missions
         ]);
     }

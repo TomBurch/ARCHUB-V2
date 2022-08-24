@@ -17,7 +17,7 @@ class MissionController extends Controller
         );
 
         $mission = Mission::with('user:id,username')->select('id', 'user_id', 'display_name', 'mode', 'summary')->firstWhere('id', $mission->id)->toArray();
-        return inertia('Mission', [
+        return inertia('Missions/Mission', [
             'mission' => $mission,
         ]);
     }
