@@ -13,6 +13,6 @@ class AppController extends Controller
             ? $request->user()->only('username')
             : null
         );
-        return inertia('App');
+        return inertia('Public/App');
     }
 }

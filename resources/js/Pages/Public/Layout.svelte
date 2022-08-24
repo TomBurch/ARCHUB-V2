@@ -1,0 +1,10 @@
+<script lang="ts">
+    import { Link, page } from '@inertiajs/inertia-svelte'
+    import Navbar from '../../Components/Navbar.svelte'
+</script>
+
+<main>
+    <article class="m-10">
+        <slot />
+    </article>
+</main>

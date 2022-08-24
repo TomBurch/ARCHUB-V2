@@ -4,8 +4,6 @@
     const navigation = [
         { name: 'Home', href: '/'},
         { name: 'Missions', href: '/hub/missions'},
-        { name: 'Contact', href: '/contact'},
-        //{ name: 'Login', href: '/auth/redirect'},
     ]
 
     let open = false;
