@@ -5,7 +5,11 @@ module.exports = {
         "./resources/**/*.svelte",
     ],
     theme: {
-        extend: {},
+        extend: {
+            height: {
+              'screen-no-nav': '84vh',
+            }
+          }
     },
     plugins: [
         require("@tailwindcss/forms"),
