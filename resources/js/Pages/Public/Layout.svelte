@@ -1,15 +1,10 @@
 <script lang="ts">
     import { Link, page } from '@inertiajs/inertia-svelte'
-    import Navbar from '../../Components/Navbar.svelte'
-
-    const navigation = [
-        { name: 'Login', href: '/auth/redirect', inert: false},
-        { name: 'Join', href: '/join', inert: true},
-    ]
+    import Navbar from '../../Components/Public/Navbar.svelte'
 </script>
 
 <main>
-    <Navbar navigation={navigation}/>
+    <Navbar/>
     <article class="m-10">
         <slot />
     </article>

@@ -1,7 +1,10 @@
 <script lang="ts">
     import { Link, page } from '@inertiajs/inertia-svelte'
 
-    export let navigation;
+    const navigation = [
+        { name: 'Home', href: '/', inert: true},
+        { name: 'Missions', href: '/hub/missions', inert: true},
+    ]
     let open = false;
 </script>
 
@@ -23,11 +26,7 @@
                 <div class="hidden sm:block sm:ml-6">
                     <div class="flex space-x-4">
                         {#each navigation as item}
-                            {#if item.inert}
-                                <Link href={item.href} class="{$page.url == item.href ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'} px-3 py-2 rounded-md text-md font-">{item.name}</Link>
-                            {:else}
-                                <a href={item.href} class="{$page.url == item.href ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'} px-3 py-2 rounded-md text-md font-">{item.name}</a>
-                            {/if}
+                            <Link href={item.href} class="{$page.url == item.href ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'} px-3 py-2 rounded-md text-md font-">{item.name}</Link>
                         {/each}
                     </div>
                 </div>
