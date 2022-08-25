@@ -1,6 +1,6 @@
 <script lang="ts">
     import Layout from './Layout.svelte'
-    import { Link, page } from '@inertiajs/inertia-svelte'
+    import { page } from '@inertiajs/inertia-svelte'
 </script>
   
 <Layout>

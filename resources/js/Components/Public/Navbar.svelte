@@ -1,6 +1,5 @@
 <script lang="ts">
     import { Link, page } from '@inertiajs/inertia-svelte'
-    import { compute_rest_props } from 'svelte/internal';
 
     const navigation = [
         { name: 'Join', href: '/join'},
@@ -25,7 +24,7 @@
                 </div>
                 <div class="hidden sm:block sm:ml-6">
                     <div class="flex space-x-4">
-                        {#if $page.props.user}
+                        {#if $page.props.auth.user}
                             <Link href='/hub' class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-md font-medium">Hub</Link>
                         {:else}
                             <a href='/auth/redirect' class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-md font-medium">Login</a>
@@ -41,7 +40,7 @@
   
     <div class='sm:hidden' id="mobile-menu">
         <div class="{open ? 'hidden' : ''} px-2 pt-2 pb-3 space-y-1">
-            {#if $page.props.user}
+            {#if $page.props.auth.user}
                 <Link href='/hub' class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-md font-">Hub</Link>
             {:else}
                 <a href='/auth/redirect' class="'text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-md font-">Login</a>

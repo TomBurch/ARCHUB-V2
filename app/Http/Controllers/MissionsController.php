@@ -11,11 +11,6 @@ class MissionsController extends Controller
 {
     public function index()
     {
-        Inertia::share('user', fn (Request $request) => $request->user()
-            ? $request->user()->only('username')
-            : null
-        );
-
         $missions = Mission::with('user:id,username')->select('id', 'user_id', 'display_name', 'mode', 'summary')->get()->toArray();
         return inertia('Hub/Missions/Missions', [
             'missions' => $missions
