@@ -5,6 +5,7 @@ use App\Http\Controllers\AppController;
 use App\Http\Controllers\MissionsController;
 use App\Http\Controllers\MissionController;
 use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\Public\JoinController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,6 +29,7 @@ Route::controller(DiscordController::class)->group(function () {
 });
 
 Route::get('/', [AppController::class, 'index']);
+Route::get('/join', [JoinController::class, 'index']);
 
 Route::middleware(['can:access-hub'])->group(function () {
     Route::permanentRedirect('/hub', '/hub/missions');
