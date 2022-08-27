@@ -11,7 +11,10 @@ class MissionsController extends Controller
 {
     public function index()
     {
-        $missions = Mission::with('user:id,username')->select('id', 'user_id', 'display_name', 'mode', 'summary')->get()->toArray();
+        $missions = Mission::with('user:id,username')
+        ->select('id', 'user_id', 'display_name', 'mode', 'summary')
+        ->orderBy('id', 'desc')->get()->toArray();
+
         return inertia('Hub/Missions/Missions', [
             'missions' => $missions
         ]);

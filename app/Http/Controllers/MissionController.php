@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Mission;
+use Faker\Factory;
 
-use Inertia\Inertia;
 use Illuminate\Http\Request;
 
 class MissionController extends Controller
@@ -14,6 +14,20 @@ class MissionController extends Controller
         $mission = Mission::with('user:id,username')->select('id', 'user_id', 'display_name', 'mode', 'summary')->firstWhere('id', $mission->id)->toArray();
         return inertia('Hub/Missions/Mission', [
             'mission' => $mission,
+        ]);
+    }
+
+    public function store(Request $request)
+    {
+        $missionFile = $request->file('mission');
+        $user = auth()->user();
+
+        $faker = Factory::create();
+        $mission = Mission::create([
+            'user_id' => $user->id,
+            'display_name' => $missionFile->getClientOriginalName(),
+            'mode' => 'coop',
+            'summary' => $faker->catchPhrase(),
         ]);
     }
 }
