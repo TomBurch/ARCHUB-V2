@@ -18,7 +18,6 @@ class MissionFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => '11',
             'display_name' => $this->faker->bs(),
             'mode' => 'coop',
             'summary' => $this->faker->catchPhrase(),
