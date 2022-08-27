@@ -1,6 +1,6 @@
 {
   "resources/js/main.ts": {
-    "file": "assets/main.7346ca37.js",
+    "file": "assets/main.0fda26bc.js",
     "src": "resources/js/main.ts",
     "isEntry": true,
     "dynamicImports": [
@@ -17,77 +17,77 @@
     ]
   },
   "resources/js/Pages/Hub/Layout.svelte": {
-    "file": "assets/Layout.08a6e3fc.js",
+    "file": "assets/Layout.c0f2f6c9.js",
     "src": "resources/js/Pages/Hub/Layout.svelte",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/main.ts",
-      "_InertiaLink.77e0add1.js"
+      "_InertiaLink.16222afc.js"
     ]
   },
-  "_InertiaLink.77e0add1.js": {
-    "file": "assets/InertiaLink.77e0add1.js",
+  "_InertiaLink.16222afc.js": {
+    "file": "assets/InertiaLink.16222afc.js",
     "imports": [
       "resources/js/main.ts"
     ]
   },
   "resources/js/Pages/Hub/Missions/Mission.svelte": {
-    "file": "assets/Mission.2d3a5a8e.js",
+    "file": "assets/Mission.234c3f59.js",
     "src": "resources/js/Pages/Hub/Missions/Mission.svelte",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/main.ts",
       "resources/js/Pages/Hub/Layout.svelte",
-      "_InertiaLink.77e0add1.js"
+      "_InertiaLink.16222afc.js"
     ]
   },
   "resources/js/Pages/Hub/Missions/Missions.svelte": {
-    "file": "assets/Missions.4a251d6e.js",
+    "file": "assets/Missions.a06663ca.js",
     "src": "resources/js/Pages/Hub/Missions/Missions.svelte",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/main.ts",
       "resources/js/Pages/Hub/Layout.svelte",
-      "_InertiaLink.77e0add1.js"
+      "_InertiaLink.16222afc.js"
     ]
   },
   "resources/js/Pages/Hub/User/Settings.svelte": {
-    "file": "assets/Settings.a1169297.js",
+    "file": "assets/Settings.368e8d05.js",
     "src": "resources/js/Pages/Hub/User/Settings.svelte",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/main.ts",
       "resources/js/Pages/Hub/Layout.svelte",
-      "_InertiaLink.77e0add1.js"
+      "_InertiaLink.16222afc.js"
     ]
   },
   "resources/js/Pages/Public/App.svelte": {
-    "file": "assets/App.0f1dfb7a.js",
+    "file": "assets/App.fe8d328a.js",
     "src": "resources/js/Pages/Public/App.svelte",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/main.ts",
       "resources/js/Pages/Public/Layout.svelte",
-      "_InertiaLink.77e0add1.js"
+      "_InertiaLink.16222afc.js"
     ]
   },
   "resources/js/Pages/Public/Layout.svelte": {
-    "file": "assets/Layout.349810d5.js",
+    "file": "assets/Layout.33686b67.js",
     "src": "resources/js/Pages/Public/Layout.svelte",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/main.ts",
-      "_InertiaLink.77e0add1.js"
+      "_InertiaLink.16222afc.js"
     ]
   },
   "resources/js/Pages/Public/Join.svelte": {
-    "file": "assets/Join.dba71580.js",
+    "file": "assets/Join.f2ce418b.js",
     "src": "resources/js/Pages/Public/Join.svelte",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/main.ts",
       "resources/js/Pages/Public/Layout.svelte",
-      "_InertiaLink.77e0add1.js"
+      "_InertiaLink.16222afc.js"
     ]
   },
   "resources/js/main.css": {
