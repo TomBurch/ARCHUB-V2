@@ -4,7 +4,7 @@
 </script>
 
 <!-- Adapted from https://flowbite.com/docs/components/card/#default-card -->
-<Link href="/hub/missions/{mission.id}" class="h-52 p-3 rounded-lg border border-gray-700 shadow-md bg-gray-800">
+<Link href="/hub/missions/{mission.id}" class="h-52 p-3 rounded-lg shadow-md border border-gray-700 bg-gray-800 hover:bg-gray-700">
     <div class="h-28 bg-center bg-[url('/images/arcomm-placeholder.jpg')]"></div>
     <div class="pt-4">
         <h5 class="truncate text-md font-semibold text-white tracking-tight">{mission.display_name}</h5>
