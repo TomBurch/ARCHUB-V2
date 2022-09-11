@@ -4,15 +4,21 @@
 </script>
 
 <script lang="ts">
-    import PageSelect from '../../../Components/Hub/Missions/PageSelect.svelte'
+    import Subnav from '../../../Components/Hub/Missions/Subnav/Subnav.svelte'
     import Briefing from '../../../Components/Hub/Missions/Subnav/Briefing.svelte';
-    import Overview from '../../../Components/Hub/Missions/Subnav/Overview.svelte';
+    import Orbat from '../../../Components/Hub/Missions/Subnav/Orbat.svelte';
+    import AARs from '../../../Components/Hub/Missions/Subnav/AARs.svelte';
+    import Notes from '../../../Components/Hub/Missions/Subnav/Notes.svelte';
+    import Media from '../../../Components/Hub/Missions/Subnav/Media.svelte';
 
     export let mission;
 
     let navigation = [
-        { name: 'Overview', component: Overview},
         { name: 'Briefing', component: Briefing},
+        { name: 'Orbat', component: Orbat},
+        { name: 'AARs', component: AARs},
+        { name: 'Notes', component: Notes},
+        { name: 'Media', component: Media},
     ]
     let selected = navigation[0];
 </script>
@@ -23,7 +29,9 @@
     <p class="pt-2 truncate text-center text-sm font-normal text-gray-300">{mission.summary}</p>
 
     <div class="pt-5">
-        <PageSelect bind:navigation bind:selected/>
-        <svelte:component this={selected.component}/>
+        <Subnav bind:navigation bind:selected/>
+        <div class="mt-5">
+            <svelte:component this={selected.component}/>
+        </div>
     </div>
 </div>

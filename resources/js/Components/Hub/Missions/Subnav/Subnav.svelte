@@ -1,6 +1,4 @@
 <script lang="ts">
-    import { Link, page } from '@inertiajs/inertia-svelte'
-
     export let navigation
     export let selected
     let open = false
@@ -21,7 +19,7 @@
                 <div class="hidden sm:block sm:ml-6">
                     <div class="flex space-x-4">
                         {#each navigation as item}
-                            <button on:click="{() => selected = item}" class="{selected.name == item.name ? 'bg-indigo-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'} px-3 py-2 rounded-md text-md font-medium">{item.name}</button>
+                            <button on:click="{() => selected = item}" class="{selected.name == item.name ? 'text-white bg-indigo-900' : 'text-gray-300 hover:bg-gray-700 hover:text-white'} px-3 py-2 rounded-md text-md font-medium">{item.name}</button>
                         {/each}
                     </div>
                 </div>
