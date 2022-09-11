@@ -5,8 +5,16 @@
 
 <script lang="ts">
     import PageSelect from '../../../Components/Hub/Missions/PageSelect.svelte'
+    import Briefing from '../../../Components/Hub/Missions/Subnav/Briefing.svelte';
+    import Overview from '../../../Components/Hub/Missions/Subnav/Overview.svelte';
 
     export let mission;
+
+    let navigation = [
+        { name: 'Overview', component: Overview},
+        { name: 'Briefing', component: Briefing},
+    ]
+    let selected = navigation[0];
 </script>
   
 <div class="h-screen-no-nav lg:w-4/5 mx-auto p-3 border border-gray-200 shadow-md bg-gray-800 border-gray-700">
@@ -15,6 +23,7 @@
     <p class="pt-2 truncate text-center text-sm font-normal text-gray-300">{mission.summary}</p>
 
     <div class="pt-5">
-        <PageSelect />
+        <PageSelect bind:navigation bind:selected/>
+        <svelte:component this={selected.component}/>
     </div>
 </div>
