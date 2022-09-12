@@ -6,14 +6,13 @@ use App\Helpers\PBOMission\PBOMission;
 use App\Models\Mission;
 
 use \stdClass;
-use Faker\Factory;
 use Illuminate\Http\Request;
 
 class MissionController extends Controller
 {
     public function index(Mission $mission)
     {
-        $mission = Mission::with('user:id,username')->select('id', 'user_id', 'display_name', 'mode', 'summary')->firstWhere('id', $mission->id)->toArray();
+        $mission = Mission::with('user:id,username')->select('id', 'user_id', 'display_name', 'mode', 'summary', 'briefings')->firstWhere('id', $mission->id)->toArray();
         return inertia('Hub/Missions/Mission', [
             'mission' => $mission,
         ]);
@@ -33,16 +32,18 @@ class MissionController extends Controller
 
         $contents = $this->getMissionContents($path);
         $details = $this->getDetailsFromFileName($fileName);
+        $briefings = $this->parseBriefings($contents['mission']['briefings']);
         
         $mission = Mission::create([
             'user_id' => $user->id,
             'display_name' => $contents['mission']['name'],
             'mode' => $details->mode,
             'summary' => $contents['mission']['description'],
+            'briefings' => json_encode($briefings),
         ]);
     }
 
-    public function getMissionContents(string $path) {
+    private function getMissionContents(string $path) {
         $mission = new PBOMission(storage_path("app/{$path}"));
         $contents = $mission->export();
 
@@ -53,7 +54,7 @@ class MissionController extends Controller
         return $contents;
     }
 
-    public function getDetailsFromFileName($name) {
+    private function getDetailsFromFileName($name) {
         $name = substr($name, 0, -4);
         $mapName = last(explode('.', $name));
         $parts = explode('_', rtrim($name, ".{$mapName}"));
@@ -64,5 +65,24 @@ class MissionController extends Controller
         $details->map = $mapName;
 
         return $details;
+    }
+
+    private function parseBriefings($briefings)
+    {
+        foreach ($briefings as $key => $briefing) {
+            preg_match_all("~\"diary\", [\S\s]+?(?=\]\s*\]\s*;)~", $briefing[3], $diaryMatches);
+
+            $dict = array();
+            $diaries = $diaryMatches[0];
+    
+            foreach ($diaries as $diary) {
+                preg_match_all("~\"([^\"]+)\"~", $diary, $quotes);
+                $dict[$quotes[1][1]] = $quotes[1][2];
+            }
+
+            $briefings[$key][3] = (array)$dict;
+        }
+
+        return $briefings;
     }
 }

@@ -20,6 +20,7 @@ class Mission extends Model
         'display_name',
         'mode',
         'summary',
+        'briefings',
     ];
 
     public function user()

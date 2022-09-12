@@ -19,7 +19,7 @@
                 <div class="hidden sm:block sm:ml-6">
                     <div class="flex space-x-4">
                         {#each navigation as item}
-                            <button on:click="{() => selected = item}" class="{selected.name == item.name ? 'text-white bg-indigo-900' : 'text-gray-300 hover:bg-gray-700 hover:text-white'} px-3 py-2 rounded-md text-md font-medium">{item.name}</button>
+                            <button on:click="{() => selected = item}" class="{selected.name == item.name ? 'border-b-4 border-b-indigo-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'} px-3 py-2 rounded-t-md text-md font-medium">{item.name}</button>
                         {/each}
                     </div>
                 </div>
@@ -30,7 +30,7 @@
     <div class='sm:hidden' id="mobile-menu">
         <div class="{open ? '' : 'hidden'} px-2 pt-2 pb-3 space-y-1">
             {#each navigation as item}
-                <button on:click="{() => selected = item}" class="{selected.name == item.name ? 'bg-indigo-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'} block px-3 py-2 rounded-md text-md font-medium">{item.name}</button>
+                <button on:click="{() => selected = item}" class="{selected.name == item.name ? 'border-b-4 border-b-indigo-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'} block px-3 py-2 rounded-md text-md font-medium">{item.name}</button>
             {/each}
         </div>
     </div>

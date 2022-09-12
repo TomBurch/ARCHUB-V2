@@ -21,6 +21,7 @@ class MissionFactory extends Factory
             'display_name' => $this->faker->bs(),
             'mode' => 'coop',
             'summary' => $this->faker->catchPhrase(),
+            'briefings' => $this->faker->catchPhrase(),
         ];
     }
 }

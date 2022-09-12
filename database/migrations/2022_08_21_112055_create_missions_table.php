@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('display_name');
             $table->string('mode');
             $table->longText('summary');
+            $table->longText('briefings');
         });
     }
 

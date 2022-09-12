@@ -7,9 +7,12 @@ module.exports = {
     theme: {
         extend: {
             height: {
-              'screen-no-nav': '84vh',
+                'screen-no-nav': '84vh',
+            },
+            minHeight: {
+                'screen-no-nav': '84vh',
             }
-          }
+        }
     },
     plugins: [
         require("@tailwindcss/forms"),
