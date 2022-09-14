@@ -5,7 +5,7 @@
 
 <script lang="ts">
     import Subnav from '../../../Components/Hub/Missions/Subnav/Subnav.svelte'
-    import Briefing from '../../../Components/Hub/Missions/Subnav/Briefing.svelte';
+    import Briefings from '../../../Components/Hub/Missions/Subnav/Briefings.svelte';
     import Orbat from '../../../Components/Hub/Missions/Subnav/Orbat.svelte';
     import AARs from '../../../Components/Hub/Missions/Subnav/AARs.svelte';
     import Notes from '../../../Components/Hub/Missions/Subnav/Notes.svelte';
@@ -14,7 +14,7 @@
     export let mission;
 
     let navigation = [
-        { name: 'Briefing', component: Briefing},
+        { name: 'Briefing', component: Briefings},
         { name: 'Orbat', component: Orbat},
         { name: 'AARs', component: AARs},
         { name: 'Notes', component: Notes},
