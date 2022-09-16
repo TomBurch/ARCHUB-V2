@@ -6,7 +6,6 @@
 <script lang="ts">
     import Subnav from '../../../Components/Hub/Missions/Subnav/Subnav.svelte'
     import Briefings from '../../../Components/Hub/Missions/Subnav/Briefings.svelte';
-    import Orbat from '../../../Components/Hub/Missions/Subnav/Orbat.svelte';
     import AARs from '../../../Components/Hub/Missions/Subnav/AARs.svelte';
     import Notes from '../../../Components/Hub/Missions/Subnav/Notes.svelte';
     import Media from '../../../Components/Hub/Missions/Subnav/Media.svelte';
@@ -15,7 +14,6 @@
 
     let navigation = [
         { name: 'Briefing', component: Briefings},
-        { name: 'Orbat', component: Orbat},
         { name: 'AARs', component: AARs},
         { name: 'Notes', component: Notes},
         { name: 'Media', component: Media},
@@ -30,7 +28,7 @@
 
     <div class="pt-5">
         <Subnav bind:navigation bind:selected/>
-        <div class="mt-5">
+        <div class="my-5 mx-20">
             <svelte:component this={selected.component} mission={mission}/>
         </div>
     </div>
