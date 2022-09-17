@@ -33,7 +33,7 @@
             </div>
             <div class="block ml-6 justify-end">
                 <Link href="/hub/settings">
-                    <img class="h-10 w-10 rounded-full" src="{$page.props.auth.user.avatar}" alt="">
+                    <img class="h-10 w-10 rounded-full" src={$page.props.auth.user.avatar} alt="">
                 </Link>
             </div>
         </div>

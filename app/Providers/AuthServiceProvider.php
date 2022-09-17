@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Mission;
 use App\RoleEnum;
 use App\Models\User;
 
@@ -30,6 +31,12 @@ class AuthServiceProvider extends ServiceProvider
 
         Gate::define('access-hub', function (User $user) {
             return $user->hasARole(RoleEnum::ARMA_MEMBER, RoleEnum::ARMA_RECRUIT);
+        });
+
+        Gate::define('test-mission', function (User $user, Mission $mission) {
+            // Includes adding notes, downloading missions,
+            // reading locked briefings, and seeing unverified missions
+            return $mission->user->is($user) || $user->hasARole(RoleEnum::TESTER);
         });
     }
 }

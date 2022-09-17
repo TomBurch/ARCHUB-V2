@@ -6,13 +6,27 @@ use App\Helpers\PBOMission\PBOMission;
 use App\Models\Mission;
 
 use \stdClass;
+use Inertia\Inertia;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class MissionController extends Controller
 {
     public function index(Mission $mission)
     {
-        $mission = Mission::with('user:id,username')->select('id', 'user_id', 'display_name', 'mode', 'summary', 'briefings')->firstWhere('id', $mission->id)->toArray();
+        $mission = Mission::with([
+            'user:id,username',
+        ])
+        ->when(Gate::allows('test-mission', $mission), function ($query) {
+            return $query->with([
+                'comments:id,mission_id,user_id,text' => [
+                    'user:id,username,avatar'
+                ]
+            ]);
+        })
+        ->select('id', 'user_id', 'display_name', 'mode', 'summary', 'briefings')
+        ->firstWhere('id', $mission->id)->toArray();
+        
         return inertia('Hub/Missions/Mission', [
             'mission' => $mission,
         ]);

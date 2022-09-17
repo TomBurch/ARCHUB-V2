@@ -8,6 +8,7 @@ enum RoleEnum
 {
     case ARMA_MEMBER;
     case ARMA_RECRUIT;
+    case TESTER;
     case STAFF;
 
     public function id(): string
@@ -15,6 +16,7 @@ enum RoleEnum
         return match ($this) {
             RoleEnum::ARMA_MEMBER => config('services.discord.arma_recruit_role'),
             RoleEnum::ARMA_RECRUIT => config('services.discord.arma_member_role'),
+            RoleEnum::TESTER => config('services.discord.tester_role'),
             RoleEnum::STAFF => config('services.discord.staff_role'),
             default => throw new Exception("RoleId not found"),
         };
