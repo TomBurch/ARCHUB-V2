@@ -21,6 +21,9 @@ class MissionController extends Controller
             return $query->with([
                 'comments:id,mission_id,user_id,text' => [
                     'user:id,username,avatar'
+                ],
+                'notes:id,mission_id,user_id,text' => [
+                    'user:id,username,avatar'
                 ]
             ]);
         })

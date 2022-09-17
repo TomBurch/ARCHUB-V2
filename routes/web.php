@@ -5,6 +5,7 @@ use App\Http\Controllers\AppController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\MissionsController;
 use App\Http\Controllers\MissionController;
+use App\Http\Controllers\NoteController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\Public\JoinController;
 
@@ -41,4 +42,5 @@ Route::middleware(['can:access-hub'])->group(function () {
     Route::get('/hub/missions/{mission}', [MissionController::class, 'index']);
 
     Route::post('/hub/missions/{mission}/comments', [CommentController::class, 'store']);
+    Route::post('/hub/missions/{mission}/notes', [NoteController::class, 'store']);
 });

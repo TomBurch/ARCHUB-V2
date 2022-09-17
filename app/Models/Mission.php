@@ -32,4 +32,9 @@ class Mission extends Model
     {
         return $this->hasMany(MissionComment::class);
     }
+
+    public function notes()
+    {
+        return $this->hasMany(MissionNote::class);
+    }
 }
