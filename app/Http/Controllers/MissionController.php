@@ -74,7 +74,7 @@ class MissionController extends Controller
         $mission->save();
 
         $content = "**{$mission->user->username}** submitted a mission named **{$mission->display_name}**";
-        Discord::missionUpdate($content, $mission, false, url("hub/missions/{$mission->id}"));
+        Discord::missionUpdate($content, $mission, false, $mission->url());
     }
 
     private function getMissionContents(string $path) 

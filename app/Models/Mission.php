@@ -43,4 +43,9 @@ class Mission extends Model
     {
         return $this->hasMany(MissionRevision::class);
     }
+
+    public function url()
+    {
+        return url("hub/missions/{$this->id}");
+    }
 }

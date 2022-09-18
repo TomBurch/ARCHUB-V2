@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Discord;
 use App\Models\Mission;
 use App\Models\MissionNote;
 
@@ -32,5 +33,8 @@ class NoteController extends Controller
             'mission_id' => $mission->id,
             'published' => true,
         ]);
+
+        $content = "**{$note->user->username}** added a note to **{$note->mission->display_name}**";
+        Discord::missionUpdate($content, $mission, true, $note->mission->url());
     }
 }

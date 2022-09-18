@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Discord;
 use App\Models\Mission;
 use App\Models\MissionComment;
 
@@ -32,5 +33,8 @@ class CommentController extends Controller
             'mission_id' => $mission->id,
             'published' => true,
         ]);
+
+        $message = "**{$comment->user->username}** commented on **{$comment->mission->display_name}**";
+        Discord::missionUpdate($message, $comment->mission, true, $mission->url());
     }
 }
