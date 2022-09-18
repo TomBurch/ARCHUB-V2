@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Mission;
 use App\Models\User;
 
 use Illuminate\Database\Migrations\Migration;
@@ -15,15 +16,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('missions', function (Blueprint $table) {
+        Schema::create('mission_revisions', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->foreignIdFor(Mission::class)->cascadeOnDelete();
             $table->foreignIdFor(User::class)->cascadeOnDelete();
-            $table->string('display_name');
-            $table->string('mode');
-            $table->string('cloud_pbo')->nullable();
-            $table->longText('summary');
-            $table->longText('briefings');
         });
     }
 
@@ -34,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('missions');
+        Schema::dropIfExists('mission_revisions');
     }
 };

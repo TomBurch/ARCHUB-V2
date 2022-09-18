@@ -6,9 +6,10 @@ use App\Helpers\PBOMission\PBOMission;
 use App\Models\Mission;
 
 use \stdClass;
-use Inertia\Inertia;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Storage;
 
 class MissionController extends Controller
 {
@@ -48,7 +49,7 @@ class MissionController extends Controller
         );
 
         $contents = $this->getMissionContents($path);
-        $details = $this->getDetailsFromFileName($fileName);
+        $details = $this->getDetailsFromFilePath($fileName);
         $briefings = $this->parseBriefings($contents['mission']['briefings']);
         
         $mission = Mission::create([
@@ -58,28 +59,43 @@ class MissionController extends Controller
             'summary' => $contents['mission']['description'],
             'briefings' => json_encode($briefings),
         ]);
+
+        $revisions = $mission->revisions()->count();
+        $exportedName = "{$details->filenameNoMap}_{$revisions}.{$details->map}.pbo";
+        $pboPath = "missions/{$mission->user_id}/{$mission->id}/{$exportedName}";
+
+        Storage::cloud()->put(
+            $pboPath,
+            file_get_contents(storage_path("app/{$path}"))
+        );
+
+        $mission->cloud_pbo = $pboPath;
+        $mission->save();
     }
 
-    private function getMissionContents(string $path) {
+    private function getMissionContents(string $path) 
+    {
         $mission = new PBOMission(storage_path("app/{$path}"));
         $contents = $mission->export();
 
-        // if ($mission->error) {
-        //     return new Exception($mission->errorReason);
-        // }
+        if ($mission->error) {
+            return new Exception($mission->errorReason);
+        }
 
         return $contents;
     }
 
-    private function getDetailsFromFileName($name) {
-        $name = substr($name, 0, -4);
-        $mapName = last(explode('.', $name));
-        $parts = explode('_', rtrim($name, ".{$mapName}"));
-        $mode = strtolower($parts[1]);
+    private function getDetailsFromFilePath($path) 
+    {
+        $filename = pathinfo($path, PATHINFO_FILENAME);
+        $map = pathinfo($filename, PATHINFO_EXTENSION);
+        $filenameNoMap = pathinfo($filename, PATHINFO_FILENAME);
+        $mode = strtolower(explode('_', $filenameNoMap)[1]);
 
         $details = new stdClass();
         $details->mode = $mode;
-        $details->map = $mapName;
+        $details->map = $map;
+        $details->filenameNoMap = $filenameNoMap;
 
         return $details;
     }

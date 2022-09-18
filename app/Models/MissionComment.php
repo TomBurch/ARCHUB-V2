@@ -21,21 +21,11 @@ class MissionComment extends Model
         'published',
     ];
 
-    /**
-     * Gets the author of the comment.
-     *
-     * @return App\Models\Portal\User
-     */
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    /**
-     * Gets the mission the comment belongs to.
-     *
-     * @return App\Models\Missions\Mission
-     */
     public function mission()
     {
         return $this->belongsTo(Mission::class);

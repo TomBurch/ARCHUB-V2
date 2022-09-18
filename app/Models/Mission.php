@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\MissionRevision;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
@@ -36,5 +37,10 @@ class Mission extends Model
     public function notes()
     {
         return $this->hasMany(MissionNote::class);
+    }
+
+    public function revisions()
+    {
+        return $this->hasMany(MissionRevision::class);
     }
 }

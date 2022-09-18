@@ -2,23 +2,13 @@
 
 namespace App\Models;
 
-use App\Models\User;
-use App\Models\Mission;
-
 use Illuminate\Database\Eloquent\Model;
 
-class MissionNote extends Model
+class MissionRevision extends Model
 {
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
-        'text',
-        'user_id',
         'mission_id',
-        'published',
+        'user_id',
     ];
 
     public function user()
