@@ -8,7 +8,7 @@
 
     /* Construct navigation dynamically so we can reuse Subnav*/
     briefings.forEach(function (briefing) {
-        navigation.push({name: briefing[0], content: briefing}); 
+        navigation.push({name: briefing[0], content: briefing, show: true}); 
     }); 
     let selected = navigation[0];
 </script>

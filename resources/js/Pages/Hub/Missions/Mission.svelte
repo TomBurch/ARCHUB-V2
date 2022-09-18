@@ -13,10 +13,10 @@
     export let mission;
 
     let navigation = [
-        { name: 'Briefing', component: Briefings},
-        { name: 'AARs', component: AARs},
-        { name: 'Notes', component: Notes},
-        { name: 'Media', component: Media},
+        { name: 'Briefing', component: Briefings, show: true},
+        { name: 'AARs', component: AARs, show: Array.isArray(mission.comments)},
+        { name: 'Notes', component: Notes, show: Array.isArray(mission.notes)},
+        { name: 'Media', component: Media, show: true},
     ]
     let selected = navigation[0];
 </script>

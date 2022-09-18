@@ -19,7 +19,9 @@
                 <div class="hidden sm:block sm:ml-6">
                     <div class="flex space-x-4">
                         {#each navigation as item}
-                            <button on:click="{() => selected = item}" class="{selected.name == item.name ? 'border-b-4 border-b-indigo-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'} px-3 py-2 rounded-t-md text-md font-medium">{item.name}</button>
+                            {#if item.show}
+                                <button on:click="{() => selected = item}" class="{selected.name == item.name ? 'border-b-4 border-b-indigo-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'} px-3 py-2 rounded-t-md text-md font-medium">{item.name}</button>
+                            {/if}
                         {/each}
                     </div>
                 </div>
