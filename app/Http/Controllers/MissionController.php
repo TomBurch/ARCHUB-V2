@@ -11,6 +11,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
+use Inertia\Inertia;
 
 class MissionController extends Controller
 {
@@ -75,6 +76,12 @@ class MissionController extends Controller
 
         $content = "**{$mission->user->username}** submitted a mission named **{$mission->display_name}**";
         Discord::missionUpdate($content, $mission, false, $mission->url());
+    }
+
+    public function download(Mission $mission)
+    {
+        $url = Storage::cloud()->temporaryUrl($mission->cloud_pbo, now()->addMinutes(10));
+        return Inertia::location($url);
     }
 
     private function getMissionContents(string $path) 
