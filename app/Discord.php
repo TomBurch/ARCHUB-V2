@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\Mission;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
@@ -35,5 +36,25 @@ class Discord
             }
         }
         return false;
+    }
+
+    public static function notifyChannel(ChannelEnum $channel, string $content)
+    {
+        $response = HTTP::post($channel->id(), [
+            'content' => $content,
+        ]);
+
+        return $response;
+    }
+
+    public static function missionUpdate(string $content, Mission $mission, bool $tagAuthor = false, string $url = "")
+    {
+        if ($tagAuthor && !$mission->user->is(auth()->user())) {
+            $content = "{$content} <@{$mission->user->discord_id}>";
+        }
+
+        $content = "{$content}\n{$url}";
+
+        self::notifyChannel(ChannelEnum::ARCHUB, $content);
     }
 }

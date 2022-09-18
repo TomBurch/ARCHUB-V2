@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Discord;
 use App\Helpers\PBOMission\PBOMission;
 use App\Models\Mission;
 
@@ -71,6 +72,9 @@ class MissionController extends Controller
 
         $mission->cloud_pbo = $pboPath;
         $mission->save();
+
+        $content = "**{$mission->user->username}** submitted a mission named **{$mission->display_name}**";
+        Discord::missionUpdate($content, $mission, false, url("hub/missions/{$mission->id}"));
     }
 
     private function getMissionContents(string $path) 
