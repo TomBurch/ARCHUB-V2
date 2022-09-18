@@ -9,6 +9,7 @@
     import AARs from '../../../Components/Hub/Missions/Subnav/AARs.svelte';
     import Notes from '../../../Components/Hub/Missions/Subnav/Notes.svelte';
     import Media from '../../../Components/Hub/Missions/Subnav/Media.svelte';
+    import MissionUpdateButton from '../../../Components/Hub/Missions/MissionUpdateButton.svelte';
 
     export let mission;
 
@@ -27,12 +28,20 @@
         <p class="truncate text-center text-sm font-bold text-gray-300">By {mission.user.username}</p>
         <p class="pt-2 truncate text-center text-sm font-normal text-gray-300">{mission.summary}</p>
     </div>
-    <a class="inline-flex" href="/hub/missions/{mission.id}/download">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" class="w-6 h-6">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
-        </svg>
-    </a>
-      
+    <div>
+        <a class="inline-flex" href="/hub/missions/{mission.id}/download">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+            </svg>
+        </a>
+        <MissionUpdateButton mission={mission}/>
+        <!-- <form class="inline-flex">
+            <input id="dropzone-file" type="file" class="hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 7.5h-.75A2.25 2.25 0 004.5 9.75v7.5a2.25 2.25 0 002.25 2.25h7.5a2.25 2.25 0 002.25-2.25v-7.5a2.25 2.25 0 00-2.25-2.25h-.75m0-3l-3-3m0 0l-3 3m3-3v11.25m6-2.25h.75a2.25 2.25 0 012.25 2.25v7.5a2.25 2.25 0 01-2.25 2.25h-7.5a2.25 2.25 0 01-2.25-2.25v-.75" />
+            </svg>          
+        </form> -->
+    </div>
     <div class="pt-1">
         <Subnav bind:navigation bind:selected/>
         <div class="my-5 mx-20">

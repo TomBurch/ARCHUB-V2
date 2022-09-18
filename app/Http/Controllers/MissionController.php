@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Discord;
 use App\Helpers\PBOMission\PBOMission;
 use App\Models\Mission;
+use App\Models\MissionRevision;
 
 use \stdClass;
 use Exception;
@@ -40,6 +41,24 @@ class MissionController extends Controller
 
     public function store(Request $request)
     {
+        $mission = $this->uploadMission($request);
+
+        $content = "**{$mission->user->username}** submitted a mission named **{$mission->display_name}**";
+        Discord::missionUpdate($content, $mission, false, $mission->url());
+    }
+
+    public function update(Request $request, Mission $mission)
+    {
+        $mission = $this->uploadMission($request, $mission);
+
+        $content = "**{$mission->user->username}** has updated **{$mission->display_name}**";
+        Discord::missionUpdate($content, $mission, false, $mission->url());
+    }
+
+    public function uploadMission(Request $request, Mission $mission = null)
+    {
+        $isNewMission = is_null($mission);
+
         $missionFile = $request->file('mission');
         $fileName = $missionFile->getClientOriginalName();
         $user = auth()->user();
@@ -54,17 +73,35 @@ class MissionController extends Controller
         $details = $this->getDetailsFromFilePath($fileName);
         $briefings = $this->parseBriefings($contents['mission']['briefings']);
         
-        $mission = Mission::create([
-            'user_id' => $user->id,
-            'display_name' => $contents['mission']['name'],
-            'mode' => $details->mode,
-            'summary' => $contents['mission']['description'],
-            'briefings' => json_encode($briefings),
-        ]);
+        if ($isNewMission) {
+            
+            $mission = Mission::create([
+                'user_id' => $user->id,
+                'display_name' => $contents['mission']['name'],
+                'mode' => $details->mode,
+                'summary' => $contents['mission']['description'],
+                'briefings' => json_encode($briefings),
+            ]);
+        } else {
+            $mission->display_name = $contents['mission']['name'];
+            $mission->mode = $details->mode;
+            $mission->summary = $contents['mission']['description'];
+            $mission->briefings = json_encode($briefings);
+            $mission->save();
+
+            MissionRevision::create([
+                'mission_id' => $mission->id,
+                'user_id' => $user->id
+            ]);
+        }
 
         $revisions = $mission->revisions()->count();
         $exportedName = "{$details->filenameNoMap}_{$revisions}.{$details->map}.pbo";
         $pboPath = "missions/{$mission->user_id}/{$mission->id}/{$exportedName}";
+
+        if (!$isNewMission) {
+            Storage::cloud()->delete($mission->cloud_pbo);
+        }
 
         Storage::cloud()->put(
             $pboPath,
@@ -74,8 +111,7 @@ class MissionController extends Controller
         $mission->cloud_pbo = $pboPath;
         $mission->save();
 
-        $content = "**{$mission->user->username}** submitted a mission named **{$mission->display_name}**";
-        Discord::missionUpdate($content, $mission, false, $mission->url());
+        return $mission;
     }
 
     public function download(Mission $mission)
