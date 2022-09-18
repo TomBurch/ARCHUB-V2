@@ -22,7 +22,7 @@
            <textarea bind:value={$form.text} rows=4 class="px-0 w-full text-sm text-white border-0 bg-gray-800 focus:ring-0 placeholder-gray-400" placeholder="Write a comment..." required></textarea>
        </div>
        <div class="flex justify-between items-center py-2 px-3 border-t border-gray-600">
-           <button type="submit" class="inline-flex items-center py-2.5 px-4 text-xs text-white font-medium rounded-lg bg-blue-700 hover:bg-blue-800">
+           <button type="submit" disabled={$form.processing} class="inline-flex items-center py-2.5 px-4 text-xs text-white font-medium rounded-lg bg-blue-700 hover:bg-blue-800">
                Submit
            </button>
        </div>
