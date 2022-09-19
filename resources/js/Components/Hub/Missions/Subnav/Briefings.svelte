@@ -17,7 +17,7 @@
     <Subnav bind:navigation bind:selected/>
     
     {#each navigation as briefing}
-        <div class={selected == briefing  ? "hidden" : ""}>
+        <div class={selected == briefing ? "" : "hidden"}>
             {#each Object.entries(briefing.content[3]) as [title, paragraph]}
                 <div>
                     <h5 class="pt-8 text-center text-gray-200 text-3xl text-bold tracking-wide">{title}</h5>
