@@ -40,7 +40,7 @@
     </div>
     <div class="pt-1">
         <Subnav bind:navigation bind:selected/>
-        <div class="my-5 mx-20">
+        <div class="my-5 lg:mx-20">
             <svelte:component this={selected.component} mission={mission}/>
         </div>
     </div>
