@@ -31,12 +31,28 @@ class MissionController extends Controller
                 ]
             ]);
         })
-        ->select('id', 'user_id', 'display_name', 'mode', 'summary', 'briefings')
+        ->select('id', 'user_id', 'display_name', 'mode', 'verified_by', 'summary', 'briefings')
         ->firstWhere('id', $mission->id)->toArray();
         
         return inertia('Hub/Missions/Mission', [
             'mission' => $mission,
         ]);
+    }
+
+    public function patch(Request $request, Mission $mission)
+    {
+        $verified_by = $request->input('verified_by', false);
+
+        if ($verified_by !== false) {
+            $mission->verified_by = is_null($verified_by) ? null : $verified_by["id"];
+            $mission->save();
+
+            if (!is_null($verified_by)) {
+                $username = $verified_by['username'];
+                $content = "**{$username}** has verified **{$mission->display_name}**";
+                Discord::missionUpdate($content, $mission, true);
+            }
+        }
     }
 
     public function store(Request $request)

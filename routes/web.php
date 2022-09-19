@@ -41,6 +41,7 @@ Route::middleware(['can:access-hub'])->group(function () {
     Route::get('/hub/missions', [MissionsController::class, 'index']);
     Route::post('/hub/missions', [MissionController::class, 'store']);
     Route::get('/hub/missions/{mission}', [MissionController::class, 'index']);
+    Route::patch('/hub/missions/{mission}', [MissionController::class, 'patch']);
     Route::post('/hub/missions/{mission}/update', [MissionController::class, 'update']);
 
     Route::post('/hub/missions/{mission}/comments', [CommentController::class, 'store']);

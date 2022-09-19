@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     import { useForm } from '@inertiajs/inertia-svelte'
 
     export let mission;

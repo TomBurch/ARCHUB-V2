@@ -21,6 +21,7 @@ return new class extends Migration
             $table->foreignIdFor(User::class)->cascadeOnDelete();
             $table->string('display_name');
             $table->string('mode');
+            $table->integer('verified_by')->nullable()->foreignIdFor(User::class)->cascadeOnDelete();
             $table->string('cloud_pbo')->nullable();
             $table->longText('summary');
             $table->longText('briefings');
