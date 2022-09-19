@@ -9,6 +9,9 @@
 
     export let missions;
     export let my_missions;
+
+    missions = Object.values(missions);
+    my_missions = Object.values(my_missions);
 </script>
   
 <div class="grid gap-3 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
