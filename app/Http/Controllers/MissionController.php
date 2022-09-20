@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Discord;
 use App\Helpers\PBOMission\PBOMission;
+use App\Models\Map;
 use App\Models\Mission;
 use App\Models\MissionRevision;
 
@@ -96,19 +97,20 @@ class MissionController extends Controller
         $briefings = $this->parseBriefings($contents['mission']['briefings']);
         
         if ($isNewMission) {
-            
             $mission = Mission::create([
                 'user_id' => $user->id,
                 'display_name' => $contents['mission']['name'],
                 'mode' => $details->mode,
                 'summary' => $contents['mission']['description'],
                 'briefings' => json_encode($briefings),
+                'map_id' => $details->map->id,
             ]);
         } else {
             $mission->display_name = $contents['mission']['name'];
             $mission->mode = $details->mode;
             $mission->summary = $contents['mission']['description'];
             $mission->briefings = json_encode($briefings);
+            $mission->map_id = $details->map->id;
             $mission->save();
 
             MissionRevision::create([
@@ -157,9 +159,14 @@ class MissionController extends Controller
     private function getDetailsFromFilePath($path) 
     {
         $filename = pathinfo($path, PATHINFO_FILENAME);
-        $map = pathinfo($filename, PATHINFO_EXTENSION);
+        $mapName = pathinfo($filename, PATHINFO_EXTENSION);
         $filenameNoMap = pathinfo($filename, PATHINFO_FILENAME);
         $mode = strtolower(explode('_', $filenameNoMap)[1]);
+
+        $map = Map::firstOrCreate(
+            ['class_name' => $mapName],
+            ['display_name' => $mapName],
+        );
 
         $details = new stdClass();
         $details->mode = $mode;

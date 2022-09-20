@@ -3,7 +3,6 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
@@ -22,6 +21,7 @@ class MissionFactory extends Factory
             'mode' => 'coop',
             'summary' => $this->faker->catchPhrase(),
             'briefings' => $this->faker->catchPhrase(),
+            'map_id' => 0,
         ];
     }
 }

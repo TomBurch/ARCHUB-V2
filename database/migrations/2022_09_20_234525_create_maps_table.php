@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Map;
+use App\Models\Mission;
 use App\Models\User;
 
 use Illuminate\Database\Migrations\Migration;
@@ -16,17 +16,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('missions', function (Blueprint $table) {
+        Schema::create('maps', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->foreignIdFor(User::class)->cascadeOnDelete();
+            $table->string('class_name');
             $table->string('display_name');
-            $table->string('mode');
-            $table->integer('verified_by')->nullable()->foreignIdFor(User::class)->cascadeOnDelete();
-            $table->string('cloud_pbo')->nullable();
-            $table->foreignIdFor(Map::class)->cascadeOnDelete();
-            $table->longText('summary');
-            $table->longText('briefings');
         });
     }
 
@@ -37,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('missions');
+        Schema::dropIfExists('maps');
     }
 };

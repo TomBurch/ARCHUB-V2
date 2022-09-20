@@ -14,7 +14,7 @@ class Mission extends Model
     /**
      * The attributes that are mass assignable.
      *
-     * @var array<int, string>
+     * @var array
      */
     protected $fillable = [
         'user_id',
@@ -22,11 +22,17 @@ class Mission extends Model
         'mode',
         'summary',
         'briefings',
+        'map_id',
     ];
 
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function map()
+    {
+        return $this->belongsTo(Map::class);
     }
 
     public function comments()
