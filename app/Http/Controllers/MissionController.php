@@ -18,10 +18,12 @@ class MissionController extends Controller
 {
     public function index(Mission $mission)
     {
+        $canTestMission = Gate::allows('test-mission', $mission);
+
         $mission = Mission::with([
             'user:id,username',
         ])
-        ->when(Gate::allows('test-mission', $mission), function ($query) {
+        ->when($canTestMission, function ($query) {
             return $query->with([
                 'comments:id,mission_id,user_id,text' => [
                     'user:id,username,avatar'
@@ -36,6 +38,9 @@ class MissionController extends Controller
         
         return inertia('Hub/Missions/Mission', [
             'mission' => $mission,
+            'can' => [
+                'test-mission' => $canTestMission
+            ]
         ]);
     }
 
