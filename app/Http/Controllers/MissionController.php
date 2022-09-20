@@ -39,7 +39,8 @@ class MissionController extends Controller
         return inertia('Hub/Missions/Mission', [
             'mission' => $mission,
             'can' => [
-                'test-mission' => $canTestMission
+                'test_mission' => $canTestMission,
+                'verify_missions' => Gate::allows('verify-missions'),
             ]
         ]);
     }

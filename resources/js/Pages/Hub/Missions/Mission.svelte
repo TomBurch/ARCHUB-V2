@@ -15,8 +15,6 @@
     export let mission;
     export let can;
 
-    let canTestMission = can['test-mission'];
-
     let navigation = [
         { name: 'Briefing', component: Briefings, show: true},
         { name: 'AARs', component: AARs, show: Array.isArray(mission.comments)},
@@ -33,8 +31,10 @@
         <p class="pt-2 truncate text-center text-sm font-normal text-gray-300">{mission.summary}</p>
     </div>
     <div class="inline-grid grid-cols-3 gap-3">
-        {#if canTestMission}
+        {#if can.verify_missions}
             <MissionVerifyButton mission={mission}/>
+        {/if}
+        {#if can.test_mission}
             <MissionUpdateButton mission={mission}/>
             <a href="/hub/missions/{mission.id}/download">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" class="w-6 h-6">

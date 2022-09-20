@@ -38,5 +38,9 @@ class AuthServiceProvider extends ServiceProvider
             // reading locked briefings, and seeing unverified missions
             return $mission->user->is($user) || $user->hasARole(RoleEnum::TESTER);
         });
+
+        Gate::define('verify-missions', function (User $user) {
+            return $user->hasARole(RoleEnum::SENIOR_TESTER);
+        });
     }
 }
