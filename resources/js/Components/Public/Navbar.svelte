@@ -41,9 +41,9 @@
     <div class='sm:hidden' id="mobile-menu">
         <div class="{open ? '' : 'hidden'} px-2 pt-2 pb-3 space-y-1">
             {#if $page.props.auth.user}
-                <Link href='/hub' class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-md font-">Hub</Link>
+                <Link href='/hub' class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-md font-medium">Hub</Link>
             {:else}
-                <a href='/auth/redirect' class="'text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-md font-">Login</a>
+                <a href='/auth/redirect' class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-md font-medium">Login</a>
             {/if}
             {#each navigation as item}
                 <Link href={item.href} class="{$page.url == item.href ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'} block px-3 py-2 rounded-md text-md font-medium">{item.name}</Link>
