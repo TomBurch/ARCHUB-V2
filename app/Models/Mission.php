@@ -30,6 +30,11 @@ class Mission extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function verifier()
+    {
+        return $this->belongsTo(User::class, 'verified_by');
+    }
+
     public function map()
     {
         return $this->belongsTo(Map::class);

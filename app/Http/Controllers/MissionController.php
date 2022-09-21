@@ -31,7 +31,8 @@ class MissionController extends Controller
                 ],
                 'notes:id,mission_id,user_id,text' => [
                     'user:id,username,avatar'
-                ]
+                ],
+                'verifier:id,username'
             ]);
         })
         ->select('id', 'user_id', 'display_name', 'mode', 'verified_by', 'summary', 'briefings')
