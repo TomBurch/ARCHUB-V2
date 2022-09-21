@@ -121,7 +121,7 @@ class MissionController extends Controller
         }
 
         $revisions = $mission->revisions()->count();
-        $exportedName = "{$details->filenameNoMap}_{$revisions}.{$details->map}.pbo";
+        $exportedName = "{$details->filenameNoMap}_{$revisions}.{$details->map->class_name}.pbo";
         $pboPath = "missions/{$mission->user_id}/{$mission->id}/{$exportedName}";
 
         if (!$isNewMission) {
