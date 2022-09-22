@@ -1,4 +1,4 @@
-import '../css/app.css'; 
+import '../css/app.css';
 import { createInertiaApp } from '@inertiajs/inertia-svelte'
 import Layout from './Pages/Hub/Layout.svelte';
 

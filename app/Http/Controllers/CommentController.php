@@ -23,7 +23,7 @@ class CommentController extends Controller
     public function store(Request $request, Mission $mission)
     {
         $this->authorize('test-mission', $mission);
-        
+
         $user = auth()->user();
         $text = $request->input('text');
 

@@ -13,17 +13,17 @@ class Discord
     {
         return Cache::remember($discord_id, 60, function () use ($discord_id) {
             $url = "https://discord.com/api/v8/guilds/" .
-            config('services.discord.server_id') . "/members/{$discord_id}";
+                config('services.discord.server_id') . "/members/{$discord_id}";
 
             $response = HTTP::withHeaders([
-                'Authorization' => "Bot ".config('services.discord.token')
+                'Authorization' => "Bot " . config('services.discord.token')
             ])->get($url);
-            
+
             if ($response->successful()) {
                 return (array)$response->json();
             }
 
-            throw new AuthorizationException("Error getting user from discord ". $response->status());
+            throw new AuthorizationException("Error getting user from discord " . $response->status());
         });
     }
 

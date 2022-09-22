@@ -53,7 +53,7 @@ class DiscordController extends Controller
         );
 
         auth()->login($user, true);
-        
+
         if ($user->can('access-hub')) {
             return redirect('/hub');
         }
