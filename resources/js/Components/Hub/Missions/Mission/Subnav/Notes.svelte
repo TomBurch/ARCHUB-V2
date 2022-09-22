@@ -34,7 +34,9 @@
 
     onMount(async () => {
         let inProgress = mission.notes.find((note) => note.user_id == $page.props.auth.user.id && !note.published);
-        $form.text = inProgress.text;
+        if (inProgress) {
+            $form.text = inProgress.text;
+        }
     });
 </script>
 
@@ -63,7 +65,7 @@
     </div>
 </form>
 
-{#each mission.notes.reverse() as note}
+{#each mission.notes as note}
     {#if note.published}
         <Comment comment={note} />
     {/if}

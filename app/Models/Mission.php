@@ -42,12 +42,12 @@ class Mission extends Model
 
     public function comments()
     {
-        return $this->hasMany(MissionComment::class);
+        return $this->hasMany(MissionComment::class)->orderBy('created_at', 'DESC');
     }
 
     public function notes()
     {
-        return $this->hasMany(MissionNote::class);
+        return $this->hasMany(MissionNote::class)->orderBy('created_at', 'DESC');
     }
 
     public function revisions()

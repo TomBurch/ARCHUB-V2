@@ -36,7 +36,9 @@
         let inProgress = mission.comments.find(
             (comment) => comment.user_id == $page.props.auth.user.id && !comment.published
         );
-        $form.text = inProgress.text;
+        if (inProgress) {
+            $form.text = inProgress.text;
+        }
     });
 </script>
 
@@ -65,7 +67,7 @@
     </div>
 </form>
 
-{#each mission.comments.reverse() as comment}
+{#each mission.comments as comment}
     {#if comment.published}
         <Comment {comment} />
     {/if}
