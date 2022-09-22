@@ -6,13 +6,28 @@
 
     let form = useForm({
         text: null,
+        published: false,
     });
 
     function submit() {
+        $form.published = true;
         $form.post(`/hub/missions/${mission.id}/notes`, {
             onSuccess: () => $form.reset(),
         });
     }
+
+    function saveProgress() {
+        $form.published = false;
+        $form.post(`/hub/missions/${mission.id}/notes`);
+    }
+
+    let timer;
+    const debounce = (e) => {
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+            saveProgress();
+        }, 3000);
+    };
 </script>
 
 <!-- Adapted from https://flowbite.com/docs/forms/textarea/#comment-box -->
@@ -21,6 +36,7 @@
         <div class="rounded-t-lg bg-gray-800 py-2 px-4">
             <textarea
                 bind:value={$form.text}
+                on:keyup={debounce}
                 rows="4"
                 class="w-full border-0 bg-gray-800 px-0 text-sm text-white placeholder-gray-400 focus:ring-0"
                 placeholder="Write a comment..."
@@ -40,5 +56,7 @@
 </form>
 
 {#each mission.notes.reverse() as note}
-    <Comment comment={note} />
+    {#if note.published}
+        <Comment comment={note} />
+    {/if}
 {/each}

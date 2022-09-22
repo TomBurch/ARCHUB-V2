@@ -6,13 +6,28 @@
 
     let form = useForm({
         text: null,
+        published: false,
     });
 
     function submit() {
+        $form.published = true;
         $form.post(`/hub/missions/${mission.id}/comments`, {
             onSuccess: () => $form.reset(),
         });
     }
+
+    function saveProgress() {
+        $form.published = false;
+        $form.post(`/hub/missions/${mission.id}/comments`);
+    }
+
+    let timer;
+    const debounce = (e) => {
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+            saveProgress();
+        }, 3000);
+    };
 </script>
 
 <!-- Adapted from https://flowbite.com/docs/forms/textarea/#comment-box -->
@@ -21,6 +36,7 @@
         <div class="rounded-t-lg bg-gray-800 py-2 px-4">
             <textarea
                 bind:value={$form.text}
+                on:keyup={debounce}
                 rows="4"
                 class="w-full border-0 bg-gray-800 px-0 text-sm text-white placeholder-gray-400 focus:ring-0"
                 placeholder="Write a comment..."
@@ -33,7 +49,7 @@
                 disabled={$form.processing}
                 class="inline-flex items-center rounded-lg bg-blue-700 py-2.5 px-4 text-xs font-medium text-white hover:bg-blue-800"
             >
-                Sbmit
+                Submit
             </button>
         </div>
     </div>

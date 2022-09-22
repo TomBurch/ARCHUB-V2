@@ -26,15 +26,20 @@ class CommentController extends Controller
 
         $user = auth()->user();
         $text = $request->input('text');
+        $published = $request->input('published');
 
-        $comment = MissionComment::create([
-            'text' => $text,
+        $comment = MissionComment::updateOrCreate([
             'user_id' => $user->id,
             'mission_id' => $mission->id,
-            'published' => true,
+            'published' => false,
+        ], [
+            'text' => $text,
+            'published' => $published,
         ]);
 
-        $message = "**{$comment->user->username}** commented on **{$comment->mission->display_name}**";
-        Discord::missionUpdate($message, $comment->mission, true, $mission->url());
+        if ($published) {
+            $message = "**{$comment->user->username}** commented on **{$comment->mission->display_name}**";
+            Discord::missionUpdate($message, $comment->mission, true, $mission->url());
+        }
     }
 }

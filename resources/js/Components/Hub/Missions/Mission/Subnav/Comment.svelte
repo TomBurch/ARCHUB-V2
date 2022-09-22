@@ -15,9 +15,6 @@
             <div class="text-sm font-semibold leading-relaxed">
                 {comment.user.username}
             </div>
-            <div class="text-normal leading-snug md:leading-normal">
-                {comment.text}
-            </div>
             <SvelteMarkdown source={comment.text} {options} />
         </div>
         <div class="ml-4 mt-0.5 text-sm text-gray-400">14 w</div>

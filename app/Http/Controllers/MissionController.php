@@ -26,10 +26,10 @@ class MissionController extends Controller
         ])
             ->when($canTestMission, function ($query) {
                 return $query->with([
-                    'comments:id,mission_id,user_id,text' => [
+                    'comments:id,mission_id,user_id,text,published' => [
                         'user:id,username,avatar'
                     ],
-                    'notes:id,mission_id,user_id,text' => [
+                    'notes:id,mission_id,user_id,text,published' => [
                         'user:id,username,avatar'
                     ],
                     'verifier:id,username'
