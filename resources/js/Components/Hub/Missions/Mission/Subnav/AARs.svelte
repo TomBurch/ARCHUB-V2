@@ -1,5 +1,6 @@
 <script lang="ts">
-    import { useForm } from "@inertiajs/inertia-svelte";
+    import { onMount } from "svelte";
+    import { page, useForm } from "@inertiajs/inertia-svelte";
     import Comment from "./Comment.svelte";
 
     export let mission;
@@ -18,7 +19,9 @@
 
     function saveProgress() {
         $form.published = false;
-        $form.post(`/hub/missions/${mission.id}/comments`);
+        $form.post(`/hub/missions/${mission.id}/comments`, {
+            preserveScroll: true,
+        });
     }
 
     let timer;
@@ -28,6 +31,13 @@
             saveProgress();
         }, 3000);
     };
+
+    onMount(async () => {
+        let inProgress = mission.comments.find(
+            (comment) => comment.user_id == $page.props.auth.user.id && !comment.published
+        );
+        $form.text = inProgress.text;
+    });
 </script>
 
 <!-- Adapted from https://flowbite.com/docs/forms/textarea/#comment-box -->
@@ -56,5 +66,7 @@
 </form>
 
 {#each mission.comments.reverse() as comment}
-    <Comment {comment} />
+    {#if comment.published}
+        <Comment {comment} />
+    {/if}
 {/each}

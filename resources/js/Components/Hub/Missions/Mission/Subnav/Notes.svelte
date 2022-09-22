@@ -1,5 +1,6 @@
 <script lang="ts">
-    import { useForm } from "@inertiajs/inertia-svelte";
+    import { onMount } from "svelte";
+    import { page, useForm } from "@inertiajs/inertia-svelte";
     import Comment from "./Comment.svelte";
 
     export let mission;
@@ -18,7 +19,9 @@
 
     function saveProgress() {
         $form.published = false;
-        $form.post(`/hub/missions/${mission.id}/notes`);
+        $form.post(`/hub/missions/${mission.id}/notes`, {
+            preserveScroll: true,
+        });
     }
 
     let timer;
@@ -28,6 +31,11 @@
             saveProgress();
         }, 3000);
     };
+
+    onMount(async () => {
+        let inProgress = mission.notes.find((note) => note.user_id == $page.props.auth.user.id && !note.published);
+        $form.text = inProgress.text;
+    });
 </script>
 
 <!-- Adapted from https://flowbite.com/docs/forms/textarea/#comment-box -->
