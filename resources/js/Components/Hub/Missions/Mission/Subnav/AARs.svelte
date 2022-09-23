@@ -5,7 +5,7 @@
 
     export let mission;
 
-    let form = useForm({
+    let form = useForm(`CommentProgress:${$page.props.auth.user.id}`, {
         text: null,
         published: false,
     });
@@ -17,29 +17,29 @@
         });
     }
 
-    function saveProgress() {
-        $form.published = false;
-        $form.post(`/hub/missions/${mission.id}/comments`, {
-            preserveScroll: true,
-        });
-    }
+    // function saveProgress() {
+    //     $form.published = false;
+    //     $form.post(`/hub/missions/${mission.id}/comments`, {
+    //         preserveScroll: true,
+    //     });
+    // }
 
-    let timer;
-    const debounce = (e) => {
-        clearTimeout(timer);
-        timer = setTimeout(() => {
-            saveProgress();
-        }, 3000);
-    };
+    // let timer;
+    // const debounce = (e) => {
+    //     clearTimeout(timer);
+    //     timer = setTimeout(() => {
+    //         saveProgress();
+    //     }, 3000);
+    // };
 
-    onMount(async () => {
-        let inProgress = mission.comments.find(
-            (comment) => comment.user_id == $page.props.auth.user.id && !comment.published
-        );
-        if (inProgress) {
-            $form.text = inProgress.text;
-        }
-    });
+    // onMount(async () => {
+    //     let inProgress = mission.comments.find(
+    //         (comment) => comment.user_id == $page.props.auth.user.id && !comment.published
+    //     );
+    //     if (inProgress) {
+    //         $form.text = inProgress.text;
+    //     }
+    // });
 </script>
 
 <!-- Adapted from https://flowbite.com/docs/forms/textarea/#comment-box -->
@@ -48,7 +48,6 @@
         <div class="rounded-t-lg bg-gray-800 py-2 px-4">
             <textarea
                 bind:value={$form.text}
-                on:keyup={debounce}
                 rows="4"
                 class="w-full border-0 bg-gray-800 px-0 text-sm text-white placeholder-gray-400 focus:ring-0"
                 placeholder="Write a comment..."
