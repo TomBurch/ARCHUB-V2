@@ -46,10 +46,12 @@
     }
 
     function saveProgress() {
-        $form.published = false;
-        $form.post(`/hub/missions/${mission.id}/notes`, {
-            preserveScroll: true,
-        });
+        if (!editing) {
+            $form.published = false;
+            $form.post(`/hub/missions/${mission.id}/notes`, {
+                preserveScroll: true,
+            });
+        }
     }
 
     let timer;
