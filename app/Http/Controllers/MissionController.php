@@ -23,12 +23,12 @@ class MissionController extends Controller
 
         $mission = Mission::with([
             'user:id,username',
+            'comments:id,mission_id,user_id,text,published' => [
+                'user:id,username,avatar'
+            ],
         ])
             ->when($canTestMission, function ($query) {
                 return $query->with([
-                    'comments:id,mission_id,user_id,text,published' => [
-                        'user:id,username,avatar'
-                    ],
                     'notes:id,mission_id,user_id,text,published' => [
                         'user:id,username,avatar'
                     ],
