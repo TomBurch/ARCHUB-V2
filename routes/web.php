@@ -46,7 +46,11 @@ Route::middleware(['can:access-hub'])->group(function () {
 
     Route::post('/hub/missions/{mission}/comments', [CommentController::class, 'store']);
     Route::delete('/hub/missions/{mission}/comments/{comment}', [CommentController::class, 'delete']);
+    Route::put('/hub/missions/{mission}/comments/{comment}', [CommentController::class, 'update']);
+
     Route::post('/hub/missions/{mission}/notes', [NoteController::class, 'store']);
     Route::delete('/hub/missions/{mission}/notes/{note}', [NoteController::class, 'delete']);
+    Route::put('/hub/missions/{mission}/notes/{note}', [NoteController::class, 'update']);
+
     Route::get('/hub/missions/{mission}/download', [MissionController::class, 'download']);
 });

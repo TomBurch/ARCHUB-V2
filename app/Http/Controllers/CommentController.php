@@ -39,8 +39,17 @@ class CommentController extends Controller
 
     public function delete(Mission $mission, MissionComment $comment)
     {
-        $this->authorize('delete-comment', $comment);
+        $this->authorize('update-comment', $comment);
 
         $comment->delete();
+    }
+
+    public function update(Request $request, Mission $mission, MissionComment $comment)
+    {
+        $this->authorize('update-comment', $comment);
+        $text = $request->input('text');
+
+        $comment->text = $text;
+        $comment->save();
     }
 }

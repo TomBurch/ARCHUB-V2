@@ -39,8 +39,17 @@ class NoteController extends Controller
 
     public function delete(Mission $mission, MissionNote $note)
     {
-        $this->authorize('delete-note', $note);
+        $this->authorize('update-note', $note);
 
         $note->delete();
+    }
+
+    public function update(Request $request, Mission $mission, MissionNote $note)
+    {
+        $this->authorize('update-note', $note);
+        $text = $request->input('text');
+
+        $note->text = $text;
+        $note->save();
     }
 }

@@ -5,6 +5,7 @@
     import Comment from "./Comment.svelte";
 
     export let mission;
+    let editing = null;
 
     let form = useForm({
         text: null,
@@ -12,16 +13,36 @@
     });
 
     function submit() {
-        $form.published = true;
-        $form.post(`/hub/missions/${mission.id}/comments`, {
-            onSuccess: () => $form.reset(),
-        });
+        if (editing) {
+            $form.published = false;
+            $form.put(`/hub/missions/${mission.id}/comments/${editing.id}`, {
+                onSuccess: () => {
+                    editing = null;
+                    $form.reset();
+                },
+            });
+        } else {
+            $form.published = true;
+            $form.post(`/hub/missions/${mission.id}/comments`, {
+                onSuccess: () => $form.reset(),
+            });
+        }
     }
 
     function handleDelete(event) {
         Inertia.delete(`/hub/missions/${mission.id}/comments/${event.detail.comment.id}`, {
             onBefore: () => confirm("Are you sure?"),
         });
+    }
+
+    function handleEdit(event) {
+        editing = event.detail.comment;
+        $form.text = editing.text;
+    }
+
+    function handleCancel() {
+        editing = null;
+        $form.reset();
     }
 
     function saveProgress() {
@@ -66,16 +87,29 @@
             <button
                 type="submit"
                 disabled={$form.processing}
-                class="inline-flex items-center rounded-lg bg-blue-700 py-2.5 px-4 text-xs font-medium text-white hover:bg-blue-800"
+                class="rounded-lg bg-blue-700 py-2.5 px-4 text-xs font-medium text-white hover:bg-blue-800"
             >
-                Submit
+                {#if editing}
+                    Save
+                {:else}
+                    Submit
+                {/if}
             </button>
+            {#if editing}
+                <button
+                    on:click|preventDefault={handleCancel}
+                    disabled={$form.processing}
+                    class="rounded-lg bg-blue-700 py-2.5 px-4 text-xs font-medium text-white hover:bg-blue-800"
+                >
+                    Cancel
+                </button>
+            {/if}
         </div>
     </div>
 </form>
 
 {#each mission.comments as comment}
     {#if comment.published}
-        <Comment {comment} on:delete={handleDelete} />
+        <Comment {comment} on:delete={handleDelete} on:edit={handleEdit} />
     {/if}
 {/each}

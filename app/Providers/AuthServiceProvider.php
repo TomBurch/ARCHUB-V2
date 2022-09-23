@@ -45,11 +45,11 @@ class AuthServiceProvider extends ServiceProvider
             return $user->hasARole(RoleEnum::SENIOR_TESTER);
         });
 
-        Gate::define('delete-comment', function (User $user, MissionComment $comment) {
+        Gate::define('update-comment', function (User $user, MissionComment $comment) {
             return $comment->user->is($user);
         });
 
-        Gate::define('delete-note', function (User $user, MissionNote $note) {
+        Gate::define('update-note', function (User $user, MissionNote $note) {
             return $note->user->is($user);
         });
     }
