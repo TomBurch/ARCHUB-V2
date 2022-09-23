@@ -37,7 +37,7 @@ Route::get('/join', [JoinController::class, 'index']);
 Route::middleware(['can:access-hub'])->group(function () {
     Route::permanentRedirect('/hub', '/hub/missions');
     Route::get('/hub/settings', [SettingsController::class, 'index']);
-    
+
     Route::get('/hub/missions', [MissionsController::class, 'index']);
     Route::post('/hub/missions', [MissionController::class, 'store']);
     Route::get('/hub/missions/{mission}', [MissionController::class, 'index']);
@@ -45,6 +45,8 @@ Route::middleware(['can:access-hub'])->group(function () {
     Route::post('/hub/missions/{mission}/update', [MissionController::class, 'update']);
 
     Route::post('/hub/missions/{mission}/comments', [CommentController::class, 'store']);
+    Route::delete('/hub/missions/{mission}/comments/{comment}', [CommentController::class, 'delete']);
     Route::post('/hub/missions/{mission}/notes', [NoteController::class, 'store']);
+    Route::delete('/hub/missions/{mission}/notes/{note}', [NoteController::class, 'delete']);
     Route::get('/hub/missions/{mission}/download', [MissionController::class, 'download']);
 });

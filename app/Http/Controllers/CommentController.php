@@ -14,12 +14,6 @@ class CommentController extends Controller
     {
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request, Mission $mission)
     {
         $this->authorize('test-mission', $mission);
@@ -41,5 +35,12 @@ class CommentController extends Controller
             $message = "**{$comment->user->username}** commented on **{$comment->mission->display_name}**";
             Discord::missionUpdate($message, $comment->mission, true, $mission->url());
         }
+    }
+
+    public function delete(Mission $mission, MissionComment $comment)
+    {
+        $this->authorize('delete-comment', $comment);
+
+        $comment->delete();
     }
 }

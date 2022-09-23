@@ -14,12 +14,6 @@ class NoteController extends Controller
     {
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request, Mission $mission)
     {
         $this->authorize('test-mission', $mission);
@@ -41,5 +35,12 @@ class NoteController extends Controller
             $content = "**{$note->user->username}** added a note to **{$note->mission->display_name}**";
             Discord::missionUpdate($content, $mission, true, $note->mission->url());
         }
+    }
+
+    public function delete(Mission $mission, MissionNote $note)
+    {
+        $this->authorize('delete-note', $note);
+
+        $note->delete();
     }
 }

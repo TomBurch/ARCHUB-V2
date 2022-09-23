@@ -1,5 +1,6 @@
 <script lang="ts">
     import { onMount } from "svelte";
+    import { Inertia } from "@inertiajs/inertia";
     import { page, useForm } from "@inertiajs/inertia-svelte";
     import Comment from "./Comment.svelte";
 
@@ -14,6 +15,12 @@
         $form.published = true;
         $form.post(`/hub/missions/${mission.id}/notes`, {
             onSuccess: () => $form.reset(),
+        });
+    }
+
+    function handleDelete(event) {
+        Inertia.delete(`/hub/missions/${mission.id}/notes/${event.detail.comment.id}`, {
+            onBefore: () => confirm("Are you sure?"),
         });
     }
 
@@ -67,6 +74,6 @@
 
 {#each mission.notes as note}
     {#if note.published}
-        <Comment comment={note} />
+        <Comment comment={note} on:delete={handleDelete} />
     {/if}
 {/each}

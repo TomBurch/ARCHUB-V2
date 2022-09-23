@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use App\Models\Mission;
+use App\Models\MissionComment;
+use App\Models\MissionNote;
 use App\RoleEnum;
 use App\Models\User;
 
@@ -41,6 +43,14 @@ class AuthServiceProvider extends ServiceProvider
 
         Gate::define('verify-missions', function (User $user) {
             return $user->hasARole(RoleEnum::SENIOR_TESTER);
+        });
+
+        Gate::define('delete-comment', function (User $user, MissionComment $comment) {
+            return $comment->user->is($user);
+        });
+
+        Gate::define('delete-note', function (User $user, MissionNote $note) {
+            return $note->user->is($user);
         });
     }
 }
