@@ -11,7 +11,7 @@ class MissionsController extends Controller
     public function index()
     {
         $missions = Mission::with('user:id,username')
-            ->select('id', 'user_id', 'display_name', 'mode', 'summary')
+            ->select('id', 'user_id', 'display_name', 'mode', 'summary', 'verified_by')
             ->orderBy('id', 'desc')->get()->toArray();
 
         $user_id = auth()->user()->id;

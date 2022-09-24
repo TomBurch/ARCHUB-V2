@@ -35,9 +35,20 @@
         >
             {mission.display_name}
         </h5>
-        <p class="truncate text-xs font-normal text-gray-100">
-            By {mission.user.username}
-        </p>
+        <div class="flex">
+            <p class="flex-1 truncate text-xs font-normal text-gray-100">
+                By {mission.user.username}
+            </p>
+            {#if !mission.verified_by}
+                <svg class="h-4 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="orange">
+                    <path
+                        fill-rule="evenodd"
+                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-5a.75.75 0 01.75.75v4.5a.75.75 0 01-1.5 0v-4.5A.75.75 0 0110 5zm0 10a1 1 0 100-2 1 1 0 000 2z"
+                        clip-rule="evenodd"
+                    />
+                </svg>
+            {/if}
+        </div>
         <p class="truncate text-xs font-normal text-gray-100">
             {mission.summary}
         </p>
