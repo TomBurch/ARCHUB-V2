@@ -119,6 +119,7 @@ class MissionController extends Controller
                 'summary' => $contents['mission']['description'],
                 'briefings' => json_encode($briefings),
                 'map_id' => $details->map->id,
+                'file_name' => $fileName,
             ]);
         } else {
             $mission->display_name = $contents['mission']['name'];
@@ -126,6 +127,7 @@ class MissionController extends Controller
             $mission->summary = $contents['mission']['description'];
             $mission->briefings = json_encode($briefings);
             $mission->map_id = $details->map->id;
+            $mission->file_name = $fileName;
             $mission->save();
 
             MissionRevision::create([
