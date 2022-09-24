@@ -37,7 +37,7 @@
             </div>
         </div>
         <div class="mt-1 flex space-x-2">
-            <div class="ml-4 text-sm text-gray-400">14 w</div>
+            <div class="ml-4 text-sm text-gray-400">{comment.created_at}</div>
             {#if comment.user.id == $page.props.auth.user.id}
                 <button on:click={handleEdit}>
                     <svg

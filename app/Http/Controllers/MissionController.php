@@ -7,7 +7,7 @@ use App\Helpers\PBOMission\PBOMission;
 use App\Models\Map;
 use App\Models\Missions\Mission;
 use App\Models\Missions\MissionRevision;
-
+use Carbon\Carbon;
 use \stdClass;
 use Exception;
 use Illuminate\Http\Request;
@@ -23,13 +23,13 @@ class MissionController extends Controller
 
         $mission = Mission::with([
             'user:id,username',
-            'comments:id,mission_id,user_id,text,published' => [
+            'comments:id,mission_id,user_id,text,published,created_at' => [
                 'user:id,username,avatar'
             ],
         ])
             ->when($canTestMission, function ($query) {
                 return $query->with([
-                    'notes:id,mission_id,user_id,text,published' => [
+                    'notes:id,mission_id,user_id,text,published,created_at' => [
                         'user:id,username,avatar'
                     ],
                     'verifier:id,username'
@@ -41,8 +41,13 @@ class MissionController extends Controller
         $media = $mission->photos()->map(function ($value) {
             return $value->getUrl('thumb');
         });
+
+        $missionArray = $mission->toArray();
+        array_walk($missionArray['notes'], function (&$note) {
+            $note['created_at'] = Carbon::parse($note['created_at'])->diffForHumans();
+        });
         return inertia('Hub/Missions/Mission', [
-            'mission' => $mission,
+            'mission' => $missionArray,
             'mission.media' => $media,
             'can' => [
                 'test_mission' => $canTestMission,
