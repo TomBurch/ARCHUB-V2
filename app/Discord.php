@@ -38,23 +38,30 @@ class Discord
         return false;
     }
 
-    public static function notifyChannel(ChannelEnum $channel, string $content)
+    public static function notifyChannel(ChannelEnum $channel, string $content = null, Embed $embed = null)
     {
         $response = HTTP::post($channel->id(), [
             'content' => $content,
+            'embeds' => [$embed],
         ]);
 
         return $response;
     }
 
-    public static function missionUpdate(string $content, Mission $mission, bool $tagAuthor = false, string $url = "")
+    public static function missionUpdate(string $content, Mission $mission, bool $tagAuthor = false)
     {
+        $pings = "";
         if ($tagAuthor && !$mission->user->is(auth()->user())) {
-            $content = "{$content} <@{$mission->user->discord_id}>";
+            $pings = "<@{$mission->user->discord_id}>";
         }
 
-        $content = "{$content}\n{$url}";
+        $color = match ($mission->mode) {
+            'coop' => 1267441,
+            'tvt' => 13963300,
+            'ade' => 889631,
+        };
+        $embed = new Embed($mission->display_name, $content, $color, $mission->url());
 
-        self::notifyChannel(ChannelEnum::ARCHUB, $content);
+        self::notifyChannel(ChannelEnum::ARCHUB, $pings, $embed);
     }
 }

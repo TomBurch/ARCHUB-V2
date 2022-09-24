@@ -32,8 +32,7 @@ class CommentController extends Controller
         ]);
 
         if ($published) {
-            $message = "**{$comment->user->username}** commented on **{$comment->mission->display_name}**";
-            Discord::missionUpdate($message, $comment->mission, true, $mission->url());
+            Discord::missionUpdate("**{$comment->user->username}** added a comment", $comment->mission, true);
         }
     }
 

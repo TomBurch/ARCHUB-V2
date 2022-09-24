@@ -57,8 +57,7 @@ class MissionController extends Controller
 
             if (!is_null($verified_by)) {
                 $username = $verified_by['username'];
-                $content = "**{$username}** has verified **{$mission->display_name}**";
-                Discord::missionUpdate($content, $mission, true);
+                Discord::missionUpdate("Verified by **{$username}**", $mission, true);
             }
         }
     }
@@ -67,16 +66,14 @@ class MissionController extends Controller
     {
         $mission = $this->uploadMission($request);
 
-        $content = "**{$mission->user->username}** submitted a mission named **{$mission->display_name}**";
-        Discord::missionUpdate($content, $mission, false, $mission->url());
+        Discord::missionUpdate("New mission by **{$mission->user->username}**", $mission, false);
     }
 
     public function update(Request $request, Mission $mission)
     {
         $mission = $this->uploadMission($request, $mission);
 
-        $content = "**{$mission->user->username}** has updated **{$mission->display_name}**";
-        Discord::missionUpdate($content, $mission, false, $mission->url());
+        Discord::missionUpdate("Updated by **{$mission->user->username}**", $mission, false);
     }
 
     public function uploadMission(Request $request, Mission $mission = null)

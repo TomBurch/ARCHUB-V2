@@ -32,8 +32,7 @@ class NoteController extends Controller
         ]);
 
         if ($published) {
-            $content = "**{$note->user->username}** added a note to **{$note->mission->display_name}**";
-            Discord::missionUpdate($content, $mission, true, $note->mission->url());
+            Discord::missionUpdate("**{$note->user->username}** added a note", $mission, true);
         }
     }
 
