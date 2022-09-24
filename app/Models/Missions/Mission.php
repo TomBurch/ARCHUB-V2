@@ -30,6 +30,8 @@ class Mission extends Model implements HasMedia
         'briefings',
         'map_id',
         'file_name',
+        'orbatSettings',
+        'slottingDetails',
     ];
 
     public function user()

@@ -17,6 +17,22 @@ use Inertia\Inertia;
 
 class MissionController extends Controller
 {
+    /**
+     * Side represented as an integer as used by TMF_OrbatSettings
+     * From: https://community.bistudio.com/wiki/BIS_fnc_sideID
+     *
+     * @var array
+     */
+    public static $sideMap = [
+        "opfor" => 0,
+        "east" => 0,
+        "blufor" => 1,
+        "west" => 1,
+        "independent" => 2,
+        "resistance" => 2,
+        "civilian" => 3
+    ];
+
     public function index(Mission $mission)
     {
         $canTestMission = Gate::allows('test-mission', $mission);
@@ -111,6 +127,12 @@ class MissionController extends Controller
         $details = $this->getDetailsFromFilePath($fileName);
         $briefings = $this->parseBriefings($contents['mission']['briefings']);
 
+        try {
+            $orbatSettings = json_encode($this->orbatFromOrbatSettings($contents['mission']['orbatSettings'], $contents['mission']['groups']));
+        } catch (Exception $e) {
+            $orbatSettings = json_encode(array("Error extracting ORBAT:" => array($e->getMessage())));
+        }
+
         if ($isNewMission) {
             $mission = Mission::create([
                 'user_id' => $user->id,
@@ -120,6 +142,8 @@ class MissionController extends Controller
                 'briefings' => json_encode($briefings),
                 'map_id' => $details->map->id,
                 'file_name' => $fileName,
+                'orbatSettings' => $orbatSettings,
+                'slottingDetails' => $contents['mission']['slottingDetails'],
             ]);
         } else {
             $mission->display_name = $contents['mission']['name'];
@@ -128,6 +152,8 @@ class MissionController extends Controller
             $mission->briefings = json_encode($briefings);
             $mission->map_id = $details->map->id;
             $mission->file_name = $fileName;
+            $mission->orbatSettings = $orbatSettings;
+            $mission->slottingDetails = $contents['mission']['slottingDetails'];
             $mission->save();
 
             MissionRevision::create([
@@ -210,5 +236,149 @@ class MissionController extends Controller
         }
 
         return $briefings;
+    }
+
+
+
+
+
+
+    /**
+     * Returns a minimal version of orbatSettings for displaying on the website
+     *
+     * @return array
+     */
+    private function orbatFromOrbatSettings(array $orbats, array &$groups)
+    {
+        foreach ($orbats as &$faction) {
+            $this->minimiseLevel($faction[1]);
+            $faction = $faction[1];
+        }
+
+        $orbatGroups = array();
+        foreach ($groups as &$group) {
+            if (isset($group['orbatParent'])) {
+                $faction = self::$sideMap[$group['side']];
+                $orbatParent = $group['orbatParent'];
+                $minimalGroup = array(isset($group['name']) ? $group['name'] : "NOT NAMED", array());
+
+                foreach ($group['units'] as $unit) {
+                    $desc = explode("@", $unit['description'])[0];
+                    array_push($minimalGroup[1], array($desc));
+                }
+
+                if (!isset($orbatGroups[$faction])) {
+                    $orbatGroups[$faction] = array();
+                }
+
+                if (!isset($orbatGroups[$faction][$orbatParent])) {
+                    $orbatGroups[$faction][$orbatParent] = array($minimalGroup);
+                } else {
+                    array_push($orbatGroups[$faction][$orbatParent], $minimalGroup);
+                }
+            }
+        }
+
+        foreach ($orbats as $faction => &$orbat) {
+            if (!is_array($orbat)) {
+                unset($orbats[$faction]);
+                continue;
+            }
+
+            $orbatModified = false;
+            $this->replaceIntWithUnits($orbat[1], $faction, $orbatGroups, $orbatModified);
+
+            if (!$orbatModified) {
+                unset($orbats[$faction]);
+            }
+        }
+
+        $this->removeAllIntsAndEmptyArrays($orbats);
+        // Reindex array after everything has been unset
+        $orbats = array_map('array_values', $orbats);
+
+        $namedOrbats = array();
+        foreach ($orbats as $faction => &$orbat) {
+            $factionName = array_search($faction, self::$sideMap);
+            $namedOrbats[$factionName] = &$orbat;
+        }
+
+        return $namedOrbats;
+    }
+
+    /**
+     * Recursive function used by $this->orbatFromOrbatSettings()
+     */
+    private function minimiseLevel(array &$level)
+    {
+        $name = strlen($level[0][1]) > 0 ? $level[0][1] : $level[0][4]; //If an abbrievation is defined then use it, otherwise full name
+        $uniqueId = $level[0][0];
+        $level[0] = $name;
+
+        if (count($level[1]) === 0) {
+            $level[1] = array($uniqueId);
+        } else {
+            foreach ($level[1] as $i => &$subLevel) {
+                $this->minimiseLevel($subLevel);
+            }
+            array_unshift($level[1], $uniqueId);
+        }
+    }
+
+    private function replaceIntWithUnits(array &$item, int &$faction, array &$orbatGroups, bool &$orbatModified)
+    {
+        if (is_int($item[0])) {
+            if (isset($orbatGroups[$faction][$item[0]])) {
+                $units = &$orbatGroups[$faction][$item[0]];
+                unset($item[0]);
+
+                $units = array_reverse($units);
+
+                foreach ($units as $unit) {
+                    array_unshift($item, $unit);
+                }
+                $orbatModified = true;
+            } else {
+                unset($item[0]);
+            }
+        }
+
+        foreach ($item as &$subitem) {
+            if (is_array($subitem)) {
+                $this->replaceIntWithUnits($subitem, $faction, $orbatGroups, $orbatModified);
+            }
+        }
+    }
+
+    private function removeAllIntsAndEmptyArrays(array &$item)
+    {
+        // Only have name + empty array - remove entire item
+        if (isset($item[1]) && is_array($item[1]) && empty($item[1])) {
+            $item = null;
+            return;
+        }
+
+        // Recursively find every int and empty array and replace them will NULL
+        foreach ($item as &$subitem) {
+            if (is_int($subitem)) {
+                $subitem = null;
+            } elseif (is_array($subitem)) {
+                if (empty($subitem)) {
+                    $subitem = null;
+                } else {
+                    $this->removeAllIntsAndEmptyArrays($subitem);
+                }
+            }
+        }
+
+        // Double check if array is empty now that all the children have been unset
+        if (isset($item[1]) && is_array($item[1]) && empty($item[1])) {
+            $item = null;
+            return;
+        }
+
+        // unset() used on a &reference will unset the reference but not the original value
+        // instead we set everything to NULL and use array_filter, which will unset the original value
+        $item = array_filter($item);
     }
 }
