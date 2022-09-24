@@ -1,18 +1,20 @@
 <script lang="ts">
     import { useForm } from "@inertiajs/inertia-svelte";
 
+    export let mission;
+
     let form = useForm({
-        mission: null,
+        media: null,
     });
 
     function submit() {
-        $form.post("/hub/missions");
+        $form.post(`/hub/missions/${mission.id}/media`);
     }
 
     function handleDrop(event) {
         event.preventDefault();
         event.stopPropagation();
-        $form.mission = event.dataTransfer.files[0];
+        $form.media = event.dataTransfer.files[0];
         submit();
     }
 
@@ -25,7 +27,7 @@
 </script>
 
 <!-- Adapted from https://flowbite.com/docs/forms/file-input/#dropzone -->
-<div class="flex w-full items-center justify-center" on:drop={handleDrop} on:dragover={handleDragOver}>
+<div class="flex w-[75%] items-center justify-center" on:drop={handleDrop} on:dragover={handleDragOver}>
     <label
         for="dropzone-file"
         class="flex h-60 w-full cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-600 bg-gray-700 hover:border-gray-500 hover:bg-gray-600"
@@ -60,7 +62,7 @@
                 id="dropzone-file"
                 type="file"
                 class="hidden"
-                on:input={(e) => ($form.mission = e.target.files[0])}
+                on:input={(e) => ($form.media = e.target.files[0])}
                 on:change={submit}
             />
         </form>

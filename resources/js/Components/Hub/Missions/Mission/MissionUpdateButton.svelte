@@ -10,46 +10,29 @@
     function submit() {
         $form.post(`/hub/missions/${mission.id}/update`);
     }
-
-    function handleDrop(event) {
-        event.preventDefault();
-        event.stopPropagation();
-        $form.mission = event.dataTransfer.files[0];
-        submit();
-    }
-
-    function handleDragOver(event) {
-        event.preventDefault();
-        if (event.dataTransfer) {
-            event.dataTransfer.dropEffect = "copy";
-        }
-    }
 </script>
 
 <!-- Adapted from https://flowbite.com/docs/forms/file-input/#dropzone -->
-<div class="inline-flex" on:drop={handleDrop} on:dragover={handleDragOver}>
-    <label
-        for="dropzone-file"
-        class="cursor-pointer items-center rounded-lg border-2 border-dashed border-gray-600 bg-gray-700 hover:border-gray-500 hover:bg-gray-600"
-    >
+<div class="inline-flex">
+    <label for="media-upload" class="cursor-pointer">
         {#if !$form.progress}
             <svg
                 aria-hidden="true"
-                class="h-6 w-6 text-gray-400"
+                class="h-7 w-7"
                 fill="none"
-                stroke="currentColor"
+                stroke="white"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
                 ><path
                     stroke-linecap="round"
                     stroke-linejoin="round"
-                    stroke-width="2"
+                    stroke-width="1.5"
                     d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
                 /></svg
             >
         {:else}
             <svg
-                class="m-1 h-4 w-4 animate-spin fill-blue-600 text-gray-400"
+                class="m-1 h-5 w-5 animate-spin fill-blue-600 text-gray-400"
                 viewBox="0 0 100 101"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -66,7 +49,7 @@
         {/if}
         <form>
             <input
-                id="dropzone-file"
+                id="media-upload"
                 type="file"
                 class="hidden"
                 on:input={(e) => ($form.mission = e.target.files[0])}

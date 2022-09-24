@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\Discord;
 use App\Helpers\PBOMission\PBOMission;
 use App\Models\Map;
-use App\Models\Mission;
-use App\Models\MissionRevision;
+use App\Models\Missions\Mission;
+use App\Models\Missions\MissionRevision;
 
 use \stdClass;
 use Exception;
@@ -36,10 +36,14 @@ class MissionController extends Controller
                 ]);
             })
             ->select('id', 'user_id', 'display_name', 'mode', 'verified_by', 'summary', 'briefings')
-            ->firstWhere('id', $mission->id)->toArray();
+            ->firstWhere('id', $mission->id);
 
+        $media = $mission->photos()->map(function ($value) {
+            return $value->getUrl('thumb');
+        });
         return inertia('Hub/Missions/Mission', [
             'mission' => $mission,
+            'mission.media' => $media,
             'can' => [
                 'test_mission' => $canTestMission,
                 'verify_missions' => Gate::allows('verify-missions'),

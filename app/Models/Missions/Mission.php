@@ -1,15 +1,20 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Missions;
 
-use App\Models\MissionRevision;
+use App\Models\Map;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
+use Spatie\Image\Manipulations;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-class Mission extends Model
+class Mission extends Model implements HasMedia
 {
-    use HasFactory, Notifiable;
+    use InteractsWithMedia, HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -58,5 +63,18 @@ class Mission extends Model
     public function url()
     {
         return url("hub/missions/{$this->id}");
+    }
+
+    public function registerMediaConversions(Media $media = null): void
+    {
+        $this->addMediaConversion('thumb')
+            ->fit(Manipulations::FIT_CROP, 384, 384)
+            ->nonQueued()
+            ->performOnCollections('media');
+    }
+
+    public function photos()
+    {
+        return $this->getMedia('media');
     }
 }

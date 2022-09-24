@@ -5,6 +5,7 @@ use App\Http\Controllers\AppController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\MissionsController;
 use App\Http\Controllers\MissionController;
+use App\Http\Controllers\MissionMediaController;
 use App\Http\Controllers\NoteController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\Public\JoinController;
@@ -51,6 +52,8 @@ Route::middleware(['can:access-hub'])->group(function () {
     Route::post('/hub/missions/{mission}/notes', [NoteController::class, 'store']);
     Route::delete('/hub/missions/{mission}/notes/{note}', [NoteController::class, 'delete']);
     Route::put('/hub/missions/{mission}/notes/{note}', [NoteController::class, 'update']);
+
+    Route::post('/hub/missions/{mission}/media', [MissionMediaController::class, 'store']);
 
     Route::get('/hub/missions/{mission}/download', [MissionController::class, 'download']);
 });

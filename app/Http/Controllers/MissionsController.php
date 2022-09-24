@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Mission;
+use App\Models\Missions\Mission;
 use App\Models\Operation;
 use Carbon\Carbon;
 

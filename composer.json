@@ -14,7 +14,8 @@
         "laravel/telescope": "^4.9",
         "laravel/tinker": "^2.7",
         "socialiteproviders/discord": "^4.1",
-        "spatie/laravel-google-cloud-storage": "^2.0"
+        "spatie/laravel-google-cloud-storage": "^2.0",
+        "spatie/laravel-medialibrary": "^10.5"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.7",

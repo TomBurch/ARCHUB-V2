@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Missions;
 
 use App\Models\User;
-use App\Models\Mission;
 
 use Illuminate\Database\Eloquent\Model;
 
-class MissionNote extends Model
+class MissionComment extends Model
 {
     /**
      * The attributes that are mass assignable.

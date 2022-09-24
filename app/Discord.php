@@ -2,7 +2,7 @@
 
 namespace App;
 
-use App\Models\Mission;
+use App\Models\Missions\Mission;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;

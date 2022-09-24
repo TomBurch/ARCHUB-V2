@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Discord;
-use App\Models\Mission;
-use App\Models\MissionComment;
+use App\Models\Missions\Mission;
+use App\Models\Missions\MissionComment;
 
 use Illuminate\Http\Request;
 

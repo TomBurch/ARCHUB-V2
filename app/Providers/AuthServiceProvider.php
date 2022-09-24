@@ -2,10 +2,10 @@
 
 namespace App\Providers;
 
-use App\Models\Mission;
-use App\Models\MissionComment;
-use App\Models\MissionNote;
 use App\RoleEnum;
+use App\Models\Missions\Mission;
+use App\Models\Missions\MissionComment;
+use App\Models\Missions\MissionNote;
 use App\Models\User;
 
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
