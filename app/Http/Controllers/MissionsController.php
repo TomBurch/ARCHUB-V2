@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Missions\Mission;
 use App\Models\Operation;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Gate;
 
 class MissionsController extends Controller
 {
@@ -33,6 +34,9 @@ class MissionsController extends Controller
             'missions' => $missions,
             'my_missions' => $my_missions,
             'next_operation' => $next_operation,
+            'can' => [
+                'test_missions' => Gate::allows('test-missions'),
+            ]
         ]);
     }
 }

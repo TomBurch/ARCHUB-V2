@@ -35,6 +35,10 @@ class AuthServiceProvider extends ServiceProvider
             return $user->hasARole(RoleEnum::ARMA_MEMBER, RoleEnum::ARMA_RECRUIT);
         });
 
+        Gate::define('test-missions', function (User $user) {
+            return $user->hasARole(RoleEnum::TESTER);
+        });
+
         Gate::define('test-mission', function (User $user, Mission $mission) {
             // Includes adding notes, downloading missions,
             // reading locked briefings, and seeing unverified missions

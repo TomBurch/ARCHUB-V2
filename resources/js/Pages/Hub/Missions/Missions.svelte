@@ -10,6 +10,7 @@
     export let missions;
     export let my_missions;
     export let next_operation;
+    export let can;
 
     missions = Object.values(missions);
     my_missions = Object.values(my_missions);
@@ -40,7 +41,9 @@
         class="col-span-full grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6"
     >
         {#each missions as mission}
-            <Card {mission} />
+            {#if mission.verified_by || can.test_missions}
+                <Card {mission} />
+            {/if}
         {/each}
     </div>
 </div>
