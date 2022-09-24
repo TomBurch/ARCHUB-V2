@@ -32,12 +32,12 @@
             <div class="text-sm font-semibold leading-relaxed">
                 {comment.user.username}
             </div>
+            <div class="mb-1 text-xs text-gray-400">{comment.created_at}</div>
             <div>
                 <SvelteMarkdown source={comment.text} {options} />
             </div>
         </div>
-        <div class="mt-1 flex space-x-2">
-            <div class="ml-4 text-sm text-gray-400">{comment.created_at}</div>
+        <div class="mt-1 ml-4 flex space-x-2">
             {#if comment.user.id == $page.props.auth.user.id}
                 <button on:click={handleEdit}>
                     <svg
