@@ -51,8 +51,18 @@ class Discord
     public static function missionUpdate(string $content, Mission $mission, bool $tagAuthor = false)
     {
         $pings = "";
-        if ($tagAuthor && !$mission->user->is(auth()->user())) {
-            $pings = "<@{$mission->user->discord_id}>";
+
+        if ($tagAuthor) {
+            foreach ($mission->subscribers as $subscriber) {
+                if ($subscriber->discord_id != auth()->user()->discord_id) {
+                    $pings = "{$pings} <@{$subscriber->discord_id}>";
+                }
+            }
+
+            $author = $mission->maintainer ? $mission->maintainer : $mission->user;
+            if (!$author->is(auth()->user())) {
+                $pings = "<@{$author->discord_id}> {$pings}";
+            }
         }
 
         $color = match ($mission->mode) {

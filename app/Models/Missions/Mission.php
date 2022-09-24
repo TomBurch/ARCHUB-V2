@@ -4,6 +4,7 @@ namespace App\Models\Missions;
 
 use App\Models\Map;
 use App\Models\User;
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
@@ -35,6 +36,11 @@ class Mission extends Model implements HasMedia
         return $this->belongsTo(User::class);
     }
 
+    public function maintainer()
+    {
+        return $this->belongsTo(User::class, 'maintainer_id');
+    }
+
     public function verifier()
     {
         return $this->belongsTo(User::class, 'verified_by');
@@ -58,6 +64,11 @@ class Mission extends Model implements HasMedia
     public function revisions()
     {
         return $this->hasMany(MissionRevision::class);
+    }
+
+    public function subscribers()
+    {
+        return $this->hasMany(MissionSubscription::class);
     }
 
     public function url()
