@@ -43,9 +43,12 @@ class MissionController extends Controller
         });
 
         $missionArray = $mission->toArray();
-        array_walk($missionArray['notes'], function (&$note) {
-            $note['created_at'] = Carbon::parse($note['created_at'])->diffForHumans();
-        });
+        if (!is_null($missionArray['notes'])) {
+            array_walk($missionArray['notes'], function (&$note) {
+                $note['created_at'] = Carbon::parse($note['created_at'])->diffForHumans();
+            });
+        }
+
         return inertia('Hub/Missions/Mission', [
             'mission' => $missionArray,
             'mission.media' => $media,
