@@ -43,7 +43,7 @@ class MissionController extends Controller
         });
 
         $missionArray = $mission->toArray();
-        if (!is_null($missionArray['notes'])) {
+        if ($canTestMission) {
             array_walk($missionArray['notes'], function (&$note) {
                 $note['created_at'] = Carbon::parse($note['created_at'])->diffForHumans();
             });
