@@ -29,6 +29,7 @@ class Mission extends Model implements HasMedia
         'summary',
         'briefings',
         'map_id',
+        'file_name',
     ];
 
     public function user()
