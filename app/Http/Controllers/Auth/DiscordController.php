@@ -48,8 +48,8 @@ class DiscordController extends Controller
     public function create($data)
     {
         $user = User::firstOrCreate(
-            ['username' => $data->name],
-            ['discord_id' => $data->id, 'avatar' => $data->avatar,]
+            ['discord_id' => $data->id],
+            ['username' => $data->name, 'avatar' => $data->avatar,]
         );
 
         auth()->login($user, true);

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Missions\Mission;
 use Illuminate\Database\Eloquent\Model;
 
 class OperationMission extends Model
