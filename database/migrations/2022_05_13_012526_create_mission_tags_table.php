@@ -1,13 +1,10 @@
 <?php
 
-use App\Models\Mission;
-use App\Models\User;
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreateMissionTagsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -16,13 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('mission_notes', function (Blueprint $table) {
+        Schema::create('mission_tags', function (Blueprint $table) {
             $table->id();
+            $table->integer('mission_id')->references('id')->on('missions')->onDelete('cascade');
+            $table->integer('tag_id')->references('id')->on('tags')->onDelete('cascade');
             $table->timestamps();
-            $table->foreignIdFor(Mission::class)->cascadeOnDelete();
-            $table->foreignIdFor(User::class)->cascadeOnDelete();
-            $table->longText('text');
-            $table->boolean('published');
         });
     }
 
@@ -33,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mission_notes');
+        Schema::dropIfExists('mission_tags');
     }
-};
+}

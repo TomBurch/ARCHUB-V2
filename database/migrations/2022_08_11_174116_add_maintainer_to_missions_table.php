@@ -13,13 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->id();
-            $table->string('username');
-            $table->string('discord_id');
-            $table->string('avatar');
-            $table->rememberToken();
-            $table->timestamps();
+        Schema::table('missions', function (Blueprint $table) {
+            $table->integer('maintainer_id')->nullable()->references('id')->on('users')->onDelete('cascade');
         });
     }
 
@@ -30,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::table('missions', function (Blueprint $table) {
+            $table->dropColumn('maintainer_id');
+        });
     }
 };

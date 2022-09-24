@@ -1,7 +1,9 @@
 <script lang="ts">
     import { Link, page } from "@inertiajs/inertia-svelte";
 
-    const navigation = [{ name: "Join", href: "/join" }];
+    const navigation = [
+        // { name: "Join", href: "/join" }
+    ];
     let open = false;
 </script>
 

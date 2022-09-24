@@ -1,13 +1,10 @@
 <?php
 
-use App\Models\Mission;
-use App\Models\User;
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreateTagsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -16,13 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('mission_comments', function (Blueprint $table) {
+        Schema::create('tags', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
             $table->timestamps();
-            $table->foreignIdFor(Mission::class)->cascadeOnDelete();
-            $table->foreignIdFor(User::class)->cascadeOnDelete();
-            $table->longText('text');
-            $table->boolean('published');
         });
     }
 
@@ -33,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mission_comments');
+        Schema::dropIfExists('tags');
     }
-};
+}
