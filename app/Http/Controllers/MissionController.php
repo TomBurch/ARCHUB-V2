@@ -6,6 +6,7 @@ use App\Discord;
 use App\Helpers\PBOMission\PBOMission;
 use App\Models\Map;
 use App\Models\Missions\Mission;
+use App\Models\Missions\MissionBriefing;
 use App\Models\Missions\MissionRevision;
 use Carbon\Carbon;
 use \stdClass;
@@ -39,6 +40,7 @@ class MissionController extends Controller
 
         $mission = Mission::with([
             'user:id,username',
+            'briefing_models:id,mission_id,name,sections,locked',
             'comments:id,mission_id,user_id,text,published,created_at' => [
                 'user:id,username,avatar'
             ],
@@ -51,7 +53,7 @@ class MissionController extends Controller
                     'verifier:id,username'
                 ]);
             })
-            ->select('id', 'user_id', 'display_name', 'mode', 'verified_by', 'summary', 'briefings')
+            ->select('id', 'user_id', 'display_name', 'mode', 'verified_by', 'summary')
             ->firstWhere('id', $mission->id);
 
         $media = $mission->photos()->map(function ($value) {
@@ -69,6 +71,10 @@ class MissionController extends Controller
                 $note['created_at'] = Carbon::parse($note['created_at'])->diffForHumans();
             });
         }
+
+        $missionArray['briefing_models'] = array_filter($missionArray['briefing_models'], function ($briefing) use ($canTestMission) {
+            return (!$briefing['locked']) || $canTestMission;
+        });
 
         return inertia('Hub/Missions/Mission', [
             'mission' => $missionArray,
@@ -162,6 +168,8 @@ class MissionController extends Controller
             ]);
         }
 
+        $this->storeBriefings($mission, $briefings);
+
         $revisions = $mission->revisions()->count();
         $exportedName = "{$details->filenameNoMap}_{$revisions}.{$details->map->class_name}.pbo";
         $pboPath = "missions/{$mission->user_id}/{$mission->id}/{$exportedName}";
@@ -238,7 +246,33 @@ class MissionController extends Controller
         return $briefings;
     }
 
+    public function storeBriefings($mission, $briefingsArray)
+    {
+        if (is_null($briefingsArray)) {
+            return;
+        }
 
+        $names = [];
+        $briefings = [];
+        foreach ($briefingsArray as $briefing) {
+            array_push($names, $briefing[0]);
+            array_push($briefings, [
+                'mission_id' => $mission->id,
+                'name' => $briefing[0],
+                'sections' => json_encode($briefing[3]),
+            ]);
+        }
+
+        MissionBriefing::where('mission_id', $mission->id)
+            ->whereNotIn('name', $names)
+            ->delete();
+
+        MissionBriefing::upsert(
+            $briefings,
+            ['mission_id', 'name'],
+            ['sections']
+        );
+    }
 
 
 

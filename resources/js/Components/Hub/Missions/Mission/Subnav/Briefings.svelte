@@ -3,12 +3,11 @@
 
     export let mission;
 
-    let briefings = JSON.parse(mission.briefings);
     let navigation = [];
 
     /* Construct navigation dynamically so we can reuse Subnav*/
-    briefings.forEach(function (briefing) {
-        navigation.push({ name: briefing[0], content: briefing, show: true });
+    mission.briefing_models.forEach(function (briefing) {
+        navigation.push({ name: briefing.name, content: briefing.sections, show: true });
     });
     let selected = navigation[0];
 </script>
@@ -18,7 +17,7 @@
 
     {#each navigation as briefing}
         <div class={selected == briefing ? "" : "hidden"}>
-            {#each Object.entries(briefing.content[3]) as [title, paragraph]}
+            {#each Object.entries(briefing.content) as [title, paragraph]}
                 <div>
                     <h5 class="text-bold pt-8 text-center text-3xl tracking-wide text-gray-200">
                         {title}

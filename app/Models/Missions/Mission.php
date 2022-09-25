@@ -74,6 +74,11 @@ class Mission extends Model implements HasMedia
         return $this->hasMany(MissionSubscription::class);
     }
 
+    public function briefing_models()
+    {
+        return $this->hasMany(MissionBriefing::class);
+    }
+
     public function url()
     {
         return "https://arcomm.co.uk/hub/missions/{$this->id}";
