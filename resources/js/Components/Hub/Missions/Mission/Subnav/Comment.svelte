@@ -33,9 +33,9 @@
                 {comment.user.username}
             </div>
             <div class="mb-1 text-xs text-gray-400">{comment.created_at}</div>
-            <div>
+            <article class="prose-ul:list-dist prose max-w-none prose-ol:list-decimal prose-li:my-0">
                 <SvelteMarkdown source={comment.text} {options} />
-            </div>
+            </article>
         </div>
         <div class="mt-1 ml-4 flex space-x-2">
             {#if comment.user.id == $page.props.auth.user.id}

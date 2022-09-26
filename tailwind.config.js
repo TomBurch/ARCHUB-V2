@@ -11,11 +11,19 @@ module.exports = {
             },
             minHeight: {
                 'screen-no-nav': '84vh',
-            }
+            },
+            typography: {
+                DEFAULT: {
+                    css: {
+                        color: 'white'
+                    }
+                }
+            },
         }
     },
     plugins: [
         require("@tailwindcss/forms"),
+        require('@tailwindcss/typography'),
         require("@tailwindcss/aspect-ratio"),
     ],
 };
