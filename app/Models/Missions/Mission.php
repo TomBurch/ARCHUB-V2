@@ -90,7 +90,7 @@ class Mission extends Model implements HasMedia
         $this->addMediaConversion('thumb')
             ->fit(Manipulations::FIT_CROP, 384, 384)
             ->nonQueued()
-            ->performOnCollections('media');
+            ->performOnCollections('images');
     }
 
     public function photos()

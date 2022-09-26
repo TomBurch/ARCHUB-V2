@@ -13,6 +13,6 @@ class MissionMediaController extends Controller
         $mission
             ->addMedia($request->file('media'))
             ->withCustomProperties(['user_id' => auth()->user()->id])
-            ->toMediaCollection('media');
+            ->toMediaCollection('images');
     }
 }
