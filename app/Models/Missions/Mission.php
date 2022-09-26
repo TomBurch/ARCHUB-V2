@@ -95,6 +95,6 @@ class Mission extends Model implements HasMedia
 
     public function photos()
     {
-        return $this->getMedia('media');
+        return $this->getMedia('images');
     }
 }
