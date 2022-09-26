@@ -25,5 +25,5 @@
     <MissionCollection title={"Next operation"} missions={next_op_missions} />
     <MissionCollection title={"My missions"} missions={my_missions} uploadCard={true} />
     <MissionCollection title={"Unplayed missions"} missions={unplayed_missions} />
-    <MissionCollection title={"Played missions"} missions={played_missions} />
+    <MissionCollection title={"Played missions"} missions={played_missions} open={false} />
 </div>
