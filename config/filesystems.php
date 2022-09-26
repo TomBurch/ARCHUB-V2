@@ -30,6 +30,11 @@ return [
     */
 
     'disks' => [
+        'media' => [
+            'driver' => 'local',
+            'root' => public_path('/_media'),
+        ],
+
         'images' => [
             'driver' => 'local',
             'root' => public_path('/images'),
@@ -44,13 +49,6 @@ return [
             'driver' => 'local',
             'root' => storage_path('app/public'),
             'url' => env('APP_URL') . '/storage',
-            'visibility' => 'public',
-        ],
-
-        'media' => [
-            'driver' => 'local',
-            'root' => storage_path('app/media'),
-            'url' => '/media',
             'visibility' => 'public',
         ],
 
@@ -87,7 +85,6 @@ return [
     */
 
     'links' => [
-        public_path('storage') => storage_path('app/public'),
-        public_path('media') => storage_path('app/media'),
+        public_path('storage') => public_path('_media'),
     ],
 ];
