@@ -33,7 +33,9 @@
                 {comment.user.username}
             </div>
             <div class="mb-1 text-xs text-gray-400">{comment.created_at}</div>
-            <article class="prose-ul:list-dist prose max-w-none prose-ol:list-decimal prose-li:my-0">
+            <article
+                class="prose-ul:list-dist prose max-w-none prose-headings:text-white prose-ol:list-decimal prose-li:my-0"
+            >
                 <SvelteMarkdown source={comment.text} {options} />
             </article>
         </div>
