@@ -15,7 +15,7 @@ module.exports = {
             typography: {
                 DEFAULT: {
                     css: {
-                        color: 'white'
+                        color: 'gray-200'
                     }
                 }
             },
