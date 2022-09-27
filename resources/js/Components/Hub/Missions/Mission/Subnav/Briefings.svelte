@@ -29,8 +29,8 @@
     <Subnav bind:navigation bind:selected />
 
     {#each navigation as briefing}
-        <div on:click={handleLock} class={selected == briefing ? "" : "hidden"}>
-            <button class="float-right px-2 pt-2">
+        <div class={selected == briefing ? "" : "hidden"}>
+            <button on:click={handleLock} class="float-right px-2 pt-2">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
