@@ -27,10 +27,10 @@
 </script>
 
 <!-- Adapted from https://flowbite.com/docs/forms/file-input/#dropzone -->
-<div class="flex w-[75%] items-center justify-center" on:drop={handleDrop} on:dragover={handleDragOver}>
+<div class="flex" on:drop={handleDrop} on:dragover={handleDragOver}>
     <label
         for="dropzone-file"
-        class="flex h-60 w-full cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-600 bg-gray-700 hover:border-gray-500 hover:bg-gray-600"
+        class="flex w-full cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-600 bg-gray-700 hover:border-gray-500 hover:bg-gray-600"
     >
         <div class="flex flex-col items-center justify-center pt-5 pb-6">
             <svg
@@ -48,7 +48,7 @@
                 /></svg
             >
             {#if !$form.progress}
-                <p class="mb-2 text-sm text-gray-500 dark:text-gray-400">
+                <p class="mb-2 text-center text-sm text-gray-500 dark:text-gray-400">
                     <span class="font-semibold">Click to upload</span> or drag and drop
                 </p>
             {:else}
