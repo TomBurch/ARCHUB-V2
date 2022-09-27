@@ -57,7 +57,7 @@ class MissionController extends Controller
             ->firstWhere('id', $mission->id);
 
         $media = $mission->photos()->map(function ($value) {
-            return $value->getUrl('thumb');
+            return $value->getUrl();
         });
 
         $missionArray = $mission->toArray();

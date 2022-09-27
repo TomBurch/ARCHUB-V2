@@ -24,3 +24,5 @@ yarn-error.log
 
 gcs.json
 public/_media
+public/build/_media
+public/build/storage
