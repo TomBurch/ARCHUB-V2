@@ -30,7 +30,7 @@
 <div class="flex" on:drop={handleDrop} on:dragover={handleDragOver}>
     <label
         for="dropzone-file"
-        class="flex w-full cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-600 bg-gray-700 hover:border-gray-500 hover:bg-gray-600"
+        class="flex h-full w-full cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-600 bg-gray-700 hover:border-gray-500 hover:bg-gray-600"
     >
         <div class="flex flex-col items-center justify-center pt-5 pb-6">
             <svg
