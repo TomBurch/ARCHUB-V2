@@ -54,7 +54,9 @@ Route::middleware(['can:access-hub'])->group(function () {
     Route::delete('/hub/missions/{mission}/notes/{note}', [NoteController::class, 'delete']);
     Route::put('/hub/missions/{mission}/notes/{note}', [NoteController::class, 'update']);
 
-    Route::put('/hub/missions/{mission}/briefings/{briefing}', [BriefingController::class, 'update']);
     Route::post('/hub/missions/{mission}/media', [MissionMediaController::class, 'store']);
+    Route::delete('/hub/missions/{mission}/media/{media}', [MissionMediaController::class, 'delete']);
+
+    Route::put('/hub/missions/{mission}/briefings/{briefing}', [BriefingController::class, 'update']);
     Route::get('/hub/missions/{mission}/download', [MissionController::class, 'download']);
 });

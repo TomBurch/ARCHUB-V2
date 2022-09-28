@@ -53,6 +53,10 @@ class AuthServiceProvider extends ServiceProvider
             return $mission->user->is($user);
         });
 
+        Gate::define('manage-media', function (User $user, Mission $mission) {
+            return $mission->user->is($user);
+        });
+
         Gate::define('update-comment', function (User $user, MissionComment $comment) {
             return $comment->user->is($user);
         });

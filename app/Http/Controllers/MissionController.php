@@ -56,9 +56,10 @@ class MissionController extends Controller
             ->select('id', 'user_id', 'display_name', 'mode', 'verified_by', 'summary')
             ->firstWhere('id', $mission->id);
 
-        $media = $mission->photos()->map(function ($value) {
-            return $value->getUrl();
-        });
+        $media = [];
+        foreach ($mission->photos() as $photo) {
+            $media[$photo->id] = $photo->getUrl();
+        };
 
         $missionArray = $mission->toArray();
 

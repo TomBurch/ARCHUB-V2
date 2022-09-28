@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { Link, page } from "@inertiajs/inertia-svelte";
+    import { Link } from "@inertiajs/inertia-svelte";
     import clb from "clb";
     export let mission;
 
