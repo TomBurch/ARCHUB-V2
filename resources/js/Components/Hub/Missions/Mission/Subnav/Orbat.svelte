@@ -17,7 +17,12 @@
     <Subnav bind:navigation bind:selected />
 
     {#each navigation as orbat}
-        <div class="{selected == orbat ? '' : 'hidden'} prose ml-5 mt-3 text-gray-200 prose-ul:my-0 prose-li:my-0">
+        <div
+            class="{selected == orbat
+                ? ''
+                : 'hidden'} prose ml-5 mt-3 max-w-none text-gray-200 prose-ul:my-0 prose-li:my-0"
+        >
+            <p>{mission.slottingDetails}</p>
             <OrbatLevel group={orbat.content} />
         </div>
     {/each}

@@ -53,7 +53,7 @@ class MissionController extends Controller
                     'verifier:id,username'
                 ]);
             })
-            ->select('id', 'user_id', 'display_name', 'mode', 'verified_by', 'summary', 'orbatSettings')
+            ->select('id', 'user_id', 'display_name', 'mode', 'verified_by', 'summary', 'orbatSettings', 'slottingDetails')
             ->firstWhere('id', $mission->id);
 
         $media = [];
