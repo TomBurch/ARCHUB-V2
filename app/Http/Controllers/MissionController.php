@@ -53,7 +53,7 @@ class MissionController extends Controller
                     'verifier:id,username'
                 ]);
             })
-            ->select('id', 'user_id', 'display_name', 'mode', 'verified_by', 'summary')
+            ->select('id', 'user_id', 'display_name', 'mode', 'verified_by', 'summary', 'orbatSettings')
             ->firstWhere('id', $mission->id);
 
         $media = [];
@@ -76,6 +76,8 @@ class MissionController extends Controller
         $missionArray['briefing_models'] = array_filter($missionArray['briefing_models'], function ($briefing) use ($canTestMission) {
             return (!$briefing['locked']) || $canTestMission;
         });
+
+        $missionArray['orbatSettings'] = json_decode($missionArray['orbatSettings']);
 
         return inertia('Hub/Missions/Mission', [
             'mission' => $missionArray,

@@ -42,7 +42,7 @@
                                     on:click={() => (selected = item)}
                                     class="{selected.name == item.name
                                         ? 'border-b-4 border-b-indigo-900 text-white'
-                                        : 'text-gray-300 hover:bg-gray-700 hover:text-white'} text-md rounded-t-md px-3 py-2 font-medium"
+                                        : 'text-gray-300 hover:bg-gray-700 hover:text-white'} text-md rounded-t-md px-3 py-2 font-medium capitalize"
                                     >{item.name}</button
                                 >
                             {/if}

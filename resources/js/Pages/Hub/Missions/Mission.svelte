@@ -7,6 +7,7 @@
     import Subnav from "../../../Components/Hub/Missions/Mission/Subnav/Subnav.svelte";
     import Briefings from "../../../Components/Hub/Missions/Mission/Subnav/Briefings.svelte";
     import AARs from "../../../Components/Hub/Missions/Mission/Subnav/AARs.svelte";
+    import Orbat from "../../../Components/Hub/Missions/Mission/Subnav/Orbat.svelte";
     import Notes from "../../../Components/Hub/Missions/Mission/Subnav/Notes.svelte";
     import Media from "../../../Components/Hub/Missions/Mission/Subnav/Media.svelte";
     import MissionUpdateButton from "../../../Components/Hub/Missions/Mission/MissionUpdateButton.svelte";
@@ -17,6 +18,7 @@
 
     let navigation = [
         { name: "Briefing", component: Briefings, show: true },
+        { name: "Orbat", component: Orbat, show: true },
         {
             name: "AARs",
             component: AARs,
