@@ -20,7 +20,7 @@
                 aria-hidden="true"
                 class="h-7 w-7"
                 fill="none"
-                stroke="white"
+                stroke="currentColor"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
                 ><path

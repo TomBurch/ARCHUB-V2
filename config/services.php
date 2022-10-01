@@ -30,9 +30,9 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
-    'discord' => [    
-        'client_id' => env('DISCORD_CLIENT_ID'),  
-        'client_secret' => env('DISCORD_CLIENT_SECRET'),  
+    'discord' => [
+        'client_id' => env('DISCORD_CLIENT_ID'),
+        'client_secret' => env('DISCORD_CLIENT_SECRET'),
         'redirect' => env('DISCORD_REDIRECT_URI'),
         // optional
         'allow_gif_avatars' => (bool)env('DISCORD_AVATAR_GIF', false),
@@ -45,8 +45,9 @@ return [
         'tester_role' => env('DISCORD_TESTER_ROLE'),
         'senior_tester_role' => env('DISCORD_SENIOR_TESTER_ROLE'),
         'staff_role' => env('DISCORD_STAFF_ROLE'),
+        'operations_role' => env('DISCORD_OPERATIONS_ROLE'),
 
         'archub_webhook' => env('DISCORD_ARCHUB_WEBHOOK'),
         'staff_webhook' => env('DISCORD_STAFF_WEBHOOK'),
-      ],      
+    ],
 ];

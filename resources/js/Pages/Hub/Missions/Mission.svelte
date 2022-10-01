@@ -12,6 +12,7 @@
     import Media from "../../../Components/Hub/Missions/Mission/Subnav/Media.svelte";
     import MissionUpdateButton from "../../../Components/Hub/Missions/Mission/MissionUpdateButton.svelte";
     import MissionVerifyButton from "../../../Components/Hub/Missions/Mission/MissionVerifyButton.svelte";
+    import MissionDeleteButton from "../../../Components/Hub/Missions/Mission/MissionDeleteButton.svelte";
 
     export let mission;
     export let can;
@@ -42,7 +43,10 @@
             {mission.summary}
         </p>
     </div>
-    <div class="flex gap-3 pt-1">
+    <div class="flex flex-row-reverse gap-3 pt-1 text-white">
+        {#if can.delete_mission}
+            <MissionDeleteButton {mission} />
+        {/if}
         {#if can.test_mission}
             <MissionUpdateButton {mission} />
             <a href="/hub/missions/{mission.id}/download">
@@ -52,7 +56,7 @@
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke-width="1.5"
-                    stroke="white"
+                    stroke="currentColor"
                 >
                     <path
                         stroke-linecap="round"

@@ -3,6 +3,7 @@
 namespace App\Models\Missions;
 
 use App\Models\Map;
+use App\Models\OperationMission;
 use App\Models\User;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -52,6 +53,11 @@ class Mission extends Model implements HasMedia
     public function map()
     {
         return $this->belongsTo(Map::class);
+    }
+
+    public function operations()
+    {
+        return $this->hasMany(OperationMission::class);
     }
 
     public function comments()

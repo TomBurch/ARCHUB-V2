@@ -85,6 +85,7 @@ class MissionController extends Controller
             'can' => [
                 'test_mission' => $canTestMission,
                 'verify_missions' => Gate::allows('verify-missions'),
+                'delete_mission' => Gate::allows('delete-mission', $mission),
             ]
         ]);
     }
@@ -102,6 +103,13 @@ class MissionController extends Controller
                 Discord::missionUpdate("Verified by **{$username}**", $mission, true);
             }
         }
+    }
+
+    public function delete(Request $request, Mission $mission)
+    {
+        $this->authorize('delete-mission', $mission);
+
+        $mission->delete();
     }
 
     public function store(Request $request)

@@ -11,6 +11,7 @@ enum RoleEnum
     case TESTER;
     case SENIOR_TESTER;
     case STAFF;
+    case OPERATIONS;
 
     public function id(): string
     {
@@ -20,6 +21,7 @@ enum RoleEnum
             RoleEnum::TESTER => config('services.discord.tester_role'),
             RoleEnum::SENIOR_TESTER => config('services.discord.senior_tester_role'),
             RoleEnum::STAFF => config('services.discord.staff_role'),
+            RoleEnum::OPERATIONS => config('services.discord.operations_role'),
             default => throw new Exception("RoleId not found"),
         };
     }
