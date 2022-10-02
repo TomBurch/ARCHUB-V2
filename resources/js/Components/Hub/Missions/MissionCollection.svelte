@@ -1,11 +1,12 @@
 <script lang="ts">
-    import Card from "../Card.svelte";
-    import MissionUploadCard from "../MissionUploadCard.svelte";
+    import Card from "./Card.svelte";
+    import MissionUploadCard from "./MissionUploadCard.svelte";
 
     export let title;
     export let missions;
     export let uploadCard = false;
     export let open = true;
+    export let shouldRedirect;
 </script>
 
 <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
@@ -35,7 +36,7 @@
             <MissionUploadCard />
         {/if}
         {#each missions as mission}
-            <Card {mission} />
+            <Card {shouldRedirect} {mission} on:cardClicked />
         {/each}
     </div>
 </div>

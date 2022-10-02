@@ -8,6 +8,7 @@ use App\Http\Controllers\MissionsController;
 use App\Http\Controllers\MissionController;
 use App\Http\Controllers\MissionMediaController;
 use App\Http\Controllers\NoteController;
+use App\Http\Controllers\OperationController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\Public\JoinController;
 
@@ -39,6 +40,8 @@ Route::get('/join', [JoinController::class, 'index']);
 Route::middleware(['can:access-hub'])->group(function () {
     Route::permanentRedirect('/hub', '/hub/missions');
     Route::get('/hub/settings', [SettingsController::class, 'index']);
+
+    Route::put('/hub/operations/{operation}', [OperationController::class, 'update']);
 
     Route::get('/hub/missions', [MissionsController::class, 'index']);
     Route::post('/hub/missions', [MissionController::class, 'store']);
