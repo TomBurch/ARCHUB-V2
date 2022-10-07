@@ -39,7 +39,7 @@
         <p class="truncate text-center text-sm font-bold text-gray-300">
             By {mission.user.username}
         </p>
-        <p class="truncate pt-2 text-center text-sm font-normal text-gray-300">
+        <p class="text-break pt-2 text-center text-sm font-normal text-gray-300">
             {mission.summary}
         </p>
     </div>
