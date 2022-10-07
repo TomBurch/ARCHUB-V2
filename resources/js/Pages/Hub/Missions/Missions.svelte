@@ -11,6 +11,7 @@
 
     export let missions;
     export let next_operation;
+    export let next_2_operation;
     export let can;
 
     $: next_op_missions = next_operation.missions.map((mission) => mission.mission);
@@ -31,9 +32,9 @@
 
     function handleCardClicked(event) {
         Inertia.put(
-            `/hub/operations/${next_operation.id}`,
+            `/hub/operations/${selecting.operation_id}`,
             {
-                play_order: selecting,
+                play_order: selecting.play_order,
                 mission_id: event.detail.mission_id,
             },
             { preserveScroll: true }
@@ -45,7 +46,20 @@
 
 <div>
     {#if can.manage_operations}
-        <OperationSelection {next_operation} bind:selecting on:selecting={handleSelecting} />
+        <div class="grid grid-cols-1 gap-3 sm:grid-cols-1 2xl:grid-cols-2">
+            <OperationSelection
+                title={"This week"}
+                operation={next_operation}
+                bind:selecting
+                on:selecting={handleSelecting}
+            />
+            <OperationSelection
+                title={"Next week"}
+                operation={next_2_operation}
+                bind:selecting
+                on:selecting={handleSelecting}
+            />
+        </div>
     {:else}
         <MissionCollection
             title={"Next operation"}

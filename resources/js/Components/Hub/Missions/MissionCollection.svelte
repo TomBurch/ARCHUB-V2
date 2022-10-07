@@ -9,7 +9,7 @@
     export let shouldRedirect;
 </script>
 
-<div class="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
+<div class="grid grid-cols-1 gap-3 pt-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
     <button on:click={(e) => (open = !open)} class="flex justify-center text-blue-600">
         <h3 class="my-2 text-center text-xl font-bold uppercase leading-tight">{title}</h3>
         <svg
