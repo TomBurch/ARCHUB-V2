@@ -1,19 +1,29 @@
 <script lang="ts">
-    import { useForm } from "@inertiajs/inertia-svelte";
+    import { Inertia } from "@inertiajs/inertia";
 
     export let mission;
 
-    let form = useForm({});
+    let deploying = false;
 
     function handleDeploy() {
-        $form.post(`/hub/missions/${mission.id}/deploy`, {
-            onBefore: () => confirm("Are you sure you want to deploy this mission?"),
-        });
+        Inertia.post(
+            `/hub/missions/${mission.id}/deploy`,
+            {},
+            {
+                onBefore: () => confirm("Are you sure you want to deploy this mission?"),
+                onStart: (visit) => {
+                    deploying = true;
+                },
+                onFinish: (visit) => {
+                    deploying = false;
+                },
+            }
+        );
     }
 </script>
 
 <button on:click={handleDeploy}>
-    {#if !$form.progress}
+    {#if !deploying}
         <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
