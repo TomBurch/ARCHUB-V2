@@ -50,4 +50,10 @@ return [
         'archub_webhook' => env('DISCORD_ARCHUB_WEBHOOK'),
         'staff_webhook' => env('DISCORD_STAFF_WEBHOOK'),
     ],
+
+    'missions' => [
+        'url' => env('MISSIONS_URL'),
+        'user' => env('MISSIONS_USERNAME'),
+        'pass' => env('MISSIONS_PASSWORD'),
+    ],
 ];

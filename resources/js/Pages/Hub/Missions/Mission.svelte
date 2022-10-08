@@ -13,6 +13,7 @@
     import MissionUpdateButton from "../../../Components/Hub/Missions/Mission/MissionUpdateButton.svelte";
     import MissionVerifyButton from "../../../Components/Hub/Missions/Mission/MissionVerifyButton.svelte";
     import MissionDeleteButton from "../../../Components/Hub/Missions/Mission/MissionDeleteButton.svelte";
+    import MissionDeployButton from "../../../Components/Hub/Missions/Mission/MissionDeployButton.svelte";
 
     export let mission;
     export let can;
@@ -67,6 +68,7 @@
             </a>
         {/if}
         {#if can.verify_missions}
+            <MissionDeployButton {mission} />
             <MissionVerifyButton {mission} />
         {/if}
     </div>

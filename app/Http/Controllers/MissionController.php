@@ -8,11 +8,13 @@ use App\Models\Map;
 use App\Models\Missions\Mission;
 use App\Models\Missions\MissionBriefing;
 use App\Models\Missions\MissionRevision;
-use Carbon\Carbon;
+
 use \stdClass;
 use Exception;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
@@ -206,6 +208,43 @@ class MissionController extends Controller
         return Inertia::location($url);
     }
 
+    /**
+     * Deploy mission .pbo to arma server
+     * Uses https://github.com/Dahlgren/arma-server-web-admin/blob/master/routes/missions.js
+     */
+    public function deploy(Mission $mission)
+    {
+        $url = config('services.missions.url');
+        $headers = [
+            'Authorization' => "Basic " .
+                base64_encode(config('services.missions.user') . ":" . config('services.missions.pass'))
+        ];
+        $userId = auth()->user()->id;
+
+        $details = $this->getDetailsFromFilePath($mission->file_name);
+        $revisions = $mission->revisions()->count();
+        $exportedName = "{$details->filenameNoMap}_{$revisions}.{$details->map->class_name}.pbo";
+
+        // Temp download .pbo locally
+        Storage::put(
+            "mission_deploy/{$userId}/{$mission->id}/{$exportedName}",
+            Storage::cloud()->get($mission->cloud_pbo)
+        );
+
+        // Deploy .pbo to arma server
+        $response = HTTP::withHeaders($headers)->attach(
+            'missions',
+            file_get_contents(storage_path("app/mission_deploy/{$userId}/{$mission->id}/{$exportedName}")),
+            $exportedName
+        )->post($url);
+
+        // Refresh server mission list
+        HTTP::withHeaders($headers)->post("{$url}/refresh");
+
+        // Delete local temp files
+        Storage::deleteDirectory("mission_deploy/{$userId}");
+    }
+
     private function getMissionContents(string $path)
     {
         $mission = new PBOMission(storage_path("app/{$path}"));
@@ -284,9 +323,6 @@ class MissionController extends Controller
             ['sections']
         );
     }
-
-
-
 
     /**
      * Returns a minimal version of orbatSettings for displaying on the website

@@ -63,4 +63,5 @@ Route::middleware(['can:access-hub'])->group(function () {
 
     Route::put('/hub/missions/{mission}/briefings/{briefing}', [BriefingController::class, 'update']);
     Route::get('/hub/missions/{mission}/download', [MissionController::class, 'download']);
+    Route::post('/hub/missions/{mission}/deploy', [MissionController::class, 'deploy']);
 });
