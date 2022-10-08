@@ -199,6 +199,9 @@ class MissionController extends Controller
         $mission->cloud_pbo = $pboPath;
         $mission->save();
 
+        // Delete local temp files
+        Storage::deleteDirectory("missions/{$user->id}");
+
         return $mission;
     }
 
