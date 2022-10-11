@@ -7,7 +7,6 @@ export default defineConfig(({ command }) => {
         build: {
             outDir: "public/build",
             manifest: true,
-            cssCodeSplit: false,
             rollupOptions: {
                 input: ["resources/js/main.ts"],
             },
