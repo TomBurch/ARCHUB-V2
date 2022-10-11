@@ -1,6 +1,5 @@
 <script lang="ts">
     import Navbar from "../../Components/Hub/Navbar.svelte";
-    import { page } from "@inertiajs/inertia-svelte";
 </script>
 
 <main>

@@ -1,8 +1,6 @@
 module.exports = {
     content: [
-        "./resources/**/*.blade.php",
-        "./resources/**/*.{js,ts}",
-        "./resources/**/*.svelte",
+        "./resources/**/*.{js,ts,svelte}",
     ],
     theme: {
         extend: {
