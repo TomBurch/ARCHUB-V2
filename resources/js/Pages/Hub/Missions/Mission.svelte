@@ -62,6 +62,7 @@
                     valueAsObject={true}
                     bind:value={maintainer_select}
                     on:change={handleChange}
+                    style="--sv-min-height: 0px"
                 />
             </div>
         {:else if mission.maintainer}
@@ -108,3 +109,9 @@
         </div>
     </div>
 </div>
+
+<style>
+    :global(.svelecte-control .indicator-container:last-child svg) {
+        height: 12px;
+    }
+</style>
