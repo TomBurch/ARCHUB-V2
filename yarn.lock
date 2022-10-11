@@ -2914,6 +2914,7 @@ __metadata:
     postcss: ^8.4.13
     prettier: ^2.7.1
     prettier-plugin-tailwindcss: ^0.1.13
+    svelecte: ^3.10.2
     svelte: ^3.49.0
     svelte-check: ^2.7.0
     svelte-markdown: ^0.2.3
@@ -3178,6 +3179,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"svelecte@npm:^3.10.2":
+  version: 3.10.2
+  resolution: "svelecte@npm:3.10.2"
+  dependencies:
+    svelte-tiny-virtual-list: ^2.0.0
+  checksum: fde176a9d5475620e50d50b8e2f46d428f73da1ef6235870b40fba5d9b2f1cc27973c5f519ace0d329382f36be055d6b06850ce987a72c0d1e23139a36736594
+  languageName: node
+  linkType: hard
+
 "svelte-check@npm:^2.7.0":
   version: 2.7.0
   resolution: "svelte-check@npm:2.7.0"
@@ -3265,6 +3275,13 @@ __metadata:
     typescript:
       optional: true
   checksum: ef6408349d17cec86cf2f23f4f3e889cbf5cae127a225b96ab0ee4c9823599e41c539f6361f446184b38c543345871aff1ec07fa637a25cd412cd48b7625b004
+  languageName: node
+  linkType: hard
+
+"svelte-tiny-virtual-list@npm:^2.0.0":
+  version: 2.0.5
+  resolution: "svelte-tiny-virtual-list@npm:2.0.5"
+  checksum: 49acecacf28f241684f597b0512ec49f93de286b1de652cab0a5e57a0b48ed24bd3326f5af6bb4cf9a29a25bfe0d72aaf08120c957d837d114e591a32ab393a8
   languageName: node
   linkType: hard
 

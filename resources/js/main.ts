@@ -1,6 +1,5 @@
 import '../css/app.css';
 import { createInertiaApp } from '@inertiajs/inertia-svelte'
-import Layout from './Pages/Hub/Layout.svelte';
 
 export const withVite = (name) => {
   const pages = import.meta.glob("./Pages/**/*.svelte");

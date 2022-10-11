@@ -4,6 +4,9 @@
 </script>
 
 <script lang="ts">
+    import { Inertia } from "@inertiajs/inertia";
+    import Svelecte from "svelecte";
+
     import Subnav from "../../../Components/Hub/Missions/Mission/Subnav/Subnav.svelte";
     import Briefings from "../../../Components/Hub/Missions/Mission/Subnav/Briefings.svelte";
     import AARs from "../../../Components/Hub/Missions/Mission/Subnav/AARs.svelte";
@@ -30,17 +33,44 @@
         { name: "Media", component: Media, show: true },
     ];
     let selected = navigation[0];
+
+    let maintainer_select = mission.maintainer;
+
+    function handleChange(event) {
+        let new_maintainer = event.detail ? event.detail : { id: null, username: null };
+
+        Inertia.post(`/hub/missions/${mission.id}/maintainer`, {
+            new_maintainer: new_maintainer,
+        });
+    }
 </script>
 
 <div class="mx-auto min-h-screen-no-nav border border-gray-700 bg-gray-800 p-3 shadow-md lg:w-4/5">
-    <div class="pb-2">
-        <h5 class="truncate text-center text-3xl font-bold tracking-tight text-white">
+    <div class="pb-2 text-center text-gray-300">
+        <h5 class="truncate text-3xl tracking-tight text-white">
             {mission.display_name}
         </h5>
-        <p class="truncate text-center text-sm font-bold text-gray-300">
+        <p class="truncate text-sm font-bold">
             By {mission.user.username}
         </p>
-        <p class="text-break pt-2 text-center text-sm font-normal text-gray-300">
+        {#if can.set_maintainers}
+            <div class="m-auto min-h-0 w-52 pt-2 text-left">
+                <Svelecte
+                    placeholder="Maintainer"
+                    fetch="/hub/users"
+                    labelField={"username"}
+                    valueAsObject={true}
+                    bind:value={maintainer_select}
+                    on:change={handleChange}
+                    style="--sv-min-height: 0px"
+                />
+            </div>
+        {:else if mission.maintainer}
+            <p class="truncate text-sm font-bold">
+                Maintained by {mission.maintainer.username}
+            </p>
+        {/if}
+        <p class="text-break pt-2 text-sm">
             {mission.summary}
         </p>
     </div>
@@ -79,3 +109,9 @@
         </div>
     </div>
 </div>
+
+<style>
+    :global(.svelecte-control .indicator-container:last-child svg) {
+        height: 12px;
+    }
+</style>

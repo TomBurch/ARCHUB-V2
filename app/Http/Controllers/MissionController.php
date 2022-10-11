@@ -42,6 +42,7 @@ class MissionController extends Controller
 
         $mission = Mission::with([
             'user:id,username',
+            'maintainer:id,username',
             'briefing_models:id,mission_id,name,sections,locked',
             'comments:id,mission_id,user_id,text,published,created_at' => [
                 'user:id,username,avatar'
@@ -55,7 +56,7 @@ class MissionController extends Controller
                     'verifier:id,username'
                 ]);
             })
-            ->select('id', 'user_id', 'display_name', 'mode', 'verified_by', 'summary', 'orbatSettings', 'slottingDetails')
+            ->select('id', 'user_id', 'display_name', 'mode', 'verified_by', 'summary', 'orbatSettings', 'slottingDetails', 'maintainer_id')
             ->firstWhere('id', $mission->id);
 
         $media = [];
@@ -88,6 +89,7 @@ class MissionController extends Controller
                 'test_mission' => $canTestMission,
                 'verify_missions' => Gate::allows('verify-missions'),
                 'delete_mission' => Gate::allows('delete-mission', $mission),
+                'set_maintainers' => Gate::allows('set-maintainers')
             ]
         ]);
     }

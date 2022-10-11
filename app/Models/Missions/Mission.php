@@ -33,6 +33,7 @@ class Mission extends Model implements HasMedia
         'file_name',
         'orbatSettings',
         'slottingDetails',
+        'maintainer_id'
     ];
 
     public function user()

@@ -7,10 +7,12 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\MissionsController;
 use App\Http\Controllers\MissionController;
 use App\Http\Controllers\MissionMediaController;
+use App\Http\Controllers\MissionMaintainerController;
 use App\Http\Controllers\NoteController;
 use App\Http\Controllers\OperationController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\Public\JoinController;
+use App\Http\Controllers\UserController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -25,10 +27,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/{any}', function () {
-//     return view('app');
-// })->where('any', '.*');
-
 Route::controller(DiscordController::class)->group(function () {
     Route::get('/auth/redirect', 'redirect')->name('login');
     Route::get('/auth/callback', 'callback');
@@ -39,6 +37,7 @@ Route::get('/join', [JoinController::class, 'index']);
 
 Route::middleware(['can:access-hub'])->group(function () {
     Route::permanentRedirect('/hub', '/hub/missions');
+    Route::get('/hub/users', [UserController::class, 'index']);
     Route::get('/hub/settings', [SettingsController::class, 'index']);
 
     Route::put('/hub/operations/{operation}', [OperationController::class, 'update']);
@@ -60,6 +59,8 @@ Route::middleware(['can:access-hub'])->group(function () {
 
     Route::post('/hub/missions/{mission}/media', [MissionMediaController::class, 'store']);
     Route::delete('/hub/missions/{mission}/media/{media}', [MissionMediaController::class, 'delete']);
+
+    Route::post('/hub/missions/{mission}/maintainer', [MissionMaintainerController::class, 'store']);
 
     Route::put('/hub/missions/{mission}/briefings/{briefing}', [BriefingController::class, 'update']);
     Route::get('/hub/missions/{mission}/download', [MissionController::class, 'download']);

@@ -57,6 +57,14 @@ class AuthServiceProvider extends ServiceProvider
             return $mission->user->is($user);
         });
 
+        Gate::define('update-comment', function (User $user, MissionComment $comment) {
+            return $comment->user->is($user);
+        });
+
+        Gate::define('update-note', function (User $user, MissionNote $note) {
+            return $note->user->is($user);
+        });
+
         Gate::define('manage-operations', function (User $user) {
             return $user->hasARole(RoleEnum::OPERATIONS);
         });
@@ -65,12 +73,8 @@ class AuthServiceProvider extends ServiceProvider
             return $user->hasARole(RoleEnum::OPERATIONS) || ($mission->user->is($user) && !($mission->last_played || !$mission->operations->isEmpty()));
         });
 
-        Gate::define('update-comment', function (User $user, MissionComment $comment) {
-            return $comment->user->is($user);
-        });
-
-        Gate::define('update-note', function (User $user, MissionNote $note) {
-            return $note->user->is($user);
+        Gate::define('set-maintainers', function (User $user) {
+            return $user->hasARole(RoleEnum::OPERATIONS);
         });
     }
 }
