@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Laravel</title>
 
-    @vite
+    @vite(['resources/scripts/main.ts'])
 
     <!-- @production
         @vite(['resources/js/main.ts'])
