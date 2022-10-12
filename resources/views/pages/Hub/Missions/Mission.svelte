@@ -5,6 +5,7 @@
 
 <script lang="ts">
     import { Inertia } from "@inertiajs/inertia";
+    import MultiSelect from "svelte-multiselect";
     // import Svelecte from "svelecte";
 
     import Subnav from "../../../Components/Hub/Missions/Mission/Subnav/Subnav.svelte";
@@ -34,7 +35,8 @@
     ];
     let selected = navigation[0];
 
-    let maintainer_select = mission.maintainer;
+    const ui_libs = [`Svelte`, `React`, `Vue`, `Angular`, `...`];
+    let maintainer_select = [];
 
     function handleChange(event) {
         let new_maintainer = event.detail ? event.detail : { id: null, username: null };
@@ -55,6 +57,7 @@
         </p>
         {#if can.set_maintainers}
             <div class="m-auto min-h-0 w-52 pt-2 text-left">
+                <MultiSelect bind:selected={maintainer_select} options={ui_libs} />
                 <!-- <Svelecte
                     placeholder="Maintainer"
                     fetch="/hub/users"
