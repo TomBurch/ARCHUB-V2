@@ -101,12 +101,12 @@
       "_InertiaLink.160bacc4.js"
     ]
   },
-  "resources/js/main.css": {
-    "file": "assets/main.12df15ff.css",
-    "src": "resources/js/main.css"
-  },
   "resources/js/Pages/Hub/Missions/Mission.css": {
     "file": "assets/Mission.0d463842.css",
     "src": "resources/js/Pages/Hub/Missions/Mission.css"
+  },
+  "resources/js/main.css": {
+    "file": "assets/main.12df15ff.css",
+    "src": "resources/js/main.css"
   }
 }
