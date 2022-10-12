@@ -8,6 +8,7 @@
 
     @production
     @vite(['resources/scripts/main.ts'])
+    <link rel="stylesheet" href="/assets/{{ manifest['main.ts'].css }}" />
     @else
     <script type="module" src="http://localhost:5173/@@vite/client"></script>
     <script type="module" src="http://localhost:5173/resources/scripts/main.ts"></script>
