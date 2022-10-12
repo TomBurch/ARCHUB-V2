@@ -5,7 +5,7 @@
 
 <script lang="ts">
     import { Inertia } from "@inertiajs/inertia";
-    import Svelecte from "svelecte";
+    // import Svelecte from "svelecte";
 
     import Subnav from "../../../Components/Hub/Missions/Mission/Subnav/Subnav.svelte";
     import Briefings from "../../../Components/Hub/Missions/Mission/Subnav/Briefings.svelte";
@@ -55,7 +55,7 @@
         </p>
         {#if can.set_maintainers}
             <div class="m-auto min-h-0 w-52 pt-2 text-left">
-                <Svelecte
+                <!-- <Svelecte
                     placeholder="Maintainer"
                     fetch="/hub/users"
                     labelField={"username"}
@@ -63,7 +63,7 @@
                     bind:value={maintainer_select}
                     on:change={handleChange}
                     style="--sv-min-height: 0px"
-                />
+                /> -->
             </div>
         {:else if mission.maintainer}
             <p class="truncate text-sm font-bold">
@@ -110,8 +110,8 @@
     </div>
 </div>
 
-<style>
+<!-- <style>
     :global(.svelecte-control .indicator-container:last-child svg) {
         height: 12px;
     }
-</style>
+</style> -->
