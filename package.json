@@ -27,6 +27,7 @@
         "@tsconfig/svelte": "^3.0.0",
         "@types/node": "^18.8.5",
         "eslint": "^8.25.0",
+        "laravel-vite-plugin": "^0.6.1",
         "postcss": "^8.4.18",
         "prettier": "^2.7.1",
         "prettier-plugin-tailwindcss": "^0.1.13",
@@ -34,8 +35,7 @@
         "svelte-check": "^2.9.2",
         "tslib": "^2.4.0",
         "typescript": "^4.8.4",
-        "vite": "^3.1.7",
-        "vite-plugin-laravel": "^0.2.2"
+        "vite": "^3.1.7"
     },
     "packageManager": "yarn@3.2.2"
 }

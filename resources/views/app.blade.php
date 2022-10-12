@@ -6,14 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Laravel</title>
 
+    @production
     @vite(['resources/scripts/main.ts'])
-
-    <!-- @production
-        @vite(['resources/js/main.ts'])
     @else
-        <script type="module" src="http://localhost:5173/@@vite/client"></script>
-        <script type="module" src="http://localhost:5173/resources/js/main.ts"></script>
-    @endproduction -->
+    <script type="module" src="http://localhost:5173/@@vite/client"></script>
+    <script type="module" src="http://localhost:5173/resources/scripts/main.ts"></script>
+    @endproduction
+
     @inertiaHead
 </head>
 
