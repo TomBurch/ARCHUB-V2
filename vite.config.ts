@@ -8,14 +8,15 @@ export default defineConfig(({ command }) => {
             outDir: "public/build",
             manifest: true,
             rollupOptions: {
-                input: ["resources/js/main.ts"],
+                input: ["resources/scripts/main.ts"],
             },
         },
-        plugins: [svelte({
-            experimental: {
-                prebundleSvelteLibraries: true,
-            },
-        })
+        plugins: [
+            svelte({
+                experimental: {
+                    prebundleSvelteLibraries: true,
+                },
+            })
         ],
     };
 });

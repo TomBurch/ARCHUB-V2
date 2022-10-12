@@ -1,5 +1,13 @@
-import '../css/app.css';
+import '../css/tailwind.css';
 import { createInertiaApp } from '@inertiajs/inertia-svelte'
+// import { resolvePageComponent } from 'vite-plugin-laravel/inertia'
+
+// createInertiaApp({
+//   resolve: (name) => resolvePageComponent(name, import.meta.glob('../views/pages/**/*.svelte')),
+//   setup({ el, App, props }) {
+//     new App({ target: el, props })
+//   },
+// })
 
 /**
  * Imports the given page component from the page record.
@@ -17,7 +25,7 @@ function resolvePageComponent(name: string, pages: Record<string, any>) {
 }
 
 createInertiaApp({
-  resolve: name => resolvePageComponent(name, import.meta.glob('../js/Pages/**/*.svelte')),
+  resolve: name => resolvePageComponent(name, import.meta.glob('../views/pages/**/*.svelte')),
   setup({ el, App, props }) {
     new App({ target: el, props })
   },
