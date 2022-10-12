@@ -2196,17 +2196,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"laravel-vite-plugin@npm:^0.6.1":
-  version: 0.6.1
-  resolution: "laravel-vite-plugin@npm:0.6.1"
-  dependencies:
-    vite-plugin-full-reload: ^1.0.1
-  peerDependencies:
-    vite: ^3.0.0
-  checksum: 79822379caba24185fba3a3c5b8464aa2809d356196bb68d8520f7f7da51161be7bada9e4e12ed5ef1a10d60302c7b6732f5b41bed9bdb7e84e273f1caa952dc
-  languageName: node
-  linkType: hard
-
 "levn@npm:^0.4.1":
   version: 0.4.1
   resolution: "levn@npm:0.4.1"
@@ -2806,7 +2795,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss@npm:^8.4.14, postcss@npm:^8.4.18":
+"postcss@npm:^8.4.14, postcss@npm:^8.4.16, postcss@npm:^8.4.18":
   version: 8.4.18
   resolution: "postcss@npm:8.4.18"
   dependencies:
@@ -2814,17 +2803,6 @@ __metadata:
     picocolors: ^1.0.0
     source-map-js: ^1.0.2
   checksum: 9349fd99849b2e3d2e134ff949b7770ecb12375f352723ce2bcc06167eba3850ea7844c1b191a85cd915d6a396b4e8ee9a5267e6cc5d8d003d0cbc7a97555d39
-  languageName: node
-  linkType: hard
-
-"postcss@npm:^8.4.16":
-  version: 8.4.16
-  resolution: "postcss@npm:8.4.16"
-  dependencies:
-    nanoid: ^3.3.4
-    picocolors: ^1.0.0
-    source-map-js: ^1.0.2
-  checksum: 10eee25efd77868036403858577da0cefaf2e0905feeaba5770d5438ccdddba3d01cba8063e96b8aac4c6daa0ed413dd5ae0554a433a3c4db38df1d134cffc1f
   languageName: node
   linkType: hard
 
@@ -3045,7 +3023,6 @@ __metadata:
     axios: ^1.1.2
     clb: ^1.3.0
     eslint: ^8.25.0
-    laravel-vite-plugin: ^0.6.1
     postcss: ^8.4.18
     prettier: ^2.7.1
     prettier-plugin-tailwindcss: ^0.1.13
@@ -3657,18 +3634,6 @@ __metadata:
   version: 1.0.2
   resolution: "util-deprecate@npm:1.0.2"
   checksum: 474acf1146cb2701fe3b074892217553dfcf9a031280919ba1b8d651a068c9b15d863b7303cb15bd00a862b498e6cf4ad7b4a08fb134edd5a6f7641681cb54a2
-  languageName: node
-  linkType: hard
-
-"vite-plugin-full-reload@npm:^1.0.1":
-  version: 1.0.4
-  resolution: "vite-plugin-full-reload@npm:1.0.4"
-  dependencies:
-    picocolors: ^1.0.0
-    picomatch: ^2.3.1
-  peerDependencies:
-    vite: ^2 || ^3
-  checksum: 1ea80cefcbe3d244b5cdbe8685f1f4cbcf188b4d34e14aa11bcdf84c469406d7d605447b4eb081c6f5fdc4884c934796cebf63f993a2f198a4a0d2d8a9a4ba81
   languageName: node
   linkType: hard
 
