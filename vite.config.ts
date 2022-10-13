@@ -3,9 +3,11 @@ import { svelte } from "@sveltejs/vite-plugin-svelte";
 
 export default defineConfig(({ command }) => {
     return {
+        // https://sebastiandedeyne.com/vite-with-laravel/
+        base: command === 'serve' ? '' : '/build/',
         build: {
-            outDir: "public/build",
             manifest: true,
+            outDir: "public/build",
             rollupOptions: {
                 input: ["resources/scripts/main.ts"]
             },
