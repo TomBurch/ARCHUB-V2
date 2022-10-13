@@ -1,3 +1,4 @@
+import 'vite/modulepreload-polyfill'
 import '../css/tailwind.css';
 import { createInertiaApp } from '@inertiajs/inertia-svelte'
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';

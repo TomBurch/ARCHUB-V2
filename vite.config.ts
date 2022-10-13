@@ -1,5 +1,4 @@
 import { defineConfig } from "vite";
-
 import { svelte } from "@sveltejs/vite-plugin-svelte";
 
 export default defineConfig(({ command }) => {
@@ -8,9 +7,8 @@ export default defineConfig(({ command }) => {
             outDir: "public/build",
             manifest: true,
             rollupOptions: {
-                input: ["resources/scripts/main.ts"],
+                input: ["resources/scripts/main.ts"]
             },
-            cssCodeSplit: false,
         },
         plugins: [
             svelte({
