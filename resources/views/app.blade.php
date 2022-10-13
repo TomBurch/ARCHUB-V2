@@ -7,7 +7,7 @@
     <title>Laravel</title>
 
     @production
-    @vite(['resources/scripts/main.ts', 'dist'])
+    @vite(['resources/scripts/main.ts'])
     @else
     <script type="module" src="http://localhost:5173/@@vite/client"></script>
     <script type="module" src="http://localhost:5173/resources/scripts/main.ts"></script>

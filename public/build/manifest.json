@@ -101,12 +101,12 @@
       "_InertiaLink.f88905a2.js"
     ]
   },
-  "resources/scripts/main.css": {
-    "file": "assets/main.12df15ff.css",
-    "src": "resources/scripts/main.css"
-  },
   "resources/views/pages/Hub/Missions/Mission.css": {
     "file": "assets/Mission.6c4d0ed3.css",
     "src": "resources/views/pages/Hub/Missions/Mission.css"
+  },
+  "resources/scripts/main.css": {
+    "file": "assets/main.12df15ff.css",
+    "src": "resources/scripts/main.css"
   }
 }
