@@ -10,6 +10,7 @@ export default defineConfig(({ command }) => {
             rollupOptions: {
                 input: ["resources/scripts/main.ts"],
             },
+            cssCodeSplit: false,
         },
         plugins: [
             svelte({
