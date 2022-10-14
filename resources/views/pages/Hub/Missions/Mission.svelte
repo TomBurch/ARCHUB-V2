@@ -4,7 +4,6 @@
 </script>
 
 <script lang="ts">
-    import { onMount } from "svelte";
     import { Inertia } from "@inertiajs/inertia";
     import Svelecte from "svelecte";
 
@@ -35,7 +34,7 @@
     ];
     let selected = navigation[0];
 
-    let maintainer_select = [];
+    let maintainer_select = mission.maintainer;
 
     function handleChange(event) {
         let new_maintainer = event.detail ? event.detail : { id: null, username: null };
