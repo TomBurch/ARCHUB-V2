@@ -17,12 +17,21 @@ class MissionMediaController extends Controller
             ->addMedia($request->file('media'))
             ->withCustomProperties(['user_id' => auth()->user()->id])
             ->toMediaCollection('images');
+
+        if (!$mission->thumbnail) {
+            $mission->thumbnail = $mission->photos()->first()->getUrl('thumb');
+            $mission->save();
+        }
     }
 
     public function delete(Request $request, Mission $mission, Media $media)
     {
         $this->authorize('manage-media', $mission);
 
+        if ($mission->thumbnail == $media->getUrl('thumb')) {
+            $mission->thumbnail = null;
+            $mission->save();
+        }
         $media->delete();
     }
 }

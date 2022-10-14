@@ -42,7 +42,10 @@
         }
     )}"
 >
-    <div class="h-32 rounded-lg bg-[url('/images/arcomm-placeholder.jpg')] bg-center" />
+    <div
+        class="h-32 rounded-lg bg-center bg-no-repeat"
+        style="background-image: url('{mission.thumbnail ? mission.thumbnail : '/images/arcomm-placeholder.jpg'}');"
+    />
     <div class="space-y-0.5">
         <h5
             class="text-md truncate font-semibold tracking-tight {cardColours({

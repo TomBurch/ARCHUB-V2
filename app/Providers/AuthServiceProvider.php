@@ -54,7 +54,7 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         Gate::define('manage-media', function (User $user, Mission $mission) {
-            return $mission->user->is($user);
+            return $mission->user->is($user) || $user->hasARole(RoleEnum::SENIOR_TESTER);
         });
 
         Gate::define('update-comment', function (User $user, MissionComment $comment) {

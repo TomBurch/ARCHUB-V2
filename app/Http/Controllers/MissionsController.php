@@ -6,13 +6,14 @@ use App\Models\Missions\Mission;
 use App\Models\Operation;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Gate;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class MissionsController extends Controller
 {
     public function index()
     {
         $missions = Mission::with('user:id,username')
-            ->select('id', 'user_id', 'display_name', 'mode', 'summary', 'verified_by', 'last_played')
+            ->select('id', 'user_id', 'display_name', 'mode', 'summary', 'verified_by', 'last_played', 'thumbnail')
             ->orderBy('last_played', 'desc')
             ->orderBy('id', 'desc')
             ->get()->toArray();
