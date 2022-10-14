@@ -4,9 +4,9 @@
 </script>
 
 <script lang="ts">
+    import { onMount } from "svelte";
     import { Inertia } from "@inertiajs/inertia";
-    import MultiSelect from "svelte-multiselect";
-    // import Svelecte from "svelecte";
+    import Svelecte from "svelecte";
 
     import Subnav from "../../../Components/Hub/Missions/Mission/Subnav/Subnav.svelte";
     import Briefings from "../../../Components/Hub/Missions/Mission/Subnav/Briefings.svelte";
@@ -35,7 +35,6 @@
     ];
     let selected = navigation[0];
 
-    const ui_libs = [`Svelte`, `React`, `Vue`, `Angular`, `...`];
     let maintainer_select = [];
 
     function handleChange(event) {
@@ -57,8 +56,7 @@
         </p>
         {#if can.set_maintainers}
             <div class="m-auto min-h-0 w-52 pt-2 text-left">
-                <MultiSelect bind:selected={maintainer_select} options={ui_libs} />
-                <!-- <Svelecte
+                <Svelecte
                     placeholder="Maintainer"
                     fetch="/hub/users"
                     labelField={"username"}
@@ -66,7 +64,7 @@
                     bind:value={maintainer_select}
                     on:change={handleChange}
                     style="--sv-min-height: 0px"
-                /> -->
+                />
             </div>
         {:else if mission.maintainer}
             <p class="truncate text-sm font-bold">
@@ -113,8 +111,8 @@
     </div>
 </div>
 
-<!-- <style>
+<style>
     :global(.svelecte-control .indicator-container:last-child svg) {
         height: 12px;
     }
-</style> -->
+</style>
