@@ -84,7 +84,6 @@
     <MissionCollection
         title={"Played missions"}
         missions={played_missions}
-        open={false}
         bind:shouldRedirect
         on:cardClicked={handleCardClicked}
     />
