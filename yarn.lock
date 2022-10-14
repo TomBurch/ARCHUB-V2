@@ -3022,6 +3022,7 @@ __metadata:
     svelecte: ^3.10.2
     svelte: ^3.51.0
     svelte-check: ^2.9.2
+    svelte-lazy: ^1.1.0
     svelte-markdown: ^0.2.3
     svelte-multiselect: ^7.0.2
     svelte-preprocess: ^4.10.7
@@ -3321,6 +3322,15 @@ __metadata:
   peerDependencies:
     svelte: ">=3.19.0"
   checksum: e15581769aa5a6f8e1eeaf3f47a34b579c76f5a72d2ae1ba32cca6ab71b73d721defde472f1d4b924f8ade0d5bb6a7a04aa1817c3b4705c45dffa2732df07a83
+  languageName: node
+  linkType: hard
+
+"svelte-lazy@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "svelte-lazy@npm:1.1.0"
+  peerDependencies:
+    svelte: 3.x
+  checksum: e7653ef128d7a5eaf3da313419d00b6cba87d9d0d8b98b24c029738392954a91380994dbb40deb28c5780003daf4eb5d76abd81927c7d7b9b85838d060f22e0e
   languageName: node
   linkType: hard
 

@@ -2,6 +2,7 @@
     import { createEventDispatcher } from "svelte";
     import { Inertia } from "@inertiajs/inertia";
     import clb from "clb";
+    import Lazy from "svelte-lazy";
 
     export let mission;
     export let shouldRedirect = true;
@@ -45,14 +46,16 @@
     )}"
 >
     <div class="relative h-32 w-full overflow-hidden rounded-lg">
-        <img
-            class="absolute top-1/2 left-1/2 max-w-none -translate-x-1/2 -translate-y-1/2"
-            src={mission.thumbnail ? mission.thumbnail : placeholder}
-            loading="lazy"
-            width="384"
-            height="384"
-            alt="thumbnail"
-        />
+        <Lazy height={384}>
+            <img
+                class="absolute top-1/2 left-1/2 max-w-none -translate-x-1/2 -translate-y-1/2"
+                src={mission.thumbnail ? mission.thumbnail : placeholder}
+                loading="lazy"
+                width="384"
+                height="384"
+                alt="thumbnail"
+            />
+        </Lazy>
     </div>
     <div class="space-y-0.5">
         <h5
