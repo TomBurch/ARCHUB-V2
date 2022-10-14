@@ -5,6 +5,7 @@
 
     export let mission;
     export let shouldRedirect = true;
+    let placeholder = "/images/arcomm-placeholder.jpg";
 
     const dispatch = createEventDispatcher();
 
@@ -35,6 +36,7 @@
 <!-- Adapted from https://flowbite.com/docs/components/card/#default-card -->
 <div
     on:click={handleClick}
+    on:keydown={() => null}
     class="h-60 min-w-0 flex-grow cursor-pointer space-y-1 rounded-lg border-b-8 bg-gray-800 p-3 shadow-md hover:bg-gray-700 {cardColours(
         {
             mode: mission.mode,
@@ -42,10 +44,16 @@
         }
     )}"
 >
-    <div
-        class="h-32 rounded-lg bg-center bg-no-repeat"
-        style="background-image: url('{mission.thumbnail ? mission.thumbnail : '/images/arcomm-placeholder.jpg'}');"
-    />
+    <div class="relative h-32 w-full overflow-hidden rounded-lg">
+        <img
+            class="absolute top-1/2 left-1/2 max-w-none -translate-x-1/2 -translate-y-1/2"
+            src={mission.thumbnail ? mission.thumbnail : placeholder}
+            loading="lazy"
+            width="384"
+            height="384"
+            alt="thumbnail"
+        />
+    </div>
     <div class="space-y-0.5">
         <h5
             class="text-md truncate font-semibold tracking-tight {cardColours({
