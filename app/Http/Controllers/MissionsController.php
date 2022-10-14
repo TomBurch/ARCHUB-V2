@@ -20,7 +20,7 @@ class MissionsController extends Controller
 
         $next_operations = Operation::with([
             'missions:operation_id,mission_id,play_order' => [
-                'mission:id,user_id,display_name,mode,summary,verified_by' => [
+                'mission:id,user_id,display_name,mode,summary,verified_by,thumbnail' => [
                     'user:id,username'
                 ]
             ]
