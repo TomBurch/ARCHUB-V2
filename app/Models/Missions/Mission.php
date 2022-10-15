@@ -94,8 +94,7 @@ class Mission extends Model implements HasMedia
 
     public function url()
     {
-        return "https://arcomm.co.uk/hub/missions/{$this->id}";
-        //return url("hub/missions/{$this->id}");
+        return url("hub/missions/{$this->id}");
     }
 
     public function registerMediaConversions(Media $media = null): void
