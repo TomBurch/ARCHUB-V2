@@ -34,4 +34,12 @@ class MissionMediaController extends Controller
         }
         $media->delete();
     }
+
+    public function setThumbnail(Request $request, Mission $mission, Media $media)
+    {
+        $this->authorize('manage-media', $mission);
+
+        $mission->thumbnail = $media->getUrl('thumb');
+        $mission->save();
+    }
 }

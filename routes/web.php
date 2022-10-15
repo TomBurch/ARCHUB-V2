@@ -65,6 +65,7 @@ Route::middleware(['can:access-hub'])->group(function () {
 
     Route::post('/hub/missions/{mission}/media', [MissionMediaController::class, 'store']);
     Route::delete('/hub/missions/{mission}/media/{media}', [MissionMediaController::class, 'delete']);
+    Route::post('/hub/missions/{mission}/thumbnail/{media}', [MissionMediaController::class, 'setThumbnail']);
 
     Route::post('/hub/missions/{mission}/maintainer', [MissionMaintainerController::class, 'store']);
 

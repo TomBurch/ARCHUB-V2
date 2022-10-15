@@ -3,6 +3,7 @@
     import Subnav from "./Subnav.svelte";
 
     export let mission;
+    export let can;
     let navigation = [];
 
     /* Construct navigation dynamically so we can reuse Subnav*/

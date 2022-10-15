@@ -38,6 +38,8 @@ class MissionController extends Controller
 
     public function index(Mission $mission)
     {
+        $this->authorize('view-mission', $mission);
+
         $canTestMission = Gate::allows('test-mission', $mission);
 
         $mission = Mission::with([
@@ -59,7 +61,7 @@ class MissionController extends Controller
                     'verifier:id,username'
                 ]);
             })
-            ->select('id', 'user_id', 'display_name', 'mode', 'verified_by', 'summary', 'orbatSettings', 'slottingDetails', 'maintainer_id')
+            ->select('id', 'user_id', 'display_name', 'mode', 'verified_by', 'summary', 'orbatSettings', 'slottingDetails', 'maintainer_id', 'thumbnail')
             ->firstWhere('id', $mission->id);
 
         $media = [];
@@ -95,6 +97,7 @@ class MissionController extends Controller
                 'set_maintainers' => Gate::allows('set-maintainers'),
                 'assign_tags' => Gate::allows('assign-tags', $mission),
                 'manage_tags' => Gate::allows('manage-tags'),
+                'manage_media' => Gate::allows('manage-media', $mission),
             ]
         ]);
     }

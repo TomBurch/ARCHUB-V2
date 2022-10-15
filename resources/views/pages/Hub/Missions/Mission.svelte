@@ -159,7 +159,7 @@
     <div class="pt-3">
         <Subnav bind:navigation bind:selected />
         <div class="my-5 lg:mx-20">
-            <svelte:component this={selected.component} {mission} />
+            <svelte:component this={selected.component} {mission} {can} />
         </div>
     </div>
 </div>
