@@ -6,7 +6,7 @@
     export let mission;
     export let can;
 
-    $: thumbnail_id = mission.thumbnail.split("/")[2];
+    $: thumbnail_id = mission.thumbnail ? mission.thumbnail.split("/")[2] : null;
 
     function handleDelete(media_id) {
         Inertia.delete(`/hub/missions/${mission.id}/media/${media_id}`, {
