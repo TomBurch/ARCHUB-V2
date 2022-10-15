@@ -8,7 +8,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        return User::select('id', 'username')
+        return User::selectRaw('username as label, id as value')
             ->orderBy('username')
             ->get()->toArray();
     }

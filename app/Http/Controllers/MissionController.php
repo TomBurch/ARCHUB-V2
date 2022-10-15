@@ -47,6 +47,9 @@ class MissionController extends Controller
             'comments:id,mission_id,user_id,text,published,created_at' => [
                 'user:id,username,avatar'
             ],
+            'tags:id,mission_id,tag_id' => [
+                'tag:id,name'
+            ],
         ])
             ->when($canTestMission, function ($query) {
                 return $query->with([
@@ -89,7 +92,9 @@ class MissionController extends Controller
                 'test_mission' => $canTestMission,
                 'verify_missions' => Gate::allows('verify-missions'),
                 'delete_mission' => Gate::allows('delete-mission', $mission),
-                'set_maintainers' => Gate::allows('set-maintainers')
+                'set_maintainers' => Gate::allows('set-maintainers'),
+                'assign_tags' => Gate::allows('assign-tags', $mission),
+                'manage_tags' => Gate::allows('manage-tags'),
             ]
         ]);
     }

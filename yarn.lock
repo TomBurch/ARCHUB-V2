@@ -3019,12 +3019,11 @@ __metadata:
     postcss: ^8.4.18
     prettier: ^2.7.1
     prettier-plugin-tailwindcss: ^0.1.13
-    svelecte: ^3.10.2
     svelte: ^3.51.0
     svelte-check: ^2.9.2
     svelte-lazy: ^1.1.0
     svelte-markdown: ^0.2.3
-    svelte-multiselect: ^7.0.2
+    svelte-multiselect: ^7.1.0
     svelte-preprocess: ^4.10.7
     tailwindcss: ^3.1.8
     tslib: ^2.4.0
@@ -3287,15 +3286,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"svelecte@npm:^3.10.2":
-  version: 3.10.2
-  resolution: "svelecte@npm:3.10.2"
-  dependencies:
-    svelte-tiny-virtual-list: ^2.0.0
-  checksum: fde176a9d5475620e50d50b8e2f46d428f73da1ef6235870b40fba5d9b2f1cc27973c5f519ace0d329382f36be055d6b06850ce987a72c0d1e23139a36736594
-  languageName: node
-  linkType: hard
-
 "svelte-check@npm:^2.9.2":
   version: 2.9.2
   resolution: "svelte-check@npm:2.9.2"
@@ -3346,10 +3336,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"svelte-multiselect@npm:^7.0.2":
-  version: 7.0.2
-  resolution: "svelte-multiselect@npm:7.0.2"
-  checksum: 6c659d9cedc6fd7d036ab7bf078d044c22c9646f4642f665091caf7239680bab4c90b49a76da6b6659a4bcdab9579b4eeb884f4e63f08eea235241695cf59704
+"svelte-multiselect@npm:^7.1.0":
+  version: 7.1.0
+  resolution: "svelte-multiselect@npm:7.1.0"
+  checksum: 94b434cfdea94daa28bd107bf84e8562c2b9bd59d366ea09e5c8afa11b23e1e246ea21209b162a816b0a6491ed021a7b64ef5300e030d49f4bf6392b0b91b520
   languageName: node
   linkType: hard
 
@@ -3448,13 +3438,6 @@ __metadata:
     typescript:
       optional: true
   checksum: 51a0820c14bcc411ddf3b1cf4c772e73873626ed0b6c54dfca9e06bd6a6b22c9502436df3f1a4dab9eb3a404bba95002fd70cadea29a84fc36da3071309a8b91
-  languageName: node
-  linkType: hard
-
-"svelte-tiny-virtual-list@npm:^2.0.0":
-  version: 2.0.5
-  resolution: "svelte-tiny-virtual-list@npm:2.0.5"
-  checksum: 49acecacf28f241684f597b0512ec49f93de286b1de652cab0a5e57a0b48ed24bd3326f5af6bb4cf9a29a25bfe0d72aaf08120c957d837d114e591a32ab393a8
   languageName: node
   linkType: hard
 

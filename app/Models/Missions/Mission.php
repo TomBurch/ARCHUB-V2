@@ -3,6 +3,7 @@
 namespace App\Models\Missions;
 
 use App\Models\Map;
+use App\Models\Missions\Tags\MissionTag;
 use App\Models\OperationMission;
 use App\Models\User;
 
@@ -84,6 +85,11 @@ class Mission extends Model implements HasMedia
     public function briefing_models()
     {
         return $this->hasMany(MissionBriefing::class);
+    }
+
+    public function tags()
+    {
+        return $this->hasMany(MissionTag::class);
     }
 
     public function url()

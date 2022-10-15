@@ -4,8 +4,9 @@
 </script>
 
 <script lang="ts">
+    import { onMount } from "svelte";
     import { Inertia } from "@inertiajs/inertia";
-    import Svelecte from "svelecte";
+    import MultiSelect, { type ObjectOption } from "svelte-multiselect";
 
     import Subnav from "../../../Components/Hub/Missions/Mission/Subnav/Subnav.svelte";
     import Briefings from "../../../Components/Hub/Missions/Mission/Subnav/Briefings.svelte";
@@ -34,18 +35,73 @@
     ];
     let selected = navigation[0];
 
-    let maintainer_select = mission.maintainer;
+    let maintainer_select = mission.maintainer
+        ? [{ value: mission.maintainer.id, label: mission.maintainer.username }]
+        : null;
+    let users: ObjectOption[] = [];
 
-    function handleChange(event) {
-        let new_maintainer = event.detail ? event.detail : { id: null, username: null };
+    let tag_select: ObjectOption[] = mission.tags
+        ? mission.tags.map((mission_tag) => ({ value: mission_tag.tag.id, label: mission_tag.tag.name }))
+        : null;
+    let tags: ObjectOption[] = [];
+
+    function changeMaintainer(event) {
+        let new_maintainer =
+            event.detail.type == "add"
+                ? { id: event.detail.option.value, username: event.detail.option.label }
+                : { id: null, username: null };
 
         Inertia.post(`/hub/missions/${mission.id}/maintainer`, {
             new_maintainer: new_maintainer,
         });
     }
+
+    function changeTags(event) {
+        if (!event.detail) {
+            return;
+        }
+
+        switch (event.detail.type) {
+            case "add":
+                Inertia.post(`/hub/missions/${mission.id}/tags`, {
+                    tag: event.detail.option.label,
+                });
+                break;
+            case "remove":
+                Inertia.delete(`/hub/missions/${mission.id}/tags/${event.detail.option.value}`);
+                break;
+        }
+    }
+
+    onMount(async () => {
+        const res1 = await fetch(`/hub/missions/tags`);
+        tags = await res1.json();
+
+        const res2 = await fetch(`/hub/users`);
+        users = await res2.json();
+    });
 </script>
 
 <div class="mx-auto min-h-screen-no-nav border border-gray-700 bg-gray-800 p-3 shadow-md lg:w-4/5">
+    <div class="pb-1">
+        {#if can.assign_tags}
+            <div class="rounded bg-blue-200 text-xs font-semibold text-blue-800">
+                <MultiSelect
+                    on:change={changeTags}
+                    bind:selected={tag_select}
+                    options={tags}
+                    placeholder="Select tags"
+                    allowUserOptions={can.manage_tags}
+                />
+            </div>
+        {:else}
+            {#each mission.tags as mission_tag}
+                <span class="mr-2 rounded bg-blue-200 px-2.5 py-0.5 text-xs font-semibold text-blue-800">
+                    {mission_tag.tag.name}
+                </span>
+            {/each}
+        {/if}
+    </div>
     <div class="pb-2 text-center text-gray-300">
         <h5 class="truncate text-3xl tracking-tight text-white">
             {mission.display_name}
@@ -54,15 +110,13 @@
             By {mission.user.username}
         </p>
         {#if can.set_maintainers}
-            <div class="m-auto min-h-0 w-52 pt-2 text-left">
-                <Svelecte
+            <div class="m-auto w-52 pt-2 text-left text-xs">
+                <MultiSelect
+                    maxSelect={1}
+                    on:change={changeMaintainer}
+                    bind:selected={maintainer_select}
+                    options={users}
                     placeholder="Maintainer"
-                    fetch="/hub/users"
-                    labelField={"username"}
-                    valueAsObject={true}
-                    bind:value={maintainer_select}
-                    on:change={handleChange}
-                    style="--sv-min-height: 0px"
                 />
             </div>
         {:else if mission.maintainer}
@@ -109,9 +163,3 @@
         </div>
     </div>
 </div>
-
-<style>
-    :global(.svelecte-control .indicator-container:last-child svg) {
-        height: 12px;
-    }
-</style>

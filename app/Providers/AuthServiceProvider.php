@@ -76,5 +76,13 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('set-maintainers', function (User $user) {
             return $user->hasARole(RoleEnum::OPERATIONS);
         });
+
+        Gate::define('assign-tags', function (User $user, Mission $mission) {
+            return $mission->user->is($user) || $user->hasARole(RoleEnum::OPERATIONS);
+        });
+
+        Gate::define('manage-tags', function (User $user) {
+            return $user->hasARole(RoleEnum::OPERATIONS);
+        });
     }
 }

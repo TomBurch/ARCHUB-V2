@@ -8,6 +8,7 @@ use App\Http\Controllers\MissionsController;
 use App\Http\Controllers\MissionController;
 use App\Http\Controllers\MissionMediaController;
 use App\Http\Controllers\MissionMaintainerController;
+use App\Http\Controllers\MissionTagController;
 use App\Http\Controllers\NoteController;
 use App\Http\Controllers\OperationController;
 use App\Http\Controllers\SettingsController;
@@ -41,6 +42,11 @@ Route::middleware(['can:access-hub'])->group(function () {
     Route::get('/hub/settings', [SettingsController::class, 'index']);
 
     Route::put('/hub/operations/{operation}', [OperationController::class, 'update']);
+
+    Route::get('/hub/missions/tags', [MissionTagController::class, 'allTags']);
+    Route::get('/hub/missions/{mission}/tags', [MissionTagController::class, 'index']);
+    Route::post('/hub/missions/{mission}/tags', [MissionTagController::class, 'store']);
+    Route::delete('/hub/missions/{mission}/tags/{tag}', [MissionTagController::class, 'destroy']);
 
     Route::get('/hub/missions', [MissionsController::class, 'index']);
     Route::post('/hub/missions', [MissionController::class, 'store']);
