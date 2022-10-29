@@ -23,10 +23,9 @@
         ],
     });
 
-    function handleClick() {
-        if (shouldRedirect) {
-            Inertia.get(`/hub/missions/${mission.id}`);
-        } else {
+    function handleClick(event) {
+        if (!shouldRedirect) {
+            event.preventDefault();
             dispatch("cardClicked", {
                 mission_id: mission.id,
             });
@@ -35,9 +34,9 @@
 </script>
 
 <!-- Adapted from https://flowbite.com/docs/components/card/#default-card -->
-<div
+<a
+    href="/hub/missions/{mission.id}"
     on:click={handleClick}
-    on:keydown={() => null}
     class="h-60 min-w-0 flex-grow cursor-pointer space-y-1 rounded-lg border-b-8 bg-gray-800 p-3 shadow-md hover:bg-gray-700 {cardColours(
         {
             mode: mission.mode,
@@ -84,4 +83,4 @@
             {mission.summary}
         </p>
     </div>
-</div>
+</a>
