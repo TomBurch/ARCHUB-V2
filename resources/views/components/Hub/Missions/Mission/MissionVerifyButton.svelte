@@ -15,7 +15,7 @@
     }
 </script>
 
-<button on:click|preventDefault={handleVerify}>
+<button on:click|preventDefault={handleVerify} title="Verify">
     <div class="rounded-2xl border-2 {mission.verifier ? 'border-green-700 px-1' : 'border-red-700'}">
         <div class="flex">
             {#if mission.verifier}

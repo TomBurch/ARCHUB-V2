@@ -22,7 +22,7 @@
     }
 </script>
 
-<button on:click={handleDeploy}>
+<button on:click={handleDeploy} title="Deploy">
     {#if !deploying}
         <svg
             xmlns="http://www.w3.org/2000/svg"

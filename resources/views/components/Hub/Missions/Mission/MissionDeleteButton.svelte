@@ -10,7 +10,7 @@
     }
 </script>
 
-<button on:click={handeDelete}>
+<button on:click={handeDelete} title="Delete">
     <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"

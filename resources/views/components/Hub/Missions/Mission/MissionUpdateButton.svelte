@@ -13,7 +13,7 @@
 </script>
 
 <!-- Adapted from https://flowbite.com/docs/forms/file-input/#dropzone -->
-<div class="inline-flex">
+<div class="inline-flex" title="Update">
     <label for="media-upload" class="cursor-pointer">
         {#if !$form.progress}
             <svg
