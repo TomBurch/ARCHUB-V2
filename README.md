@@ -1,14 +1,3 @@
-# Laravel 9 + Vite + Svelte + Tailwind CSS
-
-This starter template includes:
-
-- Laravel 9
-- Vite
-- Svelte
-- Tailwind CSS (w/ `@tailwindcss/forms` and `@tailwindcss/aspect-ratio`)
-- Axios
-- TypeScript
-
 ## Installation
 
 Install the composer dependencies:
@@ -29,16 +18,10 @@ Generate an app key:
 php artisan key:generate
 ```
 
-Install all `package.json` dependencies:
-
-```bash
-npm install
-```
-
 Run vite to server your assets/bundle:
 
 ```bash
-npm run dev
+yarn run dev
 ```
 
 Open a new terminal instance and serve the application:
