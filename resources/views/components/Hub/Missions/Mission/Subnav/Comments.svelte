@@ -8,6 +8,7 @@
     export let comments;
     export let type;
 
+    let timer;
     let editing = null;
 
     let form = useForm({
@@ -16,6 +17,8 @@
     });
 
     function submit() {
+        clearTimeout(timer);
+
         if (editing) {
             $form.published = false;
             $form.put(`/hub/missions/${mission.id}/${type}/${editing.id}`, {
@@ -57,7 +60,6 @@
         }
     }
 
-    let timer;
     const debounce = (e) => {
         clearTimeout(timer);
         timer = setTimeout(() => {
