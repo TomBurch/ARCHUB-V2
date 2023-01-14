@@ -7,4 +7,6 @@
     import { page } from "@inertiajs/inertia-svelte";
 </script>
 
-<div class="grid h-screen-no-nav place-items-center border border-gray-200 border-gray-700 bg-gray-800 p-3 shadow-md" />
+<div class="grid h-screen-no-nav place-items-center border border-gray-200 border-gray-700 bg-gray-800 p-3 shadow-md">
+    <li>Test</li>
+</div>
