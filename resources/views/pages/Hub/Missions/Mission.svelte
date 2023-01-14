@@ -107,7 +107,7 @@
             {mission.display_name}
         </h5>
         <p class="truncate text-sm font-bold">
-            By {mission.user.username}
+            By {mission.user.username} on {mission.map.display_name}
         </p>
         {#if can.set_maintainers}
             <div class="m-auto w-52 pt-2 text-left text-xs">

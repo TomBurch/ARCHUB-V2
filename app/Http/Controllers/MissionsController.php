@@ -12,8 +12,11 @@ class MissionsController extends Controller
 {
     public function index()
     {
-        $missions = Mission::with('user:id,username')
-            ->select('id', 'user_id', 'display_name', 'mode', 'summary', 'verified_by', 'last_played', 'thumbnail')
+        $missions = Mission::with([
+            'user:id,username',
+            'map:id,display_name',
+        ])
+            ->select('id', 'user_id', 'map_id', 'display_name', 'mode', 'summary', 'verified_by', 'last_played', 'thumbnail')
             ->orderBy('last_played', 'desc')
             ->orderBy('id', 'desc')
             ->get()->toArray();
