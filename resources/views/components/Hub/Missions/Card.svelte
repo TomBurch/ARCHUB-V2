@@ -66,7 +66,7 @@
         </h5>
         <div class="flex">
             <p class="flex-1 truncate text-xs font-normal text-gray-100">
-                By {mission.user.username} on {mission.map.display_name}
+                By {mission.user.username} on {mission.map ? mission.map.display_name : ""}
             </p>
             {#if !mission.verified_by}
                 <svg class="h-4 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="orange">
