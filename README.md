@@ -16,6 +16,7 @@ Uncomment these lines in `php.ini`
 extension=fileinfo
 extension=exif
 extension=pdo_mysql
+extension=gd
 ```
 
 Setup curl https://stackoverflow.com/a/49071524

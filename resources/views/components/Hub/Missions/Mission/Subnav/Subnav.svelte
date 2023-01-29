@@ -32,7 +32,7 @@
                 </svg>
             </button>
         </div>
-        <div class="hidden sm:ml-6 sm:block">
+        <div class="hidden sm:block sm:ml-6">
             <div class="flex space-x-4">
                 {#each navigation as item}
                     {#if item.show}

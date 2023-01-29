@@ -22,6 +22,8 @@
     export let mission;
     export let can;
 
+    $: thumbnail_id = mission.thumbnail ? mission.thumbnail.split("/")[2] : null;
+
     let navigation = [
         { name: "Briefing", component: Briefings, show: true },
         { name: "Orbat", component: Orbat, show: true },
@@ -83,6 +85,11 @@
 </script>
 
 <div class="mx-auto min-h-screen-no-nav border border-gray-700 bg-gray-800 p-3 shadow-md lg:w-4/5">
+    {#each Object.entries(mission.media) as [media_id, url]}
+        {#if media_id == thumbnail_id}
+            <div class="fixed top-0 left-0 z-[-1] h-screen w-screen bg-cover bg-center bg-no-repeat" style="background-image: url('{url}');" />
+        {/if}
+    {/each}
     <div class="pb-1">
         {#if can.assign_tags}
             <div class="rounded bg-blue-200 text-xs font-semibold text-blue-800">
