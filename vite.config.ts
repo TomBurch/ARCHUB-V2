@@ -5,6 +5,7 @@ export default defineConfig(({ command }) => {
     return {
         // https://sebastiandedeyne.com/vite-with-laravel/
         base: command === 'serve' ? '' : '/build/',
+        publicDir: 'fake_dir_so_files_in_public_arent_copied_into_build',
         build: {
             manifest: true,
             outDir: "public/build",
