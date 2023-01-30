@@ -1,4 +1,5 @@
 <script lang="ts">
+    import OrbatCategory from "./OrbatCategory.svelte";
     import OrbatLevel from "./OrbatLevel.svelte";
     import Subnav from "./Subnav.svelte";
 
@@ -8,7 +9,8 @@
 
     /* Construct navigation dynamically so we can reuse Subnav*/
 
-    for (let [faction, orbat] of Object.entries(mission.orbatSettings)) {
+    let orbats = mission.orbats ? mission.orbats : mission.orbatSettings
+    for (let [faction, orbat] of Object.entries(orbats)) {
         navigation.push({ name: faction, content: orbat, show: true });
     }
     let selected = navigation[0];
@@ -24,7 +26,11 @@
                 : 'hidden'} prose ml-5 mt-3 max-w-none text-gray-200 prose-ul:my-0 prose-li:my-0"
         >
             <p>{mission.slottingDetails}</p>
-            <OrbatLevel group={orbat.content} />
+            {#if mission.orbats}
+                <OrbatCategory category={orbat.content} />
+            {:else}
+                <OrbatLevel group={orbat.content} />
+            {/if}
         </div>
     {/each}
 </div>

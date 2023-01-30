@@ -62,7 +62,7 @@ class MissionController extends Controller
                     'verifier:id,username'
                 ]);
             })
-            ->select('id', 'user_id', 'map_id', 'display_name', 'mode', 'verified_by', 'summary', 'orbatSettings', 'slottingDetails', 'maintainer_id', 'thumbnail')
+            ->select('id', 'user_id', 'map_id', 'display_name', 'mode', 'verified_by', 'summary', 'orbats', 'orbatSettings', 'slottingDetails', 'maintainer_id', 'thumbnail')
             ->firstWhere('id', $mission->id);
 
         $media = [];
@@ -158,10 +158,13 @@ class MissionController extends Controller
         $briefings = $this->parseBriefings($contents['mission']['briefings']);
 
         try {
+            //====== Old orbat generation for Archub V1 compatibility ======//
             $orbatSettings = json_encode($this->orbatFromOrbatSettings($contents['mission']['orbatSettings'], $contents['mission']['groups']));
         } catch (Exception $e) {
             $orbatSettings = json_encode(array("Error extracting ORBAT:" => array($e->getMessage())));
         }
+
+        $orbats = $this->generateOrbats($contents['mission']['orbatSettings'], $contents['mission']['groups']);
 
         if ($isNewMission) {
             $mission = Mission::create([
@@ -173,6 +176,7 @@ class MissionController extends Controller
                 'map_id' => $details->map->id,
                 'file_name' => $fileName,
                 'orbatSettings' => $orbatSettings,
+                'orbats' => $orbats,
                 'slottingDetails' => $contents['mission']['slottingDetails'],
             ]);
         } else {
@@ -183,6 +187,7 @@ class MissionController extends Controller
             $mission->map_id = $details->map->id;
             $mission->file_name = $fileName;
             $mission->orbatSettings = $orbatSettings;
+            $mission->orbats = $orbats;
             $mission->slottingDetails = $contents['mission']['slottingDetails'];
             $mission->save();
 
@@ -337,6 +342,97 @@ class MissionController extends Controller
             ['sections']
         );
     }
+
+    private function generateOrbats(array $orbatSettings, array $groups) {
+        $orbats = array();
+
+        foreach ($orbatSettings as $settings) {
+            $factionId = $settings[0];
+            $rootCategory = $this->expandCategory($settings[1]);
+
+            $orbats[$factionId] = $rootCategory;
+        }
+
+        foreach ($groups as $group) {
+            $factionId = self::$sideMap[$group['side']];
+
+            if (isset($group['orbatParent'])) {
+                if ($group['orbatParent'] == -1) {
+                    $group['orbatParent'] = 0;
+                }
+
+                $this->insertGroupIntoCategory($group, $orbats[$factionId]);
+            }
+        }
+
+        $namedOrbats = array();
+        foreach ($orbats as $factionId => &$orbat) {
+            $this->removeEmptyCategories($orbat);
+
+            if (!is_null($orbat)) {
+                $factionName = array_search($factionId, self::$sideMap);
+                $namedOrbats[$factionName] = $orbat;
+            }
+        }
+
+        return $namedOrbats;
+    }
+
+    private function expandCategory(array $category) {
+        $details = $category[0];
+        $subcategories = $category[1];
+
+        $outCategory = array(
+            "id" => $details[0],
+            "name" => $details[4],
+            "groups" => array(),
+            "subcategories" => array(),
+        );
+
+        foreach($subcategories as $subcategory) {
+            $expanded = $this->expandCategory($subcategory);
+            array_push($outCategory["subcategories"], $expanded);
+        }
+
+        return $outCategory;
+    }
+
+    private function insertGroupIntoCategory(array $group, array &$category) {
+        if ($category['id'] == $group['orbatParent']) {
+            $minimalGroup = array(
+                "name" => $group["name"],
+                "units" => array(),
+            );
+
+            foreach($group['units'] as $unit) {
+                $name = explode("@", $unit['description'])[0];
+                array_push($minimalGroup['units'], $name);
+            }
+
+            array_push($category['groups'], $minimalGroup);
+            return;
+        } 
+
+        foreach($category['subcategories'] as &$subcategory) {
+            $this->insertGroupIntoCategory($group, $subcategory);
+        }
+    }
+
+    private function removeEmptyCategories(array &$category) {
+        foreach($category['subcategories'] as &$subcategory) {
+            $this->removeEmptyCategories($subcategory);
+        }
+
+        $category['subcategories'] = array_filter($category['subcategories']);
+
+        if (count($category['groups']) == 0 && count($category['subcategories']) == 0) {
+            $category = null;
+            return;
+        }
+    }
+
+
+    //====== Old orbat generation for Archub V1 compatibility ======//
 
     /**
      * Returns a minimal version of orbatSettings for displaying on the website

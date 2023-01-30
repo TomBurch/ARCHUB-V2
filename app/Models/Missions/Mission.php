@@ -33,8 +33,13 @@ class Mission extends Model implements HasMedia
         'map_id',
         'file_name',
         'orbatSettings',
+        'orbats',
         'slottingDetails',
         'maintainer_id'
+    ];
+
+    protected $casts = [
+        'orbats' => 'array',
     ];
 
     public function user()
