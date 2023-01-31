@@ -2697,6 +2697,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"photoswipe@npm:^5.3.4":
+  version: 5.3.4
+  resolution: "photoswipe@npm:5.3.4"
+  checksum: 083da2740d6b0b99856b424c21577815b8143ca3aa89df2f070cdfd9f8fe6c11cc490b287bc24d12364a58f3632a81958018f88326377fb6048e327bd60d338b
+  languageName: node
+  linkType: hard
+
 "picocolors@npm:^1.0.0":
   version: 1.0.0
   resolution: "picocolors@npm:1.0.0"
@@ -3016,6 +3023,7 @@ __metadata:
     clb: ^1.3.0
     eslint: ^8.25.0
     laravel-vite-plugin: ^0.6.1
+    photoswipe: ^5.3.4
     postcss: ^8.4.18
     prettier: ^2.7.1
     prettier-plugin-tailwindcss: ^0.1.13

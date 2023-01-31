@@ -67,7 +67,11 @@ class MissionController extends Controller
 
         $media = [];
         foreach ($mission->photos() as $photo) {
-            $media[$photo->id] = $photo->getUrl();
+            $media[$photo->id] = [
+                'url' => $photo->getUrl(),
+                'width' => $photo->getCustomProperty('width'),
+                'height' => $photo->getCustomProperty('height'),
+            ];
         };
 
         $missionArray = $mission->toArray();

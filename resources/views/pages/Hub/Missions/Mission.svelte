@@ -85,9 +85,9 @@
 </script>
 
 <div class="mx-auto min-h-screen-no-nav border border-gray-700 bg-gray-800 p-3 shadow-md lg:w-4/5">
-    {#each Object.entries(mission.media) as [media_id, url]}
+    {#each Object.entries(mission.media) as [media_id, media]}
         {#if media_id == thumbnail_id}
-            <div class="fixed top-0 left-0 z-[-1] h-screen w-screen bg-cover bg-center bg-no-repeat" style="background-image: url('{url}');" />
+            <div class="fixed top-0 left-0 z-[-1] h-screen w-screen bg-cover bg-center bg-no-repeat" style="background-image: url('{media.url}');" />
         {/if}
     {/each}
     <div class="pb-1">

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Missions\Mission;
 
 use Illuminate\Http\Request;
+use Spatie\Image\Image;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class MissionMediaController extends Controller
@@ -13,9 +14,18 @@ class MissionMediaController extends Controller
     {
         $this->authorize('manage-media', $mission);
 
+        $file = $request->file('media');
+        $image = Image::load($file->getPathname());
+        $width = $image->getWidth();
+        $height = $image->getHeight();
+
         $mission
             ->addMedia($request->file('media'))
-            ->withCustomProperties(['user_id' => auth()->user()->id])
+            ->withCustomProperties([
+                'user_id' => auth()->user()->id,
+                'width' => $width,
+                'height' => $height,
+            ])
             ->toMediaCollection('images');
 
         if (!$mission->thumbnail) {
