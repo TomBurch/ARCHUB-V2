@@ -7,7 +7,7 @@ use App\Models\Missions\Mission;
 use Illuminate\Support\Facades\File;
 use Spatie\Image\Image;
 
-class PickThumbnails extends Command
+class MediaDimensions extends Command
 {
     /**
      * The name and signature of the console command.
