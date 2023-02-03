@@ -140,7 +140,7 @@ class MissionController extends Controller
     {
         $mission = $this->uploadMission($request, $mission);
 
-        Discord::missionUpdate("Updated by **{$mission->user->username}**", $mission, false);
+        Discord::missionUpdate("Updated by **{$request->user()->username}**", $mission, false);
     }
 
     public function uploadMission(Request $request, Mission $mission = null)
