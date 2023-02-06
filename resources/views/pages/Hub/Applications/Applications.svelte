@@ -39,7 +39,7 @@
     let navigation: SubnavItem[] = [];
 
     statuses.forEach(function (join_status) {
-        let text = `${join_status.status.text} - ${join_status.total}`
+        let text = `${join_status.status.text} · ${join_status.total}`
         let item: SubnavItem = { name: text, content: {name: join_status.status.text, id: join_status.status_id}, show: true }
         navigation.push(item);
     });

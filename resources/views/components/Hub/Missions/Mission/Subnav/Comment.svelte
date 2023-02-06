@@ -1,6 +1,7 @@
 <script lang="ts">
     import { createEventDispatcher } from "svelte";
     import { page } from "@inertiajs/inertia-svelte";
+    import { DateTime } from "luxon";
     import SvelteMarkdown from "svelte-markdown";
 
     export let comment;
@@ -32,7 +33,7 @@
             <div class="text-sm font-semibold leading-relaxed">
                 {comment.user.username}
             </div>
-            <div class="mb-1 text-xs text-gray-400">{comment.created_at}</div>
+            <div class="mb-1 text-xs text-gray-400">{DateTime.fromISO(comment.created_at).toRelative()}</div>
             <article
                 class="prose-ul:list-dist prose max-w-none prose-headings:text-gray-200 prose-ol:list-decimal prose-li:my-0"
             >

@@ -76,16 +76,6 @@ class MissionController extends Controller
 
         $missionArray = $mission->toArray();
 
-        array_walk($missionArray['comments'], function (&$comment) {
-            $comment['created_at'] = Carbon::parse($comment['created_at'])->diffForHumans();
-        });
-
-        if ($canTestMission) {
-            array_walk($missionArray['notes'], function (&$note) {
-                $note['created_at'] = Carbon::parse($note['created_at'])->diffForHumans();
-            });
-        }
-
         $missionArray['briefing_models'] = array_filter($missionArray['briefing_models'], function ($briefing) use ($canTestMission) {
             return (!$briefing['locked']) || $canTestMission;
         });
