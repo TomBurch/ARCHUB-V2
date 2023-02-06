@@ -1,10 +1,17 @@
+<script lang="ts" context="module">
+    export declare type NavItem = {
+        name: string,
+        href: string,
+        inert: boolean,
+        show: boolean,
+    }
+</script>
+
 <script lang="ts">
     import { Link, page } from "@inertiajs/inertia-svelte";
 
-    const navigation = [
-        { name: "Home", href: "/", inert: true },
-        { name: "Missions", href: "/hub/missions", inert: true },
-    ];
+    export let navigation: NavItem[]
+
     let open = false;
 </script>
 
@@ -44,13 +51,15 @@
                 <div class="hidden sm:ml-6 sm:block">
                     <div class="flex space-x-4">
                         {#each navigation as item}
-                            <Link
-                                href={item.href}
-                                class="{$page.url == item.href
-                                    ? 'bg-gray-900 text-white'
-                                    : 'text-gray-300 hover:bg-gray-700 hover:text-white'} text-md rounded-md px-3 py-2 font-medium"
-                                >{item.name}</Link
-                            >
+                            {#if item.show}
+                                <Link
+                                    href={item.href}
+                                    class="{$page.url == item.href
+                                        ? 'bg-gray-900 text-white'
+                                        : 'text-gray-300 hover:bg-gray-700 hover:text-white'} text-md rounded-md px-3 py-2 font-medium"
+                                    >{item.name}</Link
+                                >
+                            {/if}
                         {/each}
                     </div>
                 </div>
@@ -66,13 +75,15 @@
     <div class="sm:hidden" id="mobile-menu">
         <div class="{open ? '' : 'hidden'} space-y-1 px-2 pt-2 pb-3">
             {#each navigation as item}
-                <Link
-                    href={item.href}
-                    class="{$page.url == item.href
-                        ? 'bg-gray-900 text-white'
-                        : 'text-gray-300 hover:bg-gray-700 hover:text-white'} text-md block rounded-md px-3 py-2 font-medium"
-                    >{item.name}</Link
-                >
+                {#if item.show}
+                    <Link
+                        href={item.href}
+                        class="{$page.url == item.href
+                            ? 'bg-gray-900 text-white'
+                            : 'text-gray-300 hover:bg-gray-700 hover:text-white'} text-md block rounded-md px-3 py-2 font-medium"
+                        >{item.name}</Link
+                    >
+                {/if}
             {/each}
         </div>
     </div>

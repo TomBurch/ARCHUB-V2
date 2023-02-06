@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\DiscordController;
 use App\Http\Controllers\AppController;
+use App\Http\Controllers\ApplicationsController;
 use App\Http\Controllers\BriefingController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\MissionsController;
@@ -39,6 +40,7 @@ Route::get('/join', [JoinController::class, 'index']);
 Route::middleware(['can:access-hub'])->group(function () {
     Route::permanentRedirect('/hub', '/hub/missions');
     Route::get('/hub/users', [UserController::class, 'index']);
+    Route::get('/hub/applications', [ApplicationsController::class, 'index']);
     Route::get('/hub/settings', [SettingsController::class, 'index']);
 
     Route::put('/hub/operations/{operation}', [OperationController::class, 'update']);

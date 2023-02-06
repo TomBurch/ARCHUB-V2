@@ -1,7 +1,15 @@
+<script lang="ts" context="module">
+    export declare type SubnavItem = {
+        name: string,
+        show: boolean,
+        content: any,
+    };
+</script>
+
 <script lang="ts">
-    export let navigation;
-    export let selected;
-    let open = false;
+    export let navigation: SubnavItem[];
+    export let selected: SubnavItem;
+    let open: boolean = false;
 </script>
 
 <!-- Adapted from https://tailwindui.com/components/application-ui/navigation/navbars#component-70a9bdf83ef2c8568c5cddf6c39c2331 -->

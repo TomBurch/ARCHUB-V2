@@ -8,7 +8,7 @@
     import { Inertia } from "@inertiajs/inertia";
     import MultiSelect, { type ObjectOption } from "svelte-multiselect";
 
-    import Subnav from "../../../Components/Hub/Missions/Mission/Subnav/Subnav.svelte";
+    import Subnav, { type SubnavItem } from "../../../Components/Hub/Missions/Mission/Subnav/Subnav.svelte";
     import Briefings from "../../../Components/Hub/Missions/Mission/Subnav/Briefings.svelte";
     import AARs from "../../../Components/Hub/Missions/Mission/Subnav/AARs.svelte";
     import Orbat from "../../../Components/Hub/Missions/Mission/Subnav/Orbat.svelte";
@@ -24,16 +24,16 @@
 
     $: thumbnail_id = mission.thumbnail ? mission.thumbnail.split("/")[2] : null;
 
-    let navigation = [
-        { name: "Briefing", component: Briefings, show: true },
-        { name: "Orbat", component: Orbat, show: true },
+    let navigation: SubnavItem[] = [
+        { name: "Briefing", content: Briefings, show: true },
+        { name: "Orbat", content: Orbat, show: true },
         {
             name: "AARs",
-            component: AARs,
+            content: AARs,
             show: Array.isArray(mission.comments),
         },
-        { name: "Notes", component: Notes, show: Array.isArray(mission.notes) },
-        { name: "Media", component: Media, show: true },
+        { name: "Notes", content: Notes, show: Array.isArray(mission.notes) },
+        { name: "Media", content: Media, show: true },
     ];
     let selected = navigation[0];
 
@@ -166,7 +166,7 @@
     <div class="pt-3">
         <Subnav bind:navigation bind:selected />
         <div class="my-5 lg:mx-20">
-            <svelte:component this={selected.component} {mission} {can} />
+            <svelte:component this={selected.content} {mission} {can} />
         </div>
     </div>
 </div>

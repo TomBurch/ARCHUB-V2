@@ -1,17 +1,17 @@
 <script lang="ts">
     import OrbatCategory from "./OrbatCategory.svelte";
     import OrbatLevel from "./OrbatLevel.svelte";
-    import Subnav from "./Subnav.svelte";
+    import Subnav, { type SubnavItem } from "./Subnav.svelte";
 
     export let mission;
     export let can;
-    let navigation = [];
 
-    /* Construct navigation dynamically so we can reuse Subnav*/
-
+    let navigation: SubnavItem[] = [];
     let orbats = mission.orbats ? mission.orbats : mission.orbatSettings
+    
     for (let [faction, orbat] of Object.entries(orbats)) {
-        navigation.push({ name: faction, content: orbat, show: true });
+        let item: SubnavItem = { name: faction, content: orbat, show: true }
+        navigation.push(item);
     }
     let selected = navigation[0];
 </script>

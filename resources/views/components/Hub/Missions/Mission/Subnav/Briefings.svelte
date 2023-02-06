@@ -1,17 +1,17 @@
 <script lang="ts">
     import { page, useForm } from "@inertiajs/inertia-svelte";
-    import Subnav from "./Subnav.svelte";
+    import Subnav, { type SubnavItem } from "./Subnav.svelte";
 
     export let mission;
     export let can;
 
-    let navigation = [];
+    let navigation: SubnavItem[] = [];
 
-    /* Construct navigation dynamically so we can reuse Subnav*/
     mission.briefing_models.forEach(function (briefing) {
-        navigation.push({ name: briefing.name, content: briefing, show: true });
+        let item: SubnavItem = { name: briefing.name, content: briefing, show: true }
+        navigation.push(item);
     });
-    let selected = navigation[0];
+    let selected: SubnavItem = navigation[0];
 
     let form = useForm({
         locked: null,

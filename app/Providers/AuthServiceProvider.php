@@ -69,6 +69,10 @@ class AuthServiceProvider extends ServiceProvider
             return $note->user->is($user);
         });
 
+        Gate::define('view-applications', function (User $user) {
+            return $user->hasARole(RoleEnum::STAFF);
+        });
+
         Gate::define('manage-operations', function (User $user) {
             return $user->hasARole(RoleEnum::OPERATIONS);
         });
