@@ -9,12 +9,13 @@
 <script lang="ts">
     export let navigation: SubnavItem[];
     export let selected: SubnavItem;
+    export let centered: boolean = false;
     let open: boolean = false;
 </script>
 
 <!-- Adapted from https://tailwindui.com/components/application-ui/navigation/navbars#component-70a9bdf83ef2c8568c5cddf6c39c2331 -->
 <nav class="rounded-lg bg-gray-900">
-    <div class="px-2 sm:px-6 lg:px-8 flex h-16 items-center justify-between">
+    <div class="px-2 sm:px-6 lg:px-8 h-16 flex items-center {centered ? "justify-center" : "justify-between"}">
         <div class="sm:hidden">
             <button
                 type="button"

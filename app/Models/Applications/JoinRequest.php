@@ -18,4 +18,9 @@ class JoinRequest extends Model
         'source_id',
         'source_text'
     ];
+
+    public function status()
+    {
+        return $this->hasOne(JoinStatus::class, 'id', 'status_id');
+    }
 }
