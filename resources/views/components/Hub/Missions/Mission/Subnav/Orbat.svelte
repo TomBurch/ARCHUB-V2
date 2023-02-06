@@ -13,7 +13,7 @@
         let item: SubnavItem = { name: faction, content: orbat, show: true }
         navigation.push(item);
     }
-    let selected = navigation[0];
+    let selected: SubnavItem = navigation[0];
 </script>
 
 <div>
