@@ -4,7 +4,7 @@
         href: string,
         inert: boolean,
         show: boolean,
-    }
+    };
 </script>
 
 <script lang="ts">
@@ -13,6 +13,10 @@
     export let navigation: NavItem[]
 
     let open = false;
+    let currentPath = "";
+    $: if ($page.url) {
+        currentPath = window.location.pathname;
+    }
 </script>
 
 <!-- Adapted from https://tailwindui.com/components/application-ui/navigation/navbars#component-70a9bdf83ef2c8568c5cddf6c39c2331 -->
@@ -54,7 +58,7 @@
                             {#if item.show}
                                 <Link
                                     href={item.href}
-                                    class="{$page.url == item.href
+                                    class="{currentPath == item.href
                                         ? 'bg-gray-900 text-white'
                                         : 'text-gray-300 hover:bg-gray-700 hover:text-white'} text-md rounded-md px-3 py-2 font-medium"
                                     >{item.name}</Link
@@ -78,7 +82,7 @@
                 {#if item.show}
                     <Link
                         href={item.href}
-                        class="{$page.url == item.href
+                        class="{currentPath == item.href
                             ? 'bg-gray-900 text-white'
                             : 'text-gray-300 hover:bg-gray-700 hover:text-white'} text-md block rounded-md px-3 py-2 font-medium"
                         >{item.name}</Link
