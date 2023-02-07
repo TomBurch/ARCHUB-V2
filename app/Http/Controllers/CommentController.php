@@ -18,12 +18,11 @@ class CommentController extends Controller
     {
         $this->authorize('test-mission', $mission);
 
-        $user = auth()->user();
         $text = $request->input('text');
         $published = $request->input('published');
 
         $comment = MissionComment::updateOrCreate([
-            'user_id' => $user->id,
+            'user_id' => auth()->user()->id,
             'mission_id' => $mission->id,
             'published' => false,
         ], [

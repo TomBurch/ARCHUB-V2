@@ -25,6 +25,9 @@ class ApplicationsController extends Controller
             $status = JoinStatus::select('id')->where('text', $status_text)->first();
             $applications = JoinRequest::select('id', 'created_at', 'name', 'age', 'location') //'email', 'steam', 'discord', 'available', 'experience', 'bio', 'source_id', 'source_text', 'status_id')
             ->where('status_id', $status->id)
+            ->when($request->input('search'), function ($query, $search) {
+                $query->where('name', 'like', "%{$search}%");
+            })
             ->orderBy('created_at', 'desc')
             ->get();
         }
