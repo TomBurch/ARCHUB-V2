@@ -10,13 +10,6 @@ module.exports = {
             minHeight: {
                 'screen-no-nav': '84vh',
             },
-            typography: {
-                DEFAULT: {
-                    css: {
-                        color: 'gray-200'
-                    }
-                }
-            },
         }
     },
     plugins: [
