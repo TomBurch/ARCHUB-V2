@@ -82,7 +82,7 @@ class MissionController extends Controller
         foreach ($missionArray['briefing_models'] as &$briefing) {
             foreach ($briefing['sections'] as &$section) {
                 $section = preg_replace_callback(
-                    "~<font size='(.*?)'>(.*?)<\/font(.*?)>~",
+                    "~<font size='(.*?)'>(.*?)<\/font>~",
                     function($matches) {
                         $fontSize = (((int)$matches[1]) * 2) - 5;
                         return "<p style='display:inline-block;font-size:{$fontSize}px'>{$matches[2]}</p>";
