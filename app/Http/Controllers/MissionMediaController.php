@@ -6,6 +6,7 @@ use App\Models\Missions\Mission;
 
 use Illuminate\Http\Request;
 use Spatie\Image\Image;
+use Spatie\MediaLibrary\MediaCollections\Exceptions\FileCannotBeAdded;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class MissionMediaController extends Controller
@@ -19,14 +20,20 @@ class MissionMediaController extends Controller
         $width = $image->getWidth();
         $height = $image->getHeight();
 
-        $mission
-            ->addMedia($request->file('media'))
-            ->withCustomProperties([
-                'user_id' => auth()->user()->id,
-                'width' => $width,
-                'height' => $height,
-            ])
-            ->toMediaCollection('images');
+        try {
+            $mission
+                ->addMedia($request->file('media'))
+                ->withCustomProperties([
+                    'user_id' => auth()->user()->id,
+                    'width' => $width,
+                    'height' => $height,
+                ])
+                ->toMediaCollection('images');
+        } catch (FileCannotBeAdded $e) {
+            return redirect()->back()->withErrors([
+                'media' => $e->getMessage(),
+            ]);
+        }
 
         if (!$mission->thumbnail) {
             $mission->thumbnail = $mission->photos()->first()->getUrl('thumb');

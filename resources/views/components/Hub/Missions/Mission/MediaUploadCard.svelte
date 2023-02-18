@@ -47,14 +47,20 @@
                     d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
                 /></svg
             >
-            {#if !$form.progress}
-                <p class="mb-2 text-center text-sm text-gray-500 dark:text-gray-400">
+            {#if Object.keys($form.errors).length > 0}
+                {#each Object.entries($form.errors) as [form, error]}
+                    <p class="mb-2 text-center text-sm font-semibold text-red-500">
+                        {error}
+                    </p>
+                {/each}
+            {:else if !$form.progress}
+                <p class="mb-2 text-center text-sm text-gray-400">
                     <span class="font-semibold">Click to upload</span> or drag and drop
                 </p>
             {:else}
-                <progress class="mb-3" value={$form.progress.percentage} max="100"
-                    >{$form.progress.percentage}%</progress
-                >
+                <progress class="mb-3" value={$form.progress.percentage} max="100">
+                    {$form.progress.percentage}%
+                </progress>
             {/if}
         </div>
         <form>
