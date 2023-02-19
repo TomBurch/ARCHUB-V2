@@ -40,6 +40,7 @@ class Mission extends Model implements HasMedia
 
     protected $casts = [
         'orbats' => 'array',
+        'last_played' => 'datetime',
     ];
 
     public function user()
