@@ -30,13 +30,8 @@ Artisan::command('check-missions', function () {
         $header = $item->operation;
         $now = Carbon::now();
 
-        try {
-            if (!$header->starts_at->lt($now)) {
-                $this->comment("Currently slotted [{$mission->id}] {$mission->display_name}");
-                continue;
-            }
-        } catch (Exception $e) {
-            $this->comment($e);
+        if (!$header->starts_at->lt($now)) {
+            $this->comment("Currently slotted [{$mission->id}] {$mission->display_name}");
             continue;
         }
 

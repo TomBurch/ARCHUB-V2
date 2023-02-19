@@ -10,6 +10,10 @@ class Operation extends Model
         'starts_at'
     ];
 
+    protected $casts = [
+        'starts_at' => 'datetime',
+     ];
+
     public function missions()
     {
         return $this->hasMany(OperationMission::class)->orderBy('play_order');
