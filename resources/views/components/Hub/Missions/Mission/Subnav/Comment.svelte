@@ -6,6 +6,8 @@
 
     export let comment;
 
+    let created_at = DateTime.fromISO(comment.created_at);
+
     let options = {
         gfm: true,
         breaks: true,
@@ -33,7 +35,7 @@
             <div class="text-sm font-semibold leading-relaxed">
                 {comment.user.username}
             </div>
-            <div class="mb-1 text-xs text-gray-400">{DateTime.fromISO(comment.created_at).toRelative()}</div>
+            <div class="mb-1 text-xs text-gray-400" title={created_at.toLocaleString(DateTime.DATETIME_SHORT)}>{created_at.toRelative()}</div>
             <article
                 class="prose prose-invert max-w-none prose-ul:list-dist prose-ol:list-decimal prose-li:my-0"
             >
