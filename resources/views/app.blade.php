@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Laravel</title>
+    <title>ARCHUB V2</title>
 
     @production
     @vite(['resources/scripts/main.ts'])
