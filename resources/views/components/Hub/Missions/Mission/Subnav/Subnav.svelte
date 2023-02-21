@@ -1,8 +1,8 @@
 <script lang="ts" context="module">
     export declare type SubnavItem = {
-        name: string,
-        show: boolean,
-        content: any,
+        name: string;
+        show: boolean;
+        content: any;
     };
 </script>
 
@@ -15,7 +15,7 @@
 
 <!-- Adapted from https://tailwindui.com/components/application-ui/navigation/navbars#component-70a9bdf83ef2c8568c5cddf6c39c2331 -->
 <nav class="rounded-lg bg-gray-900">
-    <div class="px-2 sm:px-6 lg:px-8 h-16 flex items-center {centered ? "justify-center" : "justify-between"}">
+    <div class="flex h-16 items-center px-2 sm:px-6 lg:px-8 {centered ? 'justify-center' : 'justify-between'}">
         <div class="sm:hidden">
             <button
                 type="button"
@@ -41,7 +41,7 @@
                 </svg>
             </button>
         </div>
-        <div class="hidden sm:block sm:ml-6">
+        <div class="hidden sm:ml-6 sm:block">
             <div class="flex space-x-4">
                 {#each navigation as item}
                     {#if item.show}

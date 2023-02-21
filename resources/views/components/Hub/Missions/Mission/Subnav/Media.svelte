@@ -1,14 +1,14 @@
 <script lang="ts">
-    import { onMount } from "svelte"
+    import { onMount } from "svelte";
     import { Inertia } from "@inertiajs/inertia";
-    import PhotoSwipeLightbox from 'photoswipe/lightbox';
-    import 'photoswipe/style.css';
+    import PhotoSwipeLightbox from "photoswipe/lightbox";
+    import "photoswipe/style.css";
     import Card from "../../Card.svelte";
     import MediaUploadCard from "../MediaUploadCard.svelte";
 
     export let mission;
     export let can;
-    
+
     $: thumbnail_id = mission.thumbnail ? mission.thumbnail.split("/")[2] : null;
 
     function handleDelete(media_id) {
@@ -27,15 +27,18 @@
 
     onMount(() => {
         const lightbox = new PhotoSwipeLightbox({
-            gallery: '#gallery',
-            children: '#image',
-            pswpModule: () => import('photoswipe')
+            gallery: "#gallery",
+            children: "#image",
+            pswpModule: () => import("photoswipe"),
         });
         lightbox.init();
     });
 </script>
 
-<div id="gallery" class="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
+<div
+    id="gallery"
+    class="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5"
+>
     {#if can.manage_media}
         <Card {mission} shouldRedirect={false} />
     {/if}
@@ -73,12 +76,14 @@
                     />
                 </svg>
             </button>
-            <a class="w-full h-full"
-                id="image"    
-                href={media.url} 
-                data-pswp-width="{media.width}" 
-                data-pswp-height="{media.height}" 
-                target="_blank">
+            <a
+                class="h-full w-full"
+                id="image"
+                href={media.url}
+                data-pswp-width={media.width}
+                data-pswp-height={media.height}
+                target="_blank"
+            >
                 <img class="h-full w-full object-contain" src={media.url} alt="" />
             </a>
         </div>

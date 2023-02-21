@@ -16,12 +16,7 @@
         "checkJs": true,
         "isolatedModules": true
     },
-    "include": [
-        "env.d.ts",
-        "resources/scripts/**/*",
-        "resources/scripts/**/*.svelte",
-        "resources/scripts/main.ts"
-    ],
+    "include": ["env.d.ts", "resources/scripts/**/*", "resources/scripts/**/*.svelte", "resources/scripts/main.ts"],
     "references": [
         {
             "path": "./tsconfig.node.json"

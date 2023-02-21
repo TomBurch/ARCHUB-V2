@@ -35,10 +35,10 @@
             <div class="text-sm font-semibold leading-relaxed">
                 {comment.user.username}
             </div>
-            <div class="mb-1 text-xs text-gray-400" title={created_at.toLocaleString(DateTime.DATETIME_SHORT)}>{created_at.toRelative()}</div>
-            <article
-                class="prose prose-invert max-w-none prose-ul:list-dist prose-ol:list-decimal prose-li:my-0"
-            >
+            <div class="mb-1 text-xs text-gray-400" title={created_at.toLocaleString(DateTime.DATETIME_SHORT)}>
+                {created_at.toRelative()}
+            </div>
+            <article class="prose-ul:list-dist prose prose-invert max-w-none prose-ol:list-decimal prose-li:my-0">
                 <SvelteMarkdown source={comment.text} {options} />
             </article>
         </div>

@@ -7,10 +7,10 @@
     export let can;
 
     let navigation: SubnavItem[] = [];
-    let orbats = mission.orbats ? mission.orbats : mission.orbatSettings
-    
+    let orbats = mission.orbats ? mission.orbats : mission.orbatSettings;
+
     for (let [faction, orbat] of Object.entries(orbats)) {
-        let item: SubnavItem = { name: faction, content: orbat, show: true }
+        let item: SubnavItem = { name: faction, content: orbat, show: true };
         navigation.push(item);
     }
     let selected: SubnavItem = navigation[0];

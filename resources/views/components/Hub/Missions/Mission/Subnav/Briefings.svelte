@@ -8,7 +8,7 @@
     let navigation: SubnavItem[] = [];
 
     mission.briefing_models.forEach(function (briefing) {
-        let item: SubnavItem = { name: briefing.name, content: briefing, show: true }
+        let item: SubnavItem = { name: briefing.name, content: briefing, show: true };
         navigation.push(item);
     });
     let selected: SubnavItem = navigation[0];

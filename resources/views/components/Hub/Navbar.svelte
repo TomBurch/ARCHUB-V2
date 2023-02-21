@@ -1,16 +1,16 @@
 <script lang="ts" context="module">
     export declare type NavItem = {
-        name: string,
-        href: string,
-        inert: boolean,
-        show: boolean,
+        name: string;
+        href: string;
+        inert: boolean;
+        show: boolean;
     };
 </script>
 
 <script lang="ts">
     import { Link, page } from "@inertiajs/inertia-svelte";
 
-    export let navigation: NavItem[]
+    export let navigation: NavItem[];
 
     let open = false;
     let currentPath = "";
