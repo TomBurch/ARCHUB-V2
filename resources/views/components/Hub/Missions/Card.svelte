@@ -78,7 +78,7 @@
                 </svg>
             {/if}
         </div>
-        <p class="truncate text-xs font-normal text-gray-100">
+        <p class="text-xs font-normal text-gray-100 line-clamp-2">
             {mission.summary}
         </p>
     </div>

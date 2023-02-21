@@ -10,6 +10,7 @@
         "@babel/core": "^7.19.3",
         "@inertiajs/inertia": "^0.11.1",
         "@inertiajs/inertia-svelte": "^0.8.0",
+        "@tailwindcss/line-clamp": "^0.4.2",
         "@tailwindcss/typography": "^0.5.7",
         "autoprefixer": "^10.4.12",
         "axios": "^1.1.2",
