@@ -42,6 +42,7 @@ return [
         'server_id' => env('DISCORD_SERVER_ID'),
         'arma_recruit_role' => env('DISCORD_ARMA_RECRUIT_ROLE'),
         'arma_member_role' => env('DISCORD_ARMA_MEMBER_ROLE'),
+        'retired_role' => env('DISCORD_RETIRED_ROLE'),
         'tester_role' => env('DISCORD_TESTER_ROLE'),
         'senior_tester_role' => env('DISCORD_SENIOR_TESTER_ROLE'),
         'staff_role' => env('DISCORD_STAFF_ROLE'),

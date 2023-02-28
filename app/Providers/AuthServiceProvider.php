@@ -32,7 +32,7 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         Gate::define('access-hub', function (User $user) {
-            return $user->hasARole(RoleEnum::ARMA_MEMBER, RoleEnum::ARMA_RECRUIT);
+            return $user->hasARole(RoleEnum::ARMA_MEMBER, RoleEnum::ARMA_RECRUIT, RoleEnum::RETIRED);
         });
 
         Gate::define('test-missions', function (User $user) {
