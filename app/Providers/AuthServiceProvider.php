@@ -22,6 +22,10 @@ class AuthServiceProvider extends ServiceProvider
         // 'App\Models\Model' => 'App\Policies\ModelPolicy',
     ];
 
+    private function userOwnsMission($user, $mission) {
+        return $mission->user->is($user) || $mission->maintainer->is($user);
+    }
+
     /**
      * Register any authentication / authorization services.
      *
@@ -42,7 +46,7 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('test-mission', function (User $user, Mission $mission) {
             // Includes adding notes, downloading missions,
             // reading locked briefings, and seeing unverified missions
-            return $mission->user->is($user) || $user->hasARole(RoleEnum::TESTER);
+            return $this->userOwnsMission($user, $mission) || $user->hasARole(RoleEnum::TESTER);
         });
 
         Gate::define('view-mission', function (User $user, Mission $mission) {
@@ -54,11 +58,15 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         Gate::define('lock-briefings', function (User $user, Mission $mission) {
-            return $mission->user->is($user);
+            return $this->userOwnsMission($user, $mission);
+        });
+
+        Gate::define('update-mission', function (User $user, Mission $mission) {
+            return $this->userOwnsMission($user, $mission) || $user->hasARole(RoleEnum::OPERATIONS);
         });
 
         Gate::define('manage-media', function (User $user, Mission $mission) {
-            return $mission->user->is($user) || $user->hasARole(RoleEnum::SENIOR_TESTER);
+            return $this->userOwnsMission($user, $mission);
         });
 
         Gate::define('update-comment', function (User $user, MissionComment $comment) {
@@ -86,7 +94,7 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         Gate::define('assign-tags', function (User $user, Mission $mission) {
-            return $mission->user->is($user) || $user->hasARole(RoleEnum::OPERATIONS);
+            return $this->userOwnsMission($user, $mission) || $user->hasARole(RoleEnum::OPERATIONS);
         });
 
         Gate::define('manage-tags', function (User $user) {

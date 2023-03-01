@@ -101,6 +101,7 @@ class MissionController extends Controller
                 'test_mission' => $canTestMission,
                 'verify_missions' => Gate::allows('verify-missions'),
                 'delete_mission' => Gate::allows('delete-mission', $mission),
+                'update_mission' => Gate::allows('update-mission', $mission),
                 'set_maintainers' => Gate::allows('set-maintainers'),
                 'assign_tags' => Gate::allows('assign-tags', $mission),
                 'manage_tags' => Gate::allows('manage-tags'),
@@ -111,6 +112,8 @@ class MissionController extends Controller
 
     public function patch(Request $request, Mission $mission)
     {
+        $this->authorize('verify-missions');
+
         $verified_by = $request->input('verified_by', false);
 
         if ($verified_by !== false) {
@@ -140,8 +143,9 @@ class MissionController extends Controller
 
     public function update(Request $request, Mission $mission)
     {
+        $this->authorize('update-mission', $mission);
+        
         $mission = $this->uploadMission($request, $mission);
-
         Discord::missionUpdate("Updated by **{$request->user()->username}**", $mission, false);
     }
 
@@ -229,6 +233,8 @@ class MissionController extends Controller
 
     public function download(Mission $mission)
     {
+        $this->authorize('test-mission', $mission);
+
         $url = Storage::cloud()->temporaryUrl($mission->cloud_pbo, now()->addMinutes(10));
         return Inertia::location($url);
     }
@@ -239,6 +245,8 @@ class MissionController extends Controller
      */
     public function deploy(Mission $mission)
     {
+        $this->authorize('verify-missions');
+
         $url = config('services.missions.url');
         $headers = [
             'Authorization' => "Basic " .
