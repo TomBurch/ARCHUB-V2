@@ -23,7 +23,7 @@ class AuthServiceProvider extends ServiceProvider
     ];
 
     private function userOwnsMission($user, $mission) {
-        return $mission->user->is($user) || $mission->maintainer->is($user);
+        return $mission->user->is($user) || ($mission->maintainer_id && $mission->maintainer->is($user));
     }
 
     /**
