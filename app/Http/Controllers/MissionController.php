@@ -175,13 +175,14 @@ class MissionController extends Controller
         }
 
         $orbats = $this->generateOrbats($contents['mission']['orbatSettings'], $contents['mission']['groups']);
+        $summary = array_key_exists('description', $contents['mission']) ? $contents['mission']['description'] : "";
 
         if ($isNewMission) {
             $mission = Mission::create([
                 'user_id' => $user->id,
                 'display_name' => $contents['mission']['name'],
                 'mode' => $details->mode,
-                'summary' => $contents['mission']['description'],
+                'summary' => $summary,
                 'briefings' => json_encode($briefings),
                 'map_id' => $details->map->id,
                 'file_name' => $fileName,
@@ -192,7 +193,7 @@ class MissionController extends Controller
         } else {
             $mission->display_name = $contents['mission']['name'];
             $mission->mode = $details->mode;
-            $mission->summary = $contents['mission']['description'];
+            $mission->summary = $summary;
             $mission->briefings = json_encode($briefings);
             $mission->map_id = $details->map->id;
             $mission->file_name = $fileName;
@@ -414,7 +415,7 @@ class MissionController extends Controller
     private function insertGroupIntoCategory(array $group, array &$category) {
         if ($category['id'] == $group['orbatParent']) {
             $minimalGroup = array(
-                "name" => $group["name"],
+                "name" => isset($group['name']) ? $group['name'] : "NOT NAMED",
                 "units" => array(),
             );
 
