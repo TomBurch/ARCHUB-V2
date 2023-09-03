@@ -343,6 +343,9 @@ class MissionController extends Controller
                         case "color":
                             $style .= "color:{$value};";
                             break;
+                        case "face":
+                            $style .= "font-family:{$value};";
+                            break;
                     }
                 }
                 return "<p style='display:inline-block;{$style}'>{$matches[2]}</p>";
