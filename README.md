@@ -3,6 +3,7 @@
 # Installation
 
 ## PHP
+
 Download [php](https://windows.php.net/download) (VS16 x64 Thread Safe)
 
 Extract to `C:\php`
@@ -12,6 +13,7 @@ Copy `C:\php\php.ini-development` and rename to `php.ini`
 Add php to PATH (`Windows Start -> Type "environment" -> Edit the system environment variables -> Advanced -> Environment Variables -> Click "Path" under System variables -> Edit -> New -> Type "C:\php"`)
 
 Uncomment these lines in `php.ini`
+
 ```bash
 extension=fileinfo
 extension=exif
@@ -43,6 +45,7 @@ composer install
 ```
 
 ## Laravel
+
 Make a copy of the `.env.example` file named `.env`:
 
 ```bash
@@ -58,6 +61,7 @@ php artisan key:generate
 Start vite development server
 
 ```bash
+yarn install
 yarn run dev
 ```
 
@@ -82,6 +86,7 @@ php artisan migrate:refresh --seed
 ```
 
 ## Discord Integration
+
 Set all `Discord_` prefixed variables in `.env`
 
 These are used for OAuth2, and can be found on the [Discord Developer Portal](https://discord.com/developers/applications)

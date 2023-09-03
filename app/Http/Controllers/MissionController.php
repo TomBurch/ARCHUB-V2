@@ -81,14 +81,7 @@ class MissionController extends Controller
 
         foreach ($missionArray['briefing_models'] as &$briefing) {
             foreach ($briefing['sections'] as &$section) {
-                $section = preg_replace_callback(
-                    "~<font size='(.*?)'>(.*?)<\/font>~",
-                    function($matches) {
-                        $fontSize = (((int)$matches[1]) * 2) - 5;
-                        return "<p style='display:inline-block;font-size:{$fontSize}px'>{$matches[2]}</p>";
-                    }, 
-                    $section
-                );
+                $section = $this->replaceFontTags($section);
             }
         }
 
@@ -328,6 +321,34 @@ class MissionController extends Controller
         }
 
         return $briefings;
+    }
+
+    private function replaceFontTags($section) {
+        return preg_replace_callback(
+            "~<font (.*?)>(.*?)<\/font>~",
+            function($matches) {
+                $modifiers = array();
+                preg_match_all("~([a-z]+)='(.*?)'~", $matches[1], $modifiers, PREG_SET_ORDER);
+                
+                $style = "";
+                foreach ($modifiers as $modifier) {
+                    $key = $modifier[1];
+                    $value = $modifier[2];
+                    
+                    switch($key) {
+                        case "size":
+                            $fontSize = (((int)$value) * 2) - 5;
+                            $style .= "font-size:{$fontSize}px;"; 
+                            break;
+                        case "color":
+                            $style .= "color:{$value};";
+                            break;
+                    }
+                }
+                return "<p style='display:inline-block;{$style}'>{$matches[2]}</p>";
+            },
+            $section
+        );
     }
 
     public function storeBriefings($mission, $briefingsArray)
