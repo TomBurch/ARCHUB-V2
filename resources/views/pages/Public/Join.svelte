@@ -130,7 +130,10 @@
           rows=6
           required
       />
-      <p class="text-xs italic text-gray-400">Give us a short description of your experience with the game, what mods you've used etc</p>
+      <p class="text-xs italic text-gray-400">
+        Tell us a bit about yourself and how you think you would contribute as a member.
+        <br>
+        The more you write the better! This part is very important. Sharing a bit about yourself goes a long way - we're not looking for one-liners</p>
     </div>
   </div>
   <div class="content-center">
