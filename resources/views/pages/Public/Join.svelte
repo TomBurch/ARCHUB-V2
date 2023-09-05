@@ -26,19 +26,21 @@
               class="mb-3 block w-full appearance-none rounded border bg-gray-200 py-3 px-4 leading-tight text-gray-700 focus:bg-white focus:outline-none invalid:border-red-500"
               id="grid-name"
               type="text"
-              placeholder="e.g. John Smith"
+              placeholder="Name"
               required
           />
+          <p class="text-xs italic text-gray-400">This should be the name you use in game</p>
       </div>
       <div class="w-full px-3 md:w-1/2">
           <label class="mb-2 block text-xs font-bold uppercase tracking-wide text-gray-200" for="grid-age">
               Your age
           </label>
           <input
-              class="block w-full appearance-none rounded border border-gray-200 bg-gray-200 py-3 px-4 leading-tight text-gray-700 focus:border-gray-500 focus:bg-white focus:outline-none"
+              class="block w-full appearance-none rounded border border-gray-200 bg-gray-200 py-3 px-4 leading-tight text-gray-700 focus:border-gray-500 focus:bg-white focus:outline-none invalid:border-red-500"
               id="grid-age"
               type="text"
               placeholder="e.g. 27"
+              required
           />
       </div>
   </div>
@@ -48,13 +50,12 @@
               Location
           </label>
           <input
-              class="mb-3 block w-full appearance-none rounded border border-gray-200 bg-gray-200 py-3 px-4 leading-tight text-gray-700 focus:border-gray-500 focus:bg-white focus:outline-none"
+              class="mb-3 block w-full appearance-none rounded border border-gray-200 bg-gray-200 py-3 px-4 leading-tight text-gray-700 focus:border-gray-500 focus:bg-white focus:outline-none invalid:border-red-500"
               id="grid-location"
               placeholder="Make it as long and as crazy as you'd like."
+              required
           />
-          <!-- ### NOT SURE IF THIS IS NEEDED? ### 
-            <p class="text-xs italic text-gray-400"> </p>
-          -->
+          <p class="text-xs italic text-gray-400">You can be as specific as you like</p>
       </div>
       <div class="mb-6 w-full px-3 md:mb-0 md:w-1/2">
           <label class="mb-2 block text-xs font-bold uppercase tracking-wide text-gray-200" for="grid-weekly">
@@ -62,13 +63,19 @@
           </label>
           <div class="relative">
               <select
-                  class="block w-full appearance-none rounded border border-gray-200 bg-gray-200 py-3 px-4 pr-8 leading-tight text-gray-700 focus:border-gray-500 focus:bg-white focus:outline-none"
+                  class="block w-full appearance-none rounded border border-gray-200 bg-gray-200 py-3 px-4 pr-8 leading-tight text-gray-700 focus:border-gray-500 focus:bg-white focus:outline-none invalid:border-red-500"
                   id="grid-weekly"
+                  required
               >
+                  <option value="" disabled selected class="text-gray-200">Please Select an Option</option>
                   <option>No</option>
                   <option>Yes</option>
               </select>
           </div>
+            <p class="mt-2 text-xs italic text-gray-400">
+              Arma - Saturday at 1800 Zulu
+              DCS - Sunday at 1800 Zulu
+            </p>
       </div>
   </div>
   <div class="-mx-3 mb-6 flex flex-wrap">
@@ -77,24 +84,53 @@
             Discord Username
         </label>
         <input
-            class="mb-3 block w-full appearance-none rounded border border-gray-200 bg-gray-200 py-3 px-4 leading-tight text-gray-700 focus:border-gray-500 focus:bg-white focus:outline-none"
+            class="mb-3 block w-full appearance-none rounded border border-gray-200 bg-gray-200 py-3 px-4 leading-tight text-gray-700 focus:border-gray-500 focus:bg-white focus:outline-none invalid:border-red-500"
             id="grid-discord"
             type="text"
             placeholder="Your Discord Username."
+            required
         />
         <p class="text-xs italic text-gray-400">Discord > Left-Click profile in the bottom left > Copy Username </p>
+        <p class="text-xs italic text-gray-400">Please join <a class="text-red-500 hover:text-red-600"href="https://discord.com/invite/7ehwg7F">our Discord Server</a> so that we can contact you about your application</p>
     </div>
     <div class="mb-6 w-full px-3 md:mb-0 md:w-1/2">
         <label class="mb-2 block text-xs font-bold uppercase tracking-wide text-gray-200" for="grid-steam">
             Steam account
         </label>
         <input
-            class="mb-3 block w-full appearance-none rounded border border-gray-200 bg-gray-200 py-3 px-4 leading-tight text-gray-700 focus:border-gray-500 focus:bg-white focus:outline-none"
+            class="mb-3 block w-full appearance-none rounded border border-gray-200 bg-gray-200 py-3 px-4 leading-tight text-gray-700 focus:border-gray-500 focus:bg-white focus:outline-none invalid:border-red-500"
             id="grid-steam"
             type="text"
             placeholder="Profile URL"
+            required
         />
         <p class="text-xs italic text-gray-400">Steam > Your Profile > Right-Click > Copy Page URL</p>
+    </div>
+    <div class="mt-3 w-full px-3 md:mb-0 md:w-1/2">
+      <label class="mb-2 block text-xs font-bold uppercase tracking-wide text-gray-200" for="grid-experience">
+          Your Game Experience
+      </label>
+      <textarea
+          class="mb-3 block w-full appearance-none rounded border bg-gray-200 py-3 px-4 leading-tight text-gray-700 focus:bg-white focus:outline-none invalid:border-red-500"
+          id="grid-experience"
+          placeholder="Game Experience"
+          rows=6
+          required
+      />
+      <p class="text-xs italic text-gray-400">Give us a short description of your experience with the game, what mods you've used etc</p>
+    </div>
+    <div class="mt-3 w-full px-3 md:mb-0 md:w-1/2">
+      <label class="mb-2 block text-xs font-bold uppercase tracking-wide text-gray-200" for="grid-about">
+          About Yourself
+      </label>
+      <textarea
+          class="mb-3 block w-full appearance-none rounded border bg-gray-200 py-3 px-4 leading-tight text-gray-700 focus:bg-white focus:outline-none invalid:border-red-500"
+          id="grid-about"
+          placeholder="About Yourself"
+          rows=6
+          required
+      />
+      <p class="text-xs italic text-gray-400">Give us a short description of your experience with the game, what mods you've used etc</p>
     </div>
   </div>
   <div class="content-center">
