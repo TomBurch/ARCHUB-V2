@@ -82,7 +82,7 @@
         on:cardClicked={handleCardClicked}
     />
     <MissionCollection
-        title={"arcomm"}
+        title={"Played missions"}
         missions={played_missions}
         bind:shouldRedirect
         on:cardClicked={handleCardClicked}

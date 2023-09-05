@@ -52,7 +52,7 @@
           <input
               class="mb-3 block w-full appearance-none rounded border border-gray-200 bg-gray-200 py-3 px-4 leading-tight text-gray-700 focus:border-gray-500 focus:bg-white focus:outline-none invalid:border-red-500"
               id="grid-location"
-              placeholder="Make it as long and as crazy as you'd like."
+              placeholder="Location"
               required
           />
           <p class="text-xs italic text-gray-400">You can be as specific as you like</p>
@@ -74,6 +74,7 @@
           </div>
             <p class="mt-2 text-xs italic text-gray-400">
               Arma - Saturday at 1800 Zulu
+              <br>
               DCS - Sunday at 1800 Zulu
             </p>
       </div>
@@ -87,7 +88,7 @@
             class="mb-3 block w-full appearance-none rounded border border-gray-200 bg-gray-200 py-3 px-4 leading-tight text-gray-700 focus:border-gray-500 focus:bg-white focus:outline-none invalid:border-red-500"
             id="grid-discord"
             type="text"
-            placeholder="Your Discord Username."
+            placeholder="Your Discord Username"
             required
         />
         <p class="text-xs italic text-gray-400">Discord > Left-Click profile in the bottom left > Copy Username </p>
