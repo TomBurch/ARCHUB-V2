@@ -14,9 +14,10 @@ class MissionsController extends Controller
     {
         $missions = Mission::with([
             'user:id,username',
+            'maintainer:id,username',
             'map:id,display_name',
         ])
-            ->select('id', 'user_id', 'map_id', 'display_name', 'mode', 'summary', 'verified_by', 'last_played', 'thumbnail')
+            ->select('id', 'user_id', 'maintainer_id', 'map_id', 'display_name', 'mode', 'summary', 'verified_by', 'last_played', 'thumbnail')
             ->orderBy('last_played', 'desc')
             ->orderBy('id', 'desc')
             ->get()->toArray();

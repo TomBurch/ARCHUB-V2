@@ -15,7 +15,9 @@
     export let can;
 
     $: next_op_missions = next_operation.missions.map((mission) => mission.mission);
-    $: my_missions = missions.filter((mission) => mission.user.id == $page.props.auth.user.id);
+    $: my_missions = missions.filter(
+        (mission) => mission.user_id == $page.props.auth.user.id || mission.maintainer_id == $page.props.auth.user.id
+    );
     $: unplayed_missions = missions.filter(
         (mission) => !mission.last_played && (mission.verified_by || can.test_missions)
     );
