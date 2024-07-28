@@ -93,6 +93,7 @@ class MissionController extends Controller
             'can' => [
                 'test_mission' => $canTestMission,
                 'verify_missions' => Gate::allows('verify-missions'),
+                'deploy_missions' => Gate::allows('deploy-missions'),
                 'delete_mission' => Gate::allows('delete-mission', $mission),
                 'update_mission' => Gate::allows('update-mission', $mission),
                 'set_maintainers' => Gate::allows('set-maintainers'),
@@ -239,7 +240,7 @@ class MissionController extends Controller
      */
     public function deploy(Mission $mission)
     {
-        $this->authorize('verify-missions');
+        $this->authorize('deploy-missions');
 
         $url = config('services.missions.url');
         $headers = [

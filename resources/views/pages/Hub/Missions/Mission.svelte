@@ -163,8 +163,10 @@
                 </svg>
             </a>
         {/if}
-        {#if can.verify_missions}
+        {#if can.deploy_missions}
             <MissionDeployButton {mission} />
+        {/if}
+        {#if can.verify_missions}
             <MissionVerifyButton {mission} />
         {/if}
     </div>

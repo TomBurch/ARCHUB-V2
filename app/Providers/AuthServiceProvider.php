@@ -44,9 +44,12 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         Gate::define('test-mission', function (User $user, Mission $mission) {
-            // Includes adding notes, downloading missions,
-            // reading locked briefings, and seeing unverified missions
+            // Includes adding notes, reading locked briefings, and seeing unverified missions
             return $this->userOwnsMission($user, $mission) || $user->hasARole(RoleEnum::TESTER);
+        });
+
+        Gate::define('download-mission', function (User $user, Mission $mission) {
+            return $user->can('test-mission', $mission) || $user->hasARole(RoleEnum::STAFF);
         });
 
         Gate::define('view-mission', function (User $user, Mission $mission) {
@@ -55,6 +58,10 @@ class AuthServiceProvider extends ServiceProvider
 
         Gate::define('verify-missions', function (User $user) {
             return $user->hasARole(RoleEnum::SENIOR_TESTER);
+        });
+
+        Gate::define('deploy-missions', function (User $user) {
+            return $user->hasARole(RoleEnum::SENIOR_TESTER, RoleEnum::STAFF);
         });
 
         Gate::define('lock-briefings', function (User $user, Mission $mission) {
