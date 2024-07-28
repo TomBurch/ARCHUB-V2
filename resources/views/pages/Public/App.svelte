@@ -5,16 +5,37 @@
 
 <script lang="ts">
     import Card from "../../Components/Hub/Missions/Card.svelte";
+    import { onDestroy, onMount } from "svelte";
 
     export let missions;
+    export let banners: string[];
+
+    let timer;
+    onMount(() => {
+        let timer = setInterval(next, 5000);
+    });
+    onDestroy(() => {
+        clearInterval(timer);
+    });
+
+    let i = 0;
+    function next() {
+        i += 1;
+        if (i >= banners.length) {
+            i = 0;
+        }
+    }
+    $: currentBanner = banners[i];
 </script>
 
 <div class="size-full">
-    <div class="h-screen-no-nav-margin bg-blue-700">
-        <div class="absolute bottom-0 flex w-screen justify-center bg-black py-12 text-center text-white">
-            <div class="max-w-[60%]">
+    <div style="background-image: url('{currentBanner}')" class="h-screen-no-nav-margin bg-black">
+        <div
+            class="absolute bottom-0 flex w-screen justify-center bg-black py-5 text-center text-white opacity-90 lg:py-8"
+        >
+            <div class="max-w-[90%] md:max-w-[75%] lg:max-w-[60%]">
                 <h4 class="mb-2 text-3xl font-thin">Arma-Centric Family of Gamers</h4>
-                <p class="text-xl font-extralight leading-9">
+                <p class="font-extralight leading-6 md:text-lg md:leading-7 lg:text-xl lg:leading-9">
                     We pride ourselves on the absence of ranks and strict military structure. Our players range from
                     former mil-sim players to beginners of Arma. Our goal is to take advantage of what Arma does best
                     and provide a great experience to all involved.<br />Everyone is considered an equal member. No one
