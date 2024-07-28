@@ -83,7 +83,7 @@ class Mission extends Model implements HasMedia
         return $this->hasMany(MissionRevision::class);
     }
 
-    public function subscribers()
+    public function subscriptions()
     {
         return $this->hasMany(MissionSubscription::class);
     }

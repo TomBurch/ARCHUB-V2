@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Models\Missions\Mission;
+use App\Models\Missions\MissionSubscription;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
@@ -53,9 +54,14 @@ class Discord
         $pings = "";
 
         if ($tagAuthor) {
-            foreach ($mission->subscribers as $subscriber) {
-                if ($subscriber->discord_id != auth()->user()->discord_id) {
-                    $pings = "{$pings} <@{$subscriber->discord_id}>";
+            foreach ($mission->subscriptions as $subscription) {
+                if (!$subscription->user->can('access-hub')) {
+                    $subscription->delete();
+                    continue;
+                }
+
+                if ($subscription->discord_id != auth()->user()->discord_id) {
+                    $pings = "{$pings} <@{$subscription->discord_id}>";
                 }
             }
 
