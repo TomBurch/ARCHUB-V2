@@ -13,7 +13,7 @@ class AppController extends Controller
             'map:id,display_name',
         ])
             ->select('id', 'user_id', 'map_id', 'display_name', 'mode', 'summary', 'thumbnail')
-            ->whereIn('id', [46, 47, 48])
+            ->whereIn('id', [1194, 859, 1084])
             ->get()->toArray();
 
         return inertia('Public/App', [
