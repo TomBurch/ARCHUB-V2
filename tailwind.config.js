@@ -4,6 +4,7 @@ module.exports = {
         extend: {
             height: {
                 "screen-no-nav": "84vh",
+                "screen-no-nav-margin": "94vh",
             },
             minHeight: {
                 "screen-no-nav": "84vh",

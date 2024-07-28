@@ -3,10 +3,6 @@
     export const layout = Layout;
 </script>
 
-<script lang="ts">
-    import { page } from "@inertiajs/inertia-svelte";
-</script>
-
 <!-- Adapted from https://v1.tailwindcss.com/components/forms#form-grid -->
 <form class="h-screen-no-nav border border-gray-200 border-gray-700 bg-gray-800 p-3 shadow-md">
     <div class="-mx-3 mb-6 flex flex-wrap">

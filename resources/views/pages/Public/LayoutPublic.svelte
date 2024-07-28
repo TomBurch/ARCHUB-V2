@@ -4,7 +4,5 @@
 
 <main>
     <Navbar />
-    <article class="m-10">
-        <slot />
-    </article>
+    <slot />
 </main>
