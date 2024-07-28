@@ -91,7 +91,7 @@ class MissionController extends Controller
             'mission' => $missionArray,
             'mission.media' => $media,
             'can' => [
-                'test_mission' => $canTestMission,
+                'download_mission' => Gate::allows('download-mission', $mission),
                 'verify_missions' => Gate::allows('verify-missions'),
                 'deploy_missions' => Gate::allows('deploy-missions'),
                 'delete_mission' => Gate::allows('delete-mission', $mission),

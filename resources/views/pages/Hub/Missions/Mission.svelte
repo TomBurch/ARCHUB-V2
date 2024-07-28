@@ -145,7 +145,7 @@
         {#if can.update_mission}
             <MissionUpdateButton {mission} />
         {/if}
-        {#if can.test_mission}
+        {#if can.download_mission}
             <a href="/hub/missions/{mission.id}/download" title="Download">
                 <svg
                     class="h-7 w-7"
