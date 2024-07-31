@@ -78,7 +78,7 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         Gate::define('manage-media', function (User $user, Mission $mission) {
-            return $this->userOwnsMission($user, $mission);
+            return $this->userOwnsMission($user, $mission) || $user->hasARole(RoleEnum::OPERATIONS);
         });
 
         Gate::define('update-comment', function (User $user, MissionComment $comment) {

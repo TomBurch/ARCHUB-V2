@@ -8,7 +8,7 @@ use App\Models\Missions\Mission;
 
 class SharedMissionController extends Controller
 {
-    public const SHARED_MISSIONS = [594, 1194, 1160];
+    public const SHARED_MISSIONS = [594, 1160, 1194];
 
     public function index(Mission $mission)
     {
