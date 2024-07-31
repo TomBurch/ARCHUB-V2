@@ -81,14 +81,14 @@
     </div>
     <div class="flex h-screen bg-white" />
     <div class="flex h-screen flex-col items-center justify-center bg-red-700 text-center text-white">
-        <div class="mb-5 sm:mb-10">
-            <h1 class="mb-1 text-5xl font-thin sm:mb-3 sm:text-7xl">
+        <div class="mb-3 md:mb-10">
+            <h1 class="text-4xl font-thin md:mb-3 md:text-7xl">
                 ARC<b class="font-bold">HUB</b>
             </h1>
-            <p class="text-3xl font-extralight leading-9 sm:text-3xl">Built in-house, our community mission suite.</p>
+            <p class="text-xl font-extralight leading-9 md:text-3xl">Built in-house, our community mission suite.</p>
         </div>
         <div
-            class="col-span-full grid max-w-[60%] grid-cols-1 gap-5 sm:max-w-[50%] md:max-w-[70%] md:grid-cols-3 lg:max-w-[55%]"
+            class="col-span-full grid max-w-[60%] grid-cols-1 gap-3 sm:max-w-[50%] md:max-w-[70%] md:grid-cols-3 md:gap-5 lg:max-w-[55%]"
         >
             {#each missions as mission}
                 <Card shouldRedirect={true} {mission} on:cardClicked shared={true} />
