@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 
-use App\Http\Controllers\Public\SharedMissionController;
 use App\RoleEnum;
 use App\Models\Missions\Mission;
 use App\Models\Missions\MissionComment;
@@ -55,10 +54,6 @@ class AuthServiceProvider extends ServiceProvider
 
         Gate::define('view-mission', function (User $user, Mission $mission) {
             return $mission->verified_by || $user->can('test-mission', $mission);
-        });
-
-        Gate::define('view-shared-mission', function (User $user, Mission $mission) {
-            return in_array($mission->id, SharedMissionController::SHARED_MISSIONS);
         });
 
         Gate::define('verify-missions', function (User $user) {
