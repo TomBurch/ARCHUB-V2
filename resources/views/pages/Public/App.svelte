@@ -30,10 +30,7 @@
 </script>
 
 <div class="size-full">
-    <div
-        style="background-image: url('{currentBanner}')"
-        class="h-screen-no-nav-margin bg-black bg-cover bg-center bg-no-repeat"
-    >
+    <div style="background-image: url('{currentBanner}')" class="h-screen bg-black bg-cover bg-center bg-no-repeat">
         <div
             class="absolute bottom-0 flex w-screen justify-center bg-black py-5 text-center text-white opacity-90 lg:py-8"
         >
