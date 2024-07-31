@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Public\SharedMissionController;
 use App\Models\Missions\Mission;
 use Illuminate\Support\Facades\Storage;
 
@@ -14,7 +15,7 @@ class AppController extends Controller
             'map:id,display_name',
         ])
             ->select('id', 'user_id', 'map_id', 'display_name', 'mode', 'summary', 'verified_by', 'thumbnail')
-            ->whereIn('id', [1194, 859, 1084])
+            ->whereIn('id', SharedMissionController::SHARED_MISSIONS)
             ->get()->toArray();
 
         $banners = Storage::disk('images')->allFiles('banners');

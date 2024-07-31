@@ -94,7 +94,7 @@
             class="col-span-full grid max-w-[60%] grid-cols-1 gap-5 sm:max-w-[50%] md:max-w-[70%] md:grid-cols-3 lg:max-w-[55%]"
         >
             {#each missions as mission}
-                <Card shouldRedirect={true} {mission} on:cardClicked />
+                <Card shouldRedirect={true} {mission} on:cardClicked shared={true} />
             {/each}
         </div>
     </div>

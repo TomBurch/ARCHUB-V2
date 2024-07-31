@@ -30,11 +30,14 @@
             });
         }
     }
+
+    export let shared: boolean = false;
+    const link = shared ? `/share/${mission.id}` : `/hub/missions/${mission.id}`;
 </script>
 
 <!-- Adapted from https://flowbite.com/docs/components/card/#default-card -->
 <a
-    href="/hub/missions/{mission.id}"
+    href={link}
     on:click={handleClick}
     class="h-60 min-w-0 flex-grow cursor-pointer space-y-1 rounded-lg border-b-8 bg-gray-800 p-3 shadow-md hover:bg-gray-700 {cardColours(
         {

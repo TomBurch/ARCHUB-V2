@@ -81,7 +81,7 @@ class MissionController extends Controller
 
         foreach ($missionArray['briefing_models'] as &$briefing) {
             foreach ($briefing['sections'] as &$section) {
-                $section = $this->replaceFontTags($section);
+                $section = $this::replaceFontTags($section);
             }
         }
 
@@ -324,7 +324,7 @@ class MissionController extends Controller
         return $briefings;
     }
 
-    private function replaceFontTags($section) {
+    public static function replaceFontTags($section) {
         return preg_replace_callback(
             "~<font (.*?)>(.*?)<\/font>~",
             function($matches) {
