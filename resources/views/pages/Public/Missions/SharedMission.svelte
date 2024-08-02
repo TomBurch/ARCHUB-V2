@@ -1,11 +1,4 @@
-<script lang="ts" context="module">
-    import Layout from "../LayoutPublic.svelte";
-    export const layout = Layout;
-</script>
-
 <script lang="ts">
-    import { Inertia } from "@inertiajs/inertia";
-
     import Subnav, { type SubnavItem } from "../../../Components/Hub/Missions/Mission/Subnav/Subnav.svelte";
     import SharedBriefings from "../../../Components/Public/Missions/Mission/Subnav/SharedBriefings.svelte";
     import SharedMedia from "../../../Components/Public/Missions/Mission/Subnav/SharedMedia.svelte";
