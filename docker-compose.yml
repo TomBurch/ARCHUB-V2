@@ -1,16 +1,14 @@
 version: "3.8"
 
 services:
-    web:
-        container_name: archub-v2-web
-        image: archub-v2-web:latest
+    app:
+        container_name: archub-v2-app
+        image: archub-v2-app:latest
         build:
-            target: web
             context: .
+            dockerfile: Dockerfile
         env_file:
             - .env
-        ports:
-            - "8000:80"
         volumes:
             - .:/var/www/html
         depends_on:
@@ -31,6 +29,17 @@ services:
             - "3306:3306"
         volumes:
             - dbdata:/var/lib/mysql
+
+    nginx:
+        image: nginx:alpine
+        container_name: archub-v2-nginx
+        restart: unless-stopped
+        ports:
+            - "80:80"
+            - "443:443"
+        volumes:
+            - ./:/var/www/html
+            - ./docker-compose/nginx/conf.d/:/etc/nginx/conf.d
 
 volumes:
     dbdata:
