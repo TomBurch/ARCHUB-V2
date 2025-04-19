@@ -19,6 +19,7 @@ RUN composer install --no-interaction --prefer-dist --optimize-autoloader
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 USER www-data
 
+# RUN php artisan config:cache
 # RUN php artisan key:generate
 # RUN php artisan storage:link
 # RUN php artisan migrate:install
